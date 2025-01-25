@@ -1,23 +1,13 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
 import BottomNavigator from "../components/BottomNavigator";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
-// import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 const Main = () => {
     return (
-        <Tab.Navigator
-            tabBar={({ navigation, state, descriptors, insets }) => (
-                <BottomNavigator
-                    navigation={navigation}
-                    state={state}
-                    descriptors={descriptors}
-                    insets={insets}
-                />
-            )}
-        >
+        <Tab.Navigator>
             <Tab.Screen
                 name="Home"
                 component={HomeScreen}

@@ -1,13 +1,14 @@
 import { BottomNavigation } from "react-native-paper";
-import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { CommonActions } from "@react-navigation/native";
 
-const BottomNavigator = ({
-    navigation,
-    state,
-    descriptors,
-    insets,
-}: BottomTabBarProps) => {
+interface Props {
+    navigation: any;
+    state: any;
+    descriptors: any;
+    insets: any;
+}
+
+const BottomNavigator = ({ navigation, state, descriptors, insets }: Props) => {
     return (
         <BottomNavigation.Bar
             navigationState={state}
