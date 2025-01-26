@@ -1,7 +1,7 @@
 import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
-import BottomNavigator from "../components/BottomNavigator";
-import { View } from "react-native";
-import { Text } from "react-native-paper";
+import * as Icons from "@expo/vector-icons";
+import CurrentBudget from "./CurrentBudget";
+import PastBudgets from "./PastBudgets";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -9,23 +9,35 @@ const Main = () => {
     return (
         <Tab.Navigator>
             <Tab.Screen
-                name="Home"
-                component={HomeScreen}
+                name="Current"
+                component={CurrentBudget}
                 options={{
-                    tabBarLabel: "Home",
-                    //   tabBarIcon: ({ color, size }) => {
-                    //     return <Icon name="home" size={size} color={color} />;
-                    //   },
+                    tabBarLabel: "Current Budget",
+                    tabBarIcon: ({ color }: any) => {
+                        return (
+                            <Icons.FontAwesome6
+                                name="money-bill-trend-up"
+                                size={26}
+                                color={color}
+                            />
+                        );
+                    },
                 }}
             />
             <Tab.Screen
-                name="Settings"
-                component={SettingsScreen}
+                name="History"
+                component={PastBudgets}
                 options={{
-                    tabBarLabel: "Settings",
-                    //   tabBarIcon: ({ color, size }) => {
-                    //     return <Icon name="cog" size={size} color={color} />;
-                    //   },
+                    tabBarLabel: "Past Budgets",
+                    tabBarIcon: ({ color }: any) => {
+                        return (
+                            <Icons.FontAwesome5
+                                name="history"
+                                size={26}
+                                color={color}
+                            />
+                        );
+                    },
                 }}
             />
         </Tab.Navigator>
@@ -33,19 +45,3 @@ const Main = () => {
 };
 
 export default Main;
-
-function HomeScreen() {
-    return (
-        <View>
-            <Text variant="headlineMedium">Home!</Text>
-        </View>
-    );
-}
-
-function SettingsScreen() {
-    return (
-        <View>
-            <Text variant="headlineMedium">Settings!</Text>
-        </View>
-    );
-}
