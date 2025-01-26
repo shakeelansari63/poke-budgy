@@ -23,6 +23,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2e7938f9-8f04-4746-b7ed-1e0d9d2a44f5"
+      }
+    },
+    "owner": "shakeelansari63"
   }
 }
