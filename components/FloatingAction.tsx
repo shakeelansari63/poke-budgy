@@ -37,7 +37,7 @@ const FloatingAction = ({ visible, newBudgetRef }: Props) => {
                         onPress: handlePresentModalPress,
                     },
                     {
-                        icon: "copy",
+                        icon: "content-copy",
                         label: "Clone Current Budget",
                         onPress: () => console.log("Pressed star"),
                     },
@@ -55,6 +55,6 @@ const styles = StyleSheet.create({
         position: "absolute",
         margin: 16,
         right: 0,
-        bottom: 72,
+        bottom: 0,
     },
 });

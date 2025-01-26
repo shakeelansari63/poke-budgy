@@ -47,7 +47,7 @@ const NewBudget = ({ bottomSheetRef }: Props) => {
                         value={endDate}
                         inputMode="end"
                     />
-                    <Button mode="contained" icon="save">
+                    <Button mode="contained" icon="content-save">
                         Save
                     </Button>
                 </View>
