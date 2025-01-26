@@ -3,7 +3,7 @@ import Icon from "../constants/Icons";
 import CurrentBudget from "./CurrentBudget";
 import PastBudgets from "./PastBudgets";
 import FloatingAction from "../components/FloatingAction";
-import NewBudget from "./NewBudget";
+import NewBudget from "../components/NewBudget";
 import React, { useRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { Portal } from "react-native-paper";

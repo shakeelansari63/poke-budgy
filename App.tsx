@@ -8,9 +8,11 @@ import { StatusBar } from "expo-status-bar";
 import Icon from "./constants/Icons";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { en, registerTranslation } from "react-native-paper-dates";
 
 export default function App() {
     const theme = useColorScheme() === "dark" ? Theme.dark : Theme.light;
+    registerTranslation("en", en);
     return (
         <PaperProvider
             theme={theme}

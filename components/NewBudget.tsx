@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
 import { BottomSheetModal, BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { DatePickerInput } from "react-native-paper-dates";
@@ -18,20 +18,9 @@ const NewBudget = ({ bottomSheetRef }: Props) => {
     }, []);
 
     return (
-        <BottomSheetModal
-            ref={bottomSheetRef}
-            onChange={handleSheetChanges}
-            style={{ zIndex: 999999 }}
-        >
+        <BottomSheetModal ref={bottomSheetRef} onChange={handleSheetChanges}>
             <BottomSheetScrollView>
-                <View
-                    style={{
-                        justifyContent: "center",
-                        flex: 1,
-                        alignItems: "center",
-                        padding: 24,
-                    }}
-                >
+                <View style={styles.container}>
                     <DatePickerInput
                         locale="en"
                         label="Start Date"
@@ -39,15 +28,22 @@ const NewBudget = ({ bottomSheetRef }: Props) => {
                         value={startDate}
                         inputMode="start"
                         editable={false}
+                        style={styles.formField}
                     />
                     <DatePickerInput
                         locale="en"
                         label="End Date"
                         onChange={(d) => setEndDate(d)}
                         value={endDate}
-                        inputMode="end"
+                        inputMode="start"
+                        editable={false}
+                        style={styles.formField}
                     />
-                    <Button mode="contained" icon="content-save">
+                    <Button
+                        mode="contained"
+                        icon="content-save"
+                        style={styles.formField}
+                    >
                         Save
                     </Button>
                 </View>
@@ -57,3 +53,15 @@ const NewBudget = ({ bottomSheetRef }: Props) => {
 };
 
 export default NewBudget;
+
+const styles = StyleSheet.create({
+    container: {
+        justifyContent: "center",
+        flex: 1,
+        alignItems: "center",
+        padding: 24,
+    },
+    formField: {
+        marginVertical: 10,
+    },
+});
