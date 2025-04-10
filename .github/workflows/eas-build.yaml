@@ -22,7 +22,7 @@ jobs:
 
       - name: Install EAS Cli
         id: install-eas-cli
-        run: npm run -g eas-cli
+        run: npm i -g eas-cli
 
       - name: EAS Build
         id: eas-build
