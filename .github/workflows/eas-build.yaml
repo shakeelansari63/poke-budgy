@@ -24,6 +24,10 @@ jobs:
         id: install-eas-cli
         run: npm i -g eas-cli
 
+      - name: Install Required dependencies
+        id: npm-install
+        run: npm install
+
       - name: EAS Build
         id: eas-build
         run: eas build -p android
