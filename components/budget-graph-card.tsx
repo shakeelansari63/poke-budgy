@@ -1,14 +1,13 @@
-import { View } from "react-native";
 import { Card, Text } from "react-native-paper";
 import React from "react";
 
 const BudgetGraph = () => {
     return (
-        <View>
-            <Card>
+        <Card mode="elevated" style={{ margin: 5 }}>
+            <Card.Content>
                 <Text>Graph Goes Here</Text>
-            </Card>
-        </View>
+            </Card.Content>
+        </Card>
     );
 };
 

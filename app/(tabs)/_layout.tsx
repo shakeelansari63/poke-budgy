@@ -1,10 +1,7 @@
 import { Tabs } from "expo-router";
-import { useTheme } from "react-native-paper";
-import Icon from "../constants/icons";
+import Icon from "../../constants/icons";
 
 export default function TabLayout() {
-    const theme = useTheme();
-
     return (
         <Tabs screenOptions={{ headerShown: false }}>
             <Tabs.Screen

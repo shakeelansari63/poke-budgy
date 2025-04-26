@@ -1,10 +1,13 @@
-import { View } from "react-native";
+import { ScrollView } from "react-native";
 import { Text } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function History() {
     return (
-        <View>
-            <Text>History Page</Text>
-        </View>
+        <SafeAreaView>
+            <ScrollView>
+                <Text>History Page</Text>
+            </ScrollView>
+        </SafeAreaView>
     );
 }

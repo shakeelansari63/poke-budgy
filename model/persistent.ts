@@ -7,6 +7,7 @@ export interface BudgetStore {
     getActiveBudget: () => Budget;
     getInactiveBudgets: () => Budget[];
     getBudgetById: (id: string) => Budget | null;
+    setActiveBudget: (id: string) => Budget;
     createNewBudget: (cloneId: string | null, startDate: Date, endDate: Date) => Budget;
     addIncome: (income: Income) => Budget;
     addExpenseCategory: (expenseCategory: ExpenseCategory) => Budget;

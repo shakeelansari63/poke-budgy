@@ -7,5 +7,4 @@ export interface Budget {
     EndDate: Date;
     Incomes: Income[];
     Expenses: ExpenseCategory[];
-    IsCurrent: boolean;
 }
