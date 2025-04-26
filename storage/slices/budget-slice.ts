@@ -76,8 +76,19 @@ const budgetSlice = createSlice({
 
         addIncome: (state, action) => {
             const income = action.payload as Income;
+            income.Id = nanoid();
             if (state.activeBudget) {
                 state.activeBudget.Incomes.push(income);
+            }
+        },
+
+        editIncome: (state, action) => {
+            const updatedIncome = action.payload as Income;
+            if (state.activeBudget) {
+                state.activeBudget.Incomes = state.activeBudget.Incomes.filter(
+                    (income) => income.Id !== updatedIncome.Id
+                );
+                state.activeBudget.Incomes.push(updatedIncome);
             }
         },
 
@@ -90,6 +101,7 @@ const budgetSlice = createSlice({
 
         addExpenseCategory: (state, action) => {
             const expenseCategory = action.payload as ExpenseCategory;
+            expenseCategory.Id = nanoid();
             if (state.activeBudget) {
                 state.activeBudget.Expenses.push(expenseCategory);
             }
@@ -106,6 +118,7 @@ const budgetSlice = createSlice({
 
         addExpense: (state, action) => {
             const { expense, categoryId } = action.payload as { expense: Expense; categoryId: string };
+            expense.Id = nanoid();
             if (state.activeBudget) {
                 const category = state.activeBudget.Expenses.find((category) => category.Id === categoryId);
                 if (category) {
@@ -132,6 +145,7 @@ export const {
     deleteActiveBudget,
     setActiveBudget,
     addIncome,
+    editIncome,
     deleteIncome,
     addExpenseCategory,
     deleteExpenseCategory,
