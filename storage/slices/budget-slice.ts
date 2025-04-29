@@ -7,7 +7,7 @@ import budgets from "../../dummy-data";
 
 const initialState: BudgetState = {
     pastBudgets: budgets.slice(0, -1) || [],
-    activeBudget: budgets[0] || null,
+    activeBudget: budgets[budgets.length - 1] || null,
 };
 
 const budgetSlice = createSlice({
@@ -31,14 +31,27 @@ const budgetSlice = createSlice({
             if (cloneId) {
                 // clone budget
                 const budget = state.pastBudgets.find((budget) => budget.Id === cloneId);
+                let copyBudget: Budget | null = null;
+
+                // Check if Clone budget in Past Bdgets
                 if (budget) {
+                    copyBudget = JSON.parse(JSON.stringify(budget)) as Budget;
+                }
+
+                // Check if Clone budget is active budgte
+                else if (state.activeBudget?.Id === cloneId) {
+                    copyBudget = JSON.parse(JSON.stringify(state.activeBudget)) as Budget;
+                }
+
+                // Copy Income and Expense categories if Found budget to copy
+                if (copyBudget) {
                     // Remove expense from budgetCategories
-                    budget.Expenses.forEach((category) => {
+                    copyBudget.Expenses.forEach((category) => {
                         category.Expenses = [];
                     });
 
-                    newBudget.Incomes = budget.Incomes;
-                    newBudget.Expenses = budget.Expenses;
+                    newBudget.Incomes = copyBudget.Incomes;
+                    newBudget.Expenses = copyBudget.Expenses;
                 }
             }
             // Move current active Budget to past Budgets

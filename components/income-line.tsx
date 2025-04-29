@@ -9,7 +9,6 @@ interface IncomeProps {
 }
 
 const IncomeLine = ({ income }: IncomeProps) => {
-    const [modalVisible, setModalVisible] = useState(false);
     const sheetRef = useRef<BottomSheetModal>(null);
 
     return (
@@ -25,7 +24,10 @@ const IncomeLine = ({ income }: IncomeProps) => {
                 right={(param) => (
                     <IconButton
                         icon="pencil"
-                        onPress={() => sheetRef.current?.present()}
+                        onPress={() => {
+                            console.log(income);
+                            sheetRef.current?.present();
+                        }}
                         iconColor={param.color}
                         size={20}
                         style={{ margin: 0, padding: 0 }}

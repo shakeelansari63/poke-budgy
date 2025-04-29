@@ -1,23 +1,28 @@
-import { Tabs } from "expo-router";
-import Icon from "../../constants/icons";
+import { useState } from "react";
+import { BottomNavigation } from "react-native-paper";
+import Home from "./index";
+import History from "./history";
+import Trends from "./trends";
 
 export default function TabLayout() {
+    const [pageIndex, setPageIndex] = useState(0);
+    const [routes] = useState([
+        { key: "home", title: "Current Budget", focusedIcon: "book" },
+        { key: "trend", title: "Trend", focusedIcon: "trending-up" },
+        { key: "history", title: "Past Budgets", focusedIcon: "book-clock" },
+    ]);
+
+    const renderScene = BottomNavigation.SceneMap({
+        home: Home,
+        trend: Trends,
+        history: History,
+    });
+
     return (
-        <Tabs screenOptions={{ headerShown: false }}>
-            <Tabs.Screen
-                name="index"
-                options={{
-                    title: "Current Budget",
-                    tabBarIcon: ({ color }) => <Icon source="book" size={28} color={color} />,
-                }}
-            />
-            <Tabs.Screen
-                name="history"
-                options={{
-                    title: "Past Budgets",
-                    tabBarIcon: ({ color }) => <Icon source="book-clock" size={28} color={color} />,
-                }}
-            />
-        </Tabs>
+        <BottomNavigation
+            navigationState={{ index: pageIndex, routes }}
+            onIndexChange={setPageIndex}
+            renderScene={renderScene}
+        />
     );
 }

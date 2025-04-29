@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Text, Card, IconButton, Avatar } from "react-native-paper";
 import { useSelector } from "react-redux";
 import { BudgetState } from "../model/store";
@@ -14,8 +14,8 @@ const IncomeSection = () => {
 
     return (
         <>
-            <EditIncomeDialog income={null} sheetRef={sheetRef} />
-            <Card mode="elevated" style={{ margin: 5 }}>
+            <EditIncomeDialog sheetRef={sheetRef} />
+            <Card mode="elevated" style={{ margin: 10 }}>
                 <Card.Title
                     title="Incomes"
                     titleVariant="titleLarge"

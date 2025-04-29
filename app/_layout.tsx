@@ -24,7 +24,7 @@ export default function RootLayout() {
                 <Provider store={store}>
                     <SafeAreaProvider>
                         <Portal.Host>
-                            <GestureHandlerRootView>
+                            <GestureHandlerRootView style={{ flex: 1, backgroundColor: paperTheme.colors.background }}>
                                 <BottomSheetModalProvider>
                                     <Stack>
                                         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

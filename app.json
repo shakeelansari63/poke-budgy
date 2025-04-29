@@ -2,7 +2,7 @@
     "expo": {
         "name": "poke-budgy",
         "slug": "poke-budgy",
-        "version": "1.0.0-b2",
+        "version": "1.0.0-b3",
         "orientation": "portrait",
         "icon": "./assets/images/icon.png",
         "scheme": "myapp",
