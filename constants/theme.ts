@@ -7,7 +7,7 @@ const MaterialDarkTheme = {
     ...MD3DarkTheme,
     colors: {
         ...MD3DarkTheme.colors,
-        primary: "#006699",
+        primary: "#4f378b",
     },
 };
 
@@ -16,7 +16,7 @@ const MaterialLightTheme = {
     ...MD3LightTheme,
     colors: {
         ...MD3LightTheme.colors,
-        primary: "#006699",
+        primary: "#4f378b",
     },
 };
 

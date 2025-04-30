@@ -25,7 +25,6 @@ export const dateFormatMiddleware = (store: any) => (next: any) => (action: any)
     const payload = action.payload;
 
     action.payload = serializeDateinAny(payload);
-    console.log(action.payload);
 
     next(action);
 };

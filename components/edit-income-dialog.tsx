@@ -1,5 +1,5 @@
 import { ScrollView } from "react-native";
-import { Button, MD3Colors, TextInput, Card, IconButton, useTheme } from "react-native-paper";
+import { Button, TextInput, Card, IconButton, useTheme } from "react-native-paper";
 import { useState, RefObject } from "react";
 import { Income } from "../model/income";
 import { DatePickerInput } from "react-native-paper-dates";
@@ -8,7 +8,7 @@ import { deleteIncome, editIncome, addIncome } from "../storage/slices/budget-sl
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
 
 interface EditIncomeDialogProps {
-    income?: Income | null;
+    income?: Income;
     sheetRef: RefObject<BottomSheetModal>;
 }
 
@@ -33,7 +33,7 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
         if (!dirty) return;
         dispatch(
             addIncome({
-                Id: null,
+                Id: "",
                 Source: incomeSource,
                 IncomeDate: incomeDate,
                 Amount: incomeAmount,
@@ -66,7 +66,7 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
             <BottomSheetView style={{ backgroundColor: theme.colors.background }}>
                 <Card>
                     <Card.Title
-                        title={income === null ? "Add Income" : "Edit Income"}
+                        title={income == undefined ? "Add Income" : "Edit Income"}
                         titleVariant="titleLarge"
                         right={() => <IconButton icon="close" onPress={() => sheetRef.current?.dismiss()} />}
                     />
@@ -116,7 +116,7 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
                         {income !== null ? (
                             <Button
                                 mode="text"
-                                textColor={MD3Colors.error70}
+                                textColor={theme.colors.error}
                                 icon="trash-can"
                                 onPress={deleteIncomeHandler}
                             >
@@ -125,9 +125,9 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
                         ) : null}
                         <Button
                             mode="text"
-                            textColor={MD3Colors.primary70}
+                            textColor={theme.colors.primary}
                             icon="content-save"
-                            onPress={income === null ? addIncomeHandler : updateIncomeHandler}
+                            onPress={income === undefined ? addIncomeHandler : updateIncomeHandler}
                         >
                             Save
                         </Button>

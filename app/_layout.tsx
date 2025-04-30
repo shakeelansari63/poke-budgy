@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 import { useColorScheme } from "react-native";
 import { ThemeProvider } from "@react-navigation/native";
-import { MD3Colors, PaperProvider, Portal } from "react-native-paper";
+import { PaperProvider, Portal } from "react-native-paper";
 import { PaperDark, PaperLight } from "../constants/theme";
 import { Provider } from "react-redux";
 import store from "../storage/store";

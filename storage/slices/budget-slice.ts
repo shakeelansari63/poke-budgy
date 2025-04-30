@@ -3,17 +3,22 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 import { Budget } from "../../model/budget";
 import { Income } from "../../model/income";
 import { ExpenseCategory, Expense } from "../../model/expense";
-import budgets from "../../dummy-data";
 
 const initialState: BudgetState = {
-    pastBudgets: budgets.slice(0, -1) || [],
-    activeBudget: budgets[budgets.length - 1] || null,
+    pastBudgets: [],
+    activeBudget: null,
 };
 
 const budgetSlice = createSlice({
     name: "budget",
     initialState: initialState,
     reducers: {
+        loadBudgets: (state, action) => {
+            const savedState = action.payload as BudgetState;
+            state.activeBudget = savedState.activeBudget;
+            state.pastBudgets = savedState.pastBudgets;
+        },
+
         createNewBudget: (state, action) => {
             const { cloneId, startDate, endDate } = action.payload as {
                 cloneId: string | null;
@@ -153,6 +158,7 @@ const budgetSlice = createSlice({
 });
 
 export const {
+    loadBudgets,
     createNewBudget,
     deletePastBudget,
     deleteActiveBudget,

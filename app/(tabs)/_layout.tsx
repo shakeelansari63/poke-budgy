@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BottomNavigation } from "react-native-paper";
 import Home from "./index";
 import History from "./history";
 import Trends from "./trends";
+import { useDispatch } from "react-redux";
+import { loadBudgets } from "../../storage/slices/budget-slice";
+import { BudgetState } from "../../model/store";
+import budgets from "../../dummy-data";
 
 export default function TabLayout() {
     const [pageIndex, setPageIndex] = useState(0);
@@ -17,6 +21,16 @@ export default function TabLayout() {
         trend: Trends,
         history: History,
     });
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const initialState: BudgetState = {
+            activeBudget: budgets[budgets.length - 1] || null,
+            pastBudgets: budgets.slice(0, -1) || [],
+        };
+        dispatch(loadBudgets(initialState));
+    }, []);
 
     return (
         <BottomNavigation
