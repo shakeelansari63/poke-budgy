@@ -2,47 +2,31 @@
     "expo": {
         "name": "poke-budgy",
         "slug": "poke-budgy",
-        "version": "1.0.0-b4",
+        "version": "1.0.0-b5",
         "orientation": "portrait",
-        "icon": "./assets/images/icon.png",
-        "scheme": "myapp",
+        "icon": "./assets/icon.png",
         "userInterfaceStyle": "automatic",
         "newArchEnabled": true,
+        "splash": {
+            "image": "./assets/splash-icon.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
         "ios": {
             "supportsTablet": true,
             "bundleIdentifier": "com.shakeelansari63.pokebudgy"
         },
         "android": {
             "adaptiveIcon": {
-                "foregroundImage": "./assets/images/adaptive-icon.png",
+                "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
             },
             "package": "com.shakeelansari63.pokebudgy"
         },
         "web": {
-            "bundler": "metro",
-            "output": "static",
-            "favicon": "./assets/images/favicon.png"
-        },
-        "plugins": [
-            "expo-router",
-            [
-                "expo-splash-screen",
-                {
-                    "image": "./assets/images/splash-icon.png",
-                    "imageWidth": 200,
-                    "resizeMode": "contain",
-                    "backgroundColor": "#ffffff"
-                }
-            ]
-        ],
-        "experiments": {
-            "typedRoutes": true
+            "favicon": "./assets/favicon.png"
         },
         "extra": {
-            "router": {
-                "origin": false
-            },
             "eas": {
                 "projectId": "3236ce7b-34a3-42a4-b69f-9bb2863264aa"
             }

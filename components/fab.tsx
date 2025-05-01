@@ -1,14 +1,14 @@
-import { FAB, Portal } from "react-native-paper";
-import { useState, useRef } from "react";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { FAB } from "react-native-paper";
+import { useState, createRef } from "react";
 import NewBudgetDialog from "./new-budget-dialog";
 import { useSelector } from "react-redux";
 import { BudgetState } from "../model/store";
 import { Budget } from "../model/budget";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 const Fab = () => {
     const [fabOpen, setFabOpen] = useState<boolean>(false);
-    const newBudgetRef = useRef<BottomSheetModal>(null);
+    const newBudgetRef = createRef<BottomSheetModal>();
     const currentBudget = useSelector<BudgetState, Budget | null>((state) => state.activeBudget);
     const [cloneId, setCloneId] = useState<string | null>(null);
 

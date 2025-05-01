@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, createRef } from "react";
 import { List, Chip, IconButton } from "react-native-paper";
 import { Income } from "../model/income";
 import EditIncomeDialog from "./edit-income-dialog";
@@ -9,7 +9,7 @@ interface IncomeProps {
 }
 
 const IncomeLine = ({ income }: IncomeProps) => {
-    const sheetRef = useRef<BottomSheetModal>(null);
+    const sheetRef = createRef<BottomSheetModal>();
 
     return (
         <>

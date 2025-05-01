@@ -4,9 +4,9 @@ import Home from "./index";
 import History from "./history";
 import Trends from "./trends";
 import { useDispatch } from "react-redux";
-import { loadBudgets } from "../../storage/slices/budget-slice";
-import { BudgetState } from "../../model/store";
-import budgets from "../../dummy-data";
+import { loadBudgets } from "../storage/slices/budget-slice";
+import { BudgetState } from "../model/store";
+import budgets from "../dummy-data";
 
 export default function TabLayout() {
     const [pageIndex, setPageIndex] = useState(0);

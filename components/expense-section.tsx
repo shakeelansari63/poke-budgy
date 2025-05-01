@@ -4,13 +4,13 @@ import { BudgetState } from "../model/store";
 import { Budget } from "../model/budget";
 import ExpenseCategoryLine from "./expense-category-line";
 import AddBudgetDialog from "./add-budget-dialog";
-import { useRef } from "react";
+import { createRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 const ExpenseSection = () => {
     const currentBudget = useSelector<BudgetState, Budget | null>((state) => state.activeBudget);
     const totalBudgeted = currentBudget?.Expenses.reduce((acc, category) => acc + category.Amount, 0);
-    const sheetRef = useRef<BottomSheetModal>(null);
+    const sheetRef = createRef<BottomSheetModal>();
 
     return (
         <>

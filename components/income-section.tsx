@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { createRef } from "react";
 import { Text, Card, IconButton, Avatar } from "react-native-paper";
 import { useSelector } from "react-redux";
 import { BudgetState } from "../model/store";
@@ -10,7 +10,7 @@ import { BottomSheetModal } from "@gorhom/bottom-sheet";
 const IncomeSection = () => {
     const currentBudget = useSelector<BudgetState, Budget | null>((state) => state.activeBudget);
     const totalIncome = currentBudget?.Incomes.reduce((acc, income) => acc + income.Amount, 0);
-    const sheetRef = useRef<BottomSheetModal>(null);
+    const sheetRef = createRef<BottomSheetModal>();
 
     return (
         <>

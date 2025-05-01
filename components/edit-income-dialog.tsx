@@ -5,11 +5,12 @@ import { Income } from "../model/income";
 import { DatePickerInput } from "react-native-paper-dates";
 import { useDispatch } from "react-redux";
 import { deleteIncome, editIncome, addIncome } from "../storage/slices/budget-slice";
-import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import Dialog from "./dialog";
 
 interface EditIncomeDialogProps {
     income?: Income;
-    sheetRef: RefObject<BottomSheetModal>;
+    sheetRef: RefObject<BottomSheetModal | null>;
 }
 
 const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
@@ -19,9 +20,9 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
     const [incomeDate, setIncomeDate] = useState(parsedDate ?? new Date());
     const [dirty, setDirty] = useState(false);
 
-    const theme = useTheme();
-
     const dispatch = useDispatch();
+
+    const theme = useTheme();
 
     const resetForm = () => {
         setIncomeSource("");
@@ -62,79 +63,77 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
     };
 
     return (
-        <BottomSheetModal ref={sheetRef} enableDynamicSizing={true}>
-            <BottomSheetView style={{ backgroundColor: theme.colors.background }}>
-                <Card>
-                    <Card.Title
-                        title={income == undefined ? "Add Income" : "Edit Income"}
-                        titleVariant="titleLarge"
-                        right={() => <IconButton icon="close" onPress={() => sheetRef.current?.dismiss()} />}
-                    />
-                    <Card.Content>
-                        <ScrollView>
-                            <TextInput
-                                mode="outlined"
-                                label="Source"
-                                value={incomeSource}
-                                onChangeText={(txt) => {
+        <Dialog sheetRef={sheetRef}>
+            <Card mode="elevated">
+                <Card.Title
+                    title={income == undefined ? "Add Income" : "Edit Income"}
+                    titleVariant="titleLarge"
+                    right={() => <IconButton icon="close" onPress={() => sheetRef.current?.dismiss()} />}
+                />
+                <Card.Content>
+                    <ScrollView>
+                        <TextInput
+                            mode="outlined"
+                            label="Source"
+                            value={incomeSource}
+                            onChangeText={(txt) => {
+                                setDirty(true);
+                                setIncomeSource(txt);
+                            }}
+                            style={{ marginBottom: 10 }}
+                        />
+                        <TextInput
+                            mode="outlined"
+                            label="Amount"
+                            keyboardType="numeric"
+                            value={incomeAmount.toString()}
+                            onChangeText={(text) => {
+                                const number = text.replace(/[^0-9]/g, "");
+                                const updateVal = number === "" ? 0 : parseFloat(number);
+                                setDirty(true);
+                                setIncomeAmount(updateVal);
+                            }}
+                            style={{ marginBottom: 10 }}
+                        />
+                        <DatePickerInput
+                            mode="outlined"
+                            locale="en"
+                            label="Income Date"
+                            value={incomeDate}
+                            onChange={(d) => {
+                                if (d !== undefined) {
                                     setDirty(true);
-                                    setIncomeSource(txt);
-                                }}
-                                style={{ marginBottom: 10 }}
-                            />
-                            <TextInput
-                                mode="outlined"
-                                label="Amount"
-                                keyboardType="numeric"
-                                value={incomeAmount.toString()}
-                                onChangeText={(text) => {
-                                    const number = text.replace(/[^0-9]/g, "");
-                                    const updateVal = number === "" ? 0 : parseFloat(number);
-                                    setDirty(true);
-                                    setIncomeAmount(updateVal);
-                                }}
-                                style={{ marginBottom: 10 }}
-                            />
-                            <DatePickerInput
-                                mode="outlined"
-                                locale="en"
-                                label="Income Date"
-                                value={incomeDate}
-                                onChange={(d) => {
-                                    if (d !== undefined) {
-                                        setDirty(true);
-                                        setIncomeDate(d);
-                                    }
-                                }}
-                                inputMode="start"
-                                presentationStyle="pageSheet"
-                                style={{ marginBottom: 10 }}
-                            />
-                        </ScrollView>
-                    </Card.Content>
-                    <Card.Actions>
-                        {income !== null ? (
-                            <Button
-                                mode="text"
-                                textColor={theme.colors.error}
-                                icon="trash-can"
-                                onPress={deleteIncomeHandler}
-                            >
-                                Delete
-                            </Button>
-                        ) : null}
+                                    setIncomeDate(d);
+                                }
+                            }}
+                            inputMode="start"
+                            presentationStyle="pageSheet"
+                            style={{ marginBottom: 10 }}
+                        />
+                    </ScrollView>
+                </Card.Content>
+                <Card.Actions>
+                    {income !== undefined ? (
                         <Button
                             mode="text"
-                            textColor={theme.colors.primary}
-                            icon="content-save"
-                            onPress={income === undefined ? addIncomeHandler : updateIncomeHandler}
+                            textColor={theme.colors.error}
+                            icon="trash-can"
+                            onPress={deleteIncomeHandler}
                         >
-                            Save
+                            Delete
                         </Button>
-                    </Card.Actions>
-                </Card>
-            </BottomSheetView>
-        </BottomSheetModal>
+                    ) : null}
+                    <Button
+                        mode="text"
+                        textColor={theme.colors.primary}
+                        icon="content-save"
+                        onPress={income === undefined ? addIncomeHandler : updateIncomeHandler}
+                    >
+                        Save
+                    </Button>
+                </Card.Actions>
+            </Card>
+        </Dialog>
     );
 };
 
