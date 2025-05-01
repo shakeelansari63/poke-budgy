@@ -1,12 +1,13 @@
 import { Dimensions } from "react-native";
 import { Card, useTheme } from "react-native-paper";
 import React from "react";
-import { BarChart } from "react-native-chart-kit";
+import { BarChart, barDataItem } from "react-native-gifted-charts";
 import { useSelector } from "react-redux";
 import { BudgetState } from "../model/store";
 import { Budget } from "../model/budget";
 
 const BudgetGraph = () => {
+    const theme = useTheme();
     const currentBudget = useSelector<BudgetState, Budget | null>((state) => state.activeBudget);
     const totalIncome = currentBudget?.Incomes.reduce((acc, inc) => acc + inc.Amount, 0) ?? 0;
     const totalBudgeted = currentBudget?.Expenses.reduce((acc, exp) => acc + exp.Amount, 0) ?? 0;
@@ -16,40 +17,56 @@ const BudgetGraph = () => {
             0
         ) ?? 0;
 
-    const graphData = {
-        labels: ["Total", "Budgeted", "Spent", "Remaining"],
-        datasets: [
-            {
-                data: [totalIncome, totalBudgeted, totalSpent, totalIncome - totalBudgeted],
-            },
-        ],
-    };
-
-    const theme = useTheme();
-
-    const chartConfig = {
-        decimalPlaces: 2,
-        backgroundGradientFromOpacity: 0,
-        backgroundGradientToOpacity: 0,
-        color: (opacity = 1) => theme.colors.onBackground,
-        strokeWidth: 2, // optional, default 3
-        barPercentage: 0.5,
-        useShadowColorFromDataset: false, // optional
-    };
+    const graphData: barDataItem[] = [
+        {
+            label: "Income",
+            value: totalIncome,
+            frontColor: "#2883b4",
+            barWidth: 40,
+            barBorderTopLeftRadius: 10,
+            barBorderTopRightRadius: 10,
+            labelTextStyle: { color: theme.colors.onBackground },
+        },
+        {
+            label: "Budget",
+            value: totalBudgeted,
+            frontColor: totalBudgeted < totalIncome ? "#3498db" : "#c0392b",
+            barWidth: 40,
+            barBorderTopLeftRadius: 10,
+            barBorderTopRightRadius: 10,
+            labelTextStyle: { color: theme.colors.onBackground },
+        },
+        {
+            label: "Spent",
+            value: totalSpent,
+            frontColor: totalSpent < totalBudgeted ? "#e67e22" : "#b03a2e",
+            barWidth: 40,
+            barBorderTopLeftRadius: 10,
+            barBorderTopRightRadius: 10,
+            labelTextStyle: { color: theme.colors.onBackground },
+        },
+        {
+            label: "Saved",
+            value: totalIncome - totalBudgeted,
+            frontColor: "#28b463",
+            barWidth: 40,
+            barBorderTopLeftRadius: 10,
+            barBorderTopRightRadius: 10,
+            labelTextStyle: { color: theme.colors.onBackground },
+        },
+    ];
 
     return (
         <Card mode="elevated" style={{ margin: 10 }}>
             <Card.Content>
                 <BarChart
                     data={graphData}
-                    height={180}
-                    width={Dimensions.get("window").width - 70}
-                    chartConfig={chartConfig}
-                    yAxisLabel="$"
-                    yAxisSuffix=""
-                    withHorizontalLabels={false}
-                    withInnerLines={false}
-                    showValuesOnTopOfBars={true}
+                    noOfSections={1}
+                    hideAxesAndRules={true}
+                    spacing={32}
+                    showValuesAsTopLabel={true}
+                    topLabelTextStyle={{ color: theme.colors.onBackground, fontSize: 8 }}
+                    initialSpacing={10}
                 />
             </Card.Content>
         </Card>
