@@ -25,7 +25,6 @@ const IncomeLine = ({ income }: IncomeProps) => {
                     <IconButton
                         icon="pencil"
                         onPress={() => {
-                            console.log(income);
                             sheetRef.current?.present();
                         }}
                         iconColor={param.color}
