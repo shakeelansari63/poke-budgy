@@ -48,7 +48,7 @@ const BudgetGraph = () => {
         {
             label: "Saved",
             value: totalIncome - totalBudgeted,
-            frontColor: "#28b463",
+            frontColor: totalIncome - totalBudgeted >= 0 ? "#28b463" : "#922b21",
             barWidth: 40,
             barBorderTopLeftRadius: 10,
             barBorderTopRightRadius: 10,
@@ -67,6 +67,7 @@ const BudgetGraph = () => {
                     showValuesAsTopLabel={true}
                     topLabelTextStyle={{ color: theme.colors.onBackground, fontSize: 8 }}
                     initialSpacing={10}
+                    autoShiftLabels={true}
                 />
             </Card.Content>
         </Card>

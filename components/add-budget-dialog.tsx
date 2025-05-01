@@ -14,7 +14,6 @@ interface AddBudgetDialogProps {
 const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
     const [category, setCategory] = useState<string>("");
     const [amount, setAmount] = useState<number>(0);
-    const [dirty, setDirty] = useState<boolean>(false);
 
     const dispatch = useDispatch();
 
@@ -24,7 +23,7 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
     };
 
     const saveForm = () => {
-        if (dirty && category !== "" && amount !== 0) {
+        if (category !== "" && amount !== 0) {
             const cat: ExpenseCategory = {
                 Id: "",
                 Category: category,
@@ -53,22 +52,18 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
                         <TextInput
                             mode="outlined"
                             label="Budget"
-                            value={category}
-                            onChangeText={(txt) => {
-                                setDirty(true);
-                                setCategory(txt);
-                            }}
+                            defaultValue={category}
+                            onChangeText={(txt) => setCategory(txt)}
                             style={{ marginBottom: 10 }}
                         />
                         <TextInput
                             mode="outlined"
                             label="Amount"
                             keyboardType="numeric"
-                            value={amount.toString()}
-                            onChangeText={(text) => {
-                                const number = text.replace(/[^0-9]/g, "");
+                            defaultValue={amount.toString()}
+                            onChangeText={(txt) => {
+                                const number = txt.replace(/[^0-9]/g, "");
                                 const updateVal = number === "" ? 0 : parseFloat(number);
-                                setDirty(true);
                                 setAmount(updateVal);
                             }}
                             style={{ marginBottom: 10 }}

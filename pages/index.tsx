@@ -6,7 +6,7 @@ import ExpenseSection from "../components/expense-section";
 import Fab from "../components/fab";
 
 export default function Home() {
-    const EmptySpace = () => <View style={{ padding: 24 }}></View>;
+    const EmptySpace = () => <View style={{ padding: 36 }}></View>;
 
     return (
         <>
