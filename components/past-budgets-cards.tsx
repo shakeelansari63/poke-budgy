@@ -37,9 +37,8 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
     const DateChip = ({ children }: { children: React.ReactNode }) => (
         <Chip
             icon={({ size }) => <Icon source="calendar" color={theme.colors.onBackground} size={size} />}
-            compact={true}
             textStyle={{ fontSize: 10 }}
-            style={{ marginRight: 16, backgroundColor: theme.colors.tertiaryContainer }}
+            style={{ backgroundColor: theme.colors.tertiaryContainer }}
         >
             {children}
         </Chip>
@@ -59,14 +58,12 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
         color: string;
     }) => (
         <View style={{ flexDirection: "row", marginVertical: 5 }}>
-            <View style={{ flex: 0.1, justifyContent: "flex-start" }}>
+            <View style={{ flex: 0.6, flexDirection: "row", justifyContent: "flex-start", alignSelf: "center" }}>
                 <Icon source={icon} size={24} />
-            </View>
-            <View style={{ flex: 0.25, justifyContent: "flex-start" }}>
-                <Text variant="titleSmall">{type}: </Text>
-            </View>
-            <View style={{ flex: 0.25, justifyContent: "flex-start" }}>
-                <Text variant="titleSmall">{value}</Text>
+                <View style={{ padding: 5 }} />
+                <Text variant="titleSmall">
+                    {type}: {value}
+                </Text>
             </View>
             <View style={{ flex: 0.4, justifyContent: "flex-start", alignSelf: "center" }}>
                 <ProgressBar progress={progress} color={color} />
@@ -81,7 +78,6 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
                     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                         <DateChip>From: {startDate}</DateChip>
                         <DateChip>To: {endDate}</DateChip>
-                        <IconButton icon="trash-can" onPress={() => dispatch(deletePastBudget(budget.Id))}></IconButton>
                     </View>
                     <BudgetLine icon="bank-plus" type="Income" value={totalIncome} progress={1} color={colors.Income} />
                     <BudgetLine
@@ -102,14 +98,12 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
                     />
                 </ScrollView>
             </Card.Content>
-            <Card.Actions>
-                <Button
-                    icon="content-duplicate"
-                    mode="contained"
-                    buttonColor={theme.colors.primaryContainer}
-                    textColor={theme.colors.onPrimaryContainer}
-                >
-                    Copy to new Budget
+            <Card.Actions style={{ justifyContent: "space-between" }}>
+                <Button icon="trash-can" mode="text" textColor={theme.colors.onErrorContainer} compact={true}>
+                    Delete
+                </Button>
+                <Button icon="content-duplicate" mode="text" textColor={theme.colors.onPrimaryContainer} compact={true}>
+                    Clone
                 </Button>
             </Card.Actions>
         </Card>

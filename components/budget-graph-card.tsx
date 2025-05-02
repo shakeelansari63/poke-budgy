@@ -1,11 +1,49 @@
-import { Dimensions } from "react-native";
-import { Card, useTheme } from "react-native-paper";
+import { View } from "react-native";
+import { Card, Text, ProgressBar, useTheme } from "react-native-paper";
 import React from "react";
-import { BarChart, barDataItem } from "react-native-gifted-charts";
 import { useSelector } from "react-redux";
 import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
 import colors from "../constants/colors";
+
+interface HorizontalBarProps {
+    label: string;
+    value: number;
+    barColor: string;
+}
+
+const HorizontalBar = ({ label, value, barColor }: HorizontalBarProps) => {
+    const theme = useTheme();
+
+    return (
+        <View style={{ flexDirection: "row" }}>
+            <View style={{ flex: 0.3, alignSelf: "center" }}>
+                <Text variant="titleMedium" style={{ alignSelf: "flex-end", marginRight: 10 }}>
+                    {label}
+                </Text>
+            </View>
+            <View
+                style={{
+                    flex: 0.7,
+                    justifyContent: "flex-start",
+                    alignSelf: "center",
+                }}
+            >
+                <ProgressBar
+                    progress={value}
+                    color={barColor}
+                    fillStyle={{ borderTopRightRadius: 10, borderBottomRightRadius: 10 }}
+                    style={{
+                        height: 16,
+                        backgroundColor: theme.colors.elevation.level1,
+                        borderLeftWidth: 1,
+                        borderLeftColor: theme.colors.onBackground,
+                    }}
+                />
+            </View>
+        </View>
+    );
+};
 
 const BudgetGraph = () => {
     const theme = useTheme();
@@ -17,59 +55,37 @@ const BudgetGraph = () => {
             (acc, exp) => acc + exp.Expenses.reduce((accIn, expIn) => accIn + expIn.Amount, 0),
             0
         ) ?? 0;
+    const totalSaving = totalIncome - totalBudgeted;
 
-    const graphData: barDataItem[] = [
+    const graphData = [
         {
             label: "Income",
-            value: totalIncome,
-            frontColor: colors.Income,
-            barWidth: 40,
-            barBorderTopLeftRadius: 10,
-            barBorderTopRightRadius: 10,
-            labelTextStyle: { color: theme.colors.onBackground },
+            value: 1,
+            barColor: colors.Income,
         },
         {
             label: "Budget",
-            value: totalBudgeted,
-            frontColor: totalBudgeted < totalIncome ? colors.BudgetInLimit : colors.BudgetAboveLimit,
-            barWidth: 40,
-            barBorderTopLeftRadius: 10,
-            barBorderTopRightRadius: 10,
-            labelTextStyle: { color: theme.colors.onBackground },
+            value: totalBudgeted / (totalIncome === 0 ? 1 : totalIncome),
+            barColor: totalBudgeted < totalIncome ? colors.BudgetInLimit : colors.BudgetAboveLimit,
         },
         {
             label: "Spent",
-            value: totalSpent,
-            frontColor: totalSpent < totalBudgeted ? colors.SpentInLimit : colors.SpentAboveLimit,
-            barWidth: 40,
-            barBorderTopLeftRadius: 10,
-            barBorderTopRightRadius: 10,
-            labelTextStyle: { color: theme.colors.onBackground },
+            value: totalSpent / (totalIncome === 0 ? 1 : totalIncome),
+            barColor: totalSpent < totalBudgeted ? colors.SpentInLimit : colors.SpentAboveLimit,
         },
         {
             label: "Saved",
-            value: totalIncome - totalBudgeted,
-            frontColor: totalIncome - totalBudgeted >= 0 ? colors.SavingPositive : colors.SavingNegative,
-            barWidth: 40,
-            barBorderTopLeftRadius: 10,
-            barBorderTopRightRadius: 10,
-            labelTextStyle: { color: theme.colors.onBackground },
+            value: totalSaving / (totalIncome === 0 ? 1 : totalIncome),
+            barColor: totalSaving >= 0 ? colors.SavingPositive : colors.SavingNegative,
         },
     ];
 
     return (
         <Card mode="elevated" style={{ margin: 10 }}>
             <Card.Content>
-                <BarChart
-                    data={graphData}
-                    noOfSections={1}
-                    hideAxesAndRules={true}
-                    spacing={32}
-                    showValuesAsTopLabel={true}
-                    topLabelTextStyle={{ color: theme.colors.onBackground, fontSize: 8 }}
-                    initialSpacing={10}
-                    autoShiftLabels={true}
-                />
+                {graphData.map((bar, idx) => (
+                    <HorizontalBar label={bar.label} value={bar.value} barColor={bar.barColor} key={idx} />
+                ))}
             </Card.Content>
         </Card>
     );
