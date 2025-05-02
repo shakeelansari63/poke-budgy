@@ -1,184 +1,48 @@
-// import { MMKV } from "react-native-mmkv";
-// import { BudgetStore } from "../model/persistent";
-// import { Budget } from "../model/budget";
-// import { Income } from "../model/income";
-// import { ExpenseCategory, Expense } from "../model/expense";
-// import { nanoid } from "@reduxjs/toolkit";
+import Storage from "expo-sqlite/kv-store";
+import { BudgetStoreModel } from "../model/persistent";
+import { Budget } from "../model/budget";
 
-// const store = new MMKV();
+const ActiveBudgetKey = "active";
+const InactiveBudgetKeyPrefix = "past/";
 
-// class MMKVStore implements BudgetStore {
-//     getAllBudgets() {
-//         const allBudgetKeys = store.getAllKeys();
-//         const allBudgets = allBudgetKeys.map((id) => this.getBudgetById(id));
-//         return allBudgets.filter((budget) => budget !== null);
-//     }
+export const BudgetStore: BudgetStoreModel = {
+    getActiveBudget: () => {
+        const item = Storage.getItemSync(ActiveBudgetKey);
+        return item === null ? null : (JSON.parse(item) as Budget);
+    },
 
-//     getActiveBudget() {
-//         const allBudgets = this.getAllBudgets();
-//         const activeBudget = allBudgets.find((budget) => budget.IsCurrent);
-//         return activeBudget!;
-//     }
+    getInactiveBudgets: () => {
+        const allKeys = Storage.getAllKeysSync().filter((key) => key !== ActiveBudgetKey);
+        return allKeys
+            .map((key) => {
+                const item = Storage.getItemSync(key);
+                return item === null ? null : (JSON.parse(item) as Budget);
+            })
+            .filter((budget) => budget !== null);
+    },
 
-//     getInactiveBudgets() {
-//         const allBudgets = this.getAllBudgets();
-//         return allBudgets.filter((budget) => !budget.IsCurrent);
-//     }
+    getInactiveBudgetById: (id: string) => {
+        const item = Storage.getItemSync(id);
+        return item === null ? null : (JSON.parse(item) as Budget);
+    },
 
-//     getBudgetById(id: string) {
-//         const budget = store.getString(id);
-//         if (budget === undefined) return null;
-//         return JSON.parse(budget!) as Budget;
-//     }
+    setActiveBudget: (budget: Budget) => {
+        Storage.setItemSync(ActiveBudgetKey, JSON.stringify(budget));
+    },
 
-//     setActiveBudget(id: string) {
-//         const activeBudget = this.getActiveBudget();
-//         if (activeBudget.Id === id) return activeBudget;
+    updateInactiveBudgets: (budgets: Budget[]) => {
+        const stateKeys = budgets.map((budget) => `${InactiveBudgetKeyPrefix}${budget.Id}`);
+        const storeKeys = Storage.getAllKeysSync().filter((key) => key !== ActiveBudgetKey);
 
-//         activeBudget.IsCurrent = false;
-//         const newActiveBudget = this.getBudgetById(id);
-//         if (newActiveBudget === null) return activeBudget;
+        // Add budgets in State but not in Store
+        budgets.forEach((budget) => {
+            const budgetKey = `${InactiveBudgetKeyPrefix}${budget.Id}`;
+            if (!storeKeys.includes(budgetKey)) Storage.setItemSync(budgetKey, JSON.stringify(budget));
+        });
 
-//         // Set This budget as active
-//         newActiveBudget!.IsCurrent = true;
-
-//         store.set(activeBudget.Id, JSON.stringify(activeBudget));
-//         store.set(newActiveBudget!.Id, JSON.stringify(newActiveBudget));
-
-//         // Return active budget
-//         return newActiveBudget;
-//     }
-
-//     createNewBudget(cloneId: string | null, startDate: Date, endDate: Date) {
-//         let newBudget: Budget = {
-//             Id: nanoid(),
-//             StartDate: startDate,
-//             EndDate: endDate,
-//             IsCurrent: true,
-//             Incomes: [],
-//             Expenses: [],
-//         };
-
-//         // Clone Budget if needed
-//         if (cloneId !== null) {
-//             const cloneBudget = this.getBudgetById(cloneId);
-
-//             if (cloneBudget !== null) {
-//                 // Add Incomes
-//                 cloneBudget.Incomes.forEach((income) => {
-//                     income.Id = nanoid();
-//                     newBudget.Incomes.push(income);
-//                 });
-
-//                 // Add Expense Categories
-//                 cloneBudget.Expenses.forEach((expense) => {
-//                     expense.Expenses = [];
-//                     expense.Id = nanoid();
-//                     newBudget.Expenses.push(expense);
-//                 });
-//             }
-//         }
-
-//         // Update previous Current Budget
-//         const previousCurrentBudget = this.getActiveBudget();
-//         previousCurrentBudget.IsCurrent = false;
-//         store.set(previousCurrentBudget.Id, JSON.stringify(previousCurrentBudget));
-
-//         // Save New Budget
-//         store.set(newBudget.Id, JSON.stringify(newBudget));
-
-//         return newBudget;
-//     }
-
-//     addIncome(income: Income) {
-//         const currentBudget = this.getActiveBudget();
-//         income.Id = nanoid();
-//         currentBudget.Incomes.push(income);
-
-//         // Save Budget
-//         store.set(currentBudget.Id, JSON.stringify(currentBudget));
-
-//         return currentBudget;
-//     }
-
-//     addExpenseCategory(expenseCategory: ExpenseCategory) {
-//         const currentBudget = this.getActiveBudget();
-//         expenseCategory.Id = nanoid();
-//         currentBudget.Expenses.push(expenseCategory);
-
-//         // Save Budget
-//         store.set(currentBudget.Id, JSON.stringify(currentBudget));
-
-//         return currentBudget;
-//     }
-
-//     addExpense(expense: Expense, categoryId: string) {
-//         const currentBudget = this.getActiveBudget();
-//         expense.Id = nanoid();
-
-//         // Find the Expense Category
-//         const expenseCategory = currentBudget.Expenses.find((category) => category.Id === categoryId);
-//         if (expenseCategory === undefined) return currentBudget;
-
-//         expenseCategory.Expenses.push(expense);
-
-//         // Save Budget
-//         store.set(currentBudget.Id, JSON.stringify(currentBudget));
-
-//         return currentBudget;
-//     }
-
-//     deleteIncome(incomeId: string) {
-//         const currentBudget = this.getActiveBudget();
-//         currentBudget.Incomes = currentBudget.Incomes.filter((income) => income.Id !== incomeId);
-
-//         // Save Budget
-//         store.set(currentBudget.Id, JSON.stringify(currentBudget));
-
-//         return currentBudget;
-//     }
-
-//     deleteExpenseCategory(categoryId: string) {
-//         const currentBudget = this.getActiveBudget();
-//         currentBudget.Expenses = currentBudget.Expenses.filter((category) => category.Id !== categoryId);
-
-//         // Save Budget
-//         store.set(currentBudget.Id, JSON.stringify(currentBudget));
-
-//         return currentBudget;
-//     }
-
-//     deleteExpense(expenseId: string, categoryId: string) {
-//         const currentBudget = this.getActiveBudget();
-
-//         // Find the Expense Category
-//         const expenseCategory = currentBudget.Expenses.find((category) => category.Id === categoryId);
-//         if (expenseCategory === undefined) return currentBudget;
-
-//         expenseCategory.Expenses = expenseCategory.Expenses.filter((expense) => expense.Id !== expenseId);
-
-//         // Save Budget
-//         store.set(currentBudget.Id, JSON.stringify(currentBudget));
-
-//         return currentBudget;
-//     }
-
-//     deleteBudget(budgetId: string) {
-//         const budget = this.getBudgetById(budgetId);
-
-//         if (budget === null) return false;
-
-//         store.delete(budgetId);
-//         return true;
-//     }
-
-//     loadBudgets(budgets: Budget[]) {
-//         budgets.forEach((budget) => {
-//             store.set(budget.Id, JSON.stringify(budget));
-//         });
-//     }
-// }
-
-// const dataStorage = new MMKVStore();
-
-// export default dataStorage;
+        // Delete budgets not in state
+        storeKeys.forEach((key) => {
+            if (!stateKeys.includes(key)) Storage.removeItemSync(key);
+        });
+    },
+};

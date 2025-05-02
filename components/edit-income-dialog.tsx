@@ -86,7 +86,7 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
                             mode="outlined"
                             label="Amount"
                             keyboardType="numeric"
-                            defaultValue={incomeAmount.toString()}
+                            defaultValue={incomeAmount === 0 ? "" : incomeAmount.toString()}
                             onChangeText={(text) => {
                                 const number = text.replace(/[^0-9]/g, "");
                                 const updateVal = number === "" ? 0 : parseFloat(number);

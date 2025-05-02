@@ -1,4 +1,4 @@
-import { useState, createRef } from "react";
+import { createRef } from "react";
 import { List, Chip, IconButton } from "react-native-paper";
 import { Income } from "../model/income";
 import EditIncomeDialog from "./edit-income-dialog";

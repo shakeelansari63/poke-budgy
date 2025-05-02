@@ -1,14 +1,14 @@
 import { createRef } from "react";
 import { Text, Card, IconButton, Avatar } from "react-native-paper";
 import { useSelector } from "react-redux";
-import { BudgetState } from "../model/store";
+import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
 import IncomeLine from "./income-line";
 import EditIncomeDialog from "./edit-income-dialog";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 const IncomeSection = () => {
-    const currentBudget = useSelector<BudgetState, Budget | null>((state) => state.activeBudget);
+    const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
     const totalIncome = currentBudget?.Incomes.reduce((acc, income) => acc + income.Amount, 0);
     const sheetRef = createRef<BottomSheetModal>();
 

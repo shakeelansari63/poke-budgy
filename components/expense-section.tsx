@@ -1,6 +1,6 @@
 import { Text, Card, IconButton, Avatar } from "react-native-paper";
 import { useSelector } from "react-redux";
-import { BudgetState } from "../model/store";
+import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
 import ExpenseCategoryLine from "./expense-category-line";
 import AddBudgetDialog from "./add-budget-dialog";
@@ -8,7 +8,7 @@ import { createRef } from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 const ExpenseSection = () => {
-    const currentBudget = useSelector<BudgetState, Budget | null>((state) => state.activeBudget);
+    const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
     const totalBudgeted = currentBudget?.Expenses.reduce((acc, category) => acc + category.Amount, 0);
     const sheetRef = createRef<BottomSheetModal>();
 

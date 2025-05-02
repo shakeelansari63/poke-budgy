@@ -6,7 +6,8 @@ import Trends from "./trends";
 import { useDispatch } from "react-redux";
 import { loadBudgets } from "../storage/slices/budget-slice";
 import { BudgetState } from "../model/store";
-import budgets from "../dummy-data";
+import { BudgetStore } from "../storage/persistent-store";
+// import budgets from "../dummy-data";
 
 export default function TabLayout() {
     const [pageIndex, setPageIndex] = useState(0);
@@ -26,8 +27,8 @@ export default function TabLayout() {
 
     useEffect(() => {
         const initialState: BudgetState = {
-            activeBudget: budgets[budgets.length - 1] || null,
-            pastBudgets: budgets.slice(0, -1) || [],
+            activeBudget: BudgetStore.getActiveBudget(),
+            pastBudgets: BudgetStore.getInactiveBudgets(),
         };
         dispatch(loadBudgets(initialState));
     }, []);

@@ -1,19 +1,9 @@
 import { Budget } from "./budget";
-import { Expense, ExpenseCategory } from "./expense";
-import { Income } from "./income";
 
-export interface BudgetStore {
-    getAllBudgets: () => Budget[];
-    getActiveBudget: () => Budget;
+export interface BudgetStoreModel {
+    getActiveBudget: () => Budget | null;
     getInactiveBudgets: () => Budget[];
-    getBudgetById: (id: string) => Budget | null;
-    setActiveBudget: (id: string) => Budget;
-    createNewBudget: (cloneId: string | null, startDate: Date, endDate: Date) => Budget;
-    addIncome: (income: Income) => Budget;
-    addExpenseCategory: (expenseCategory: ExpenseCategory) => Budget;
-    addExpense: (expense: Expense, categoryId: string) => Budget;
-    deleteExpense: (expenseId: string, categoryId: string) => Budget;
-    deleteExpenseCategory: (categoryId: string) => Budget;
-    deleteIncome: (incomeId: string) => Budget;
-    deleteBudget: (budgetId: string) => boolean;
+    getInactiveBudgetById: (id: string) => Budget | null;
+    setActiveBudget: (budget: Budget) => void;
+    updateInactiveBudgets: (budgets: Budget[]) => void;
 }

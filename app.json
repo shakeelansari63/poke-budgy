@@ -2,7 +2,7 @@
     "expo": {
         "name": "poke-budgy",
         "slug": "poke-budgy",
-        "version": "1.0.0-b9",
+        "version": "1.0.0-b10",
         "orientation": "portrait",
         "icon": "./assets/icon.png",
         "userInterfaceStyle": "automatic",
@@ -31,6 +31,21 @@
                 "projectId": "3236ce7b-34a3-42a4-b69f-9bb2863264aa"
             }
         },
-        "owner": "shakeelansari63"
-    }
+        "owner": "shakeelansari63",
+        "plugins": [
+            [
+                "expo-sqlite",
+                {
+                    "enableFTS": true,
+                    "useSQLCipher": false,
+                    "android": {},
+                    "ios": {
+                        "customBuildFlags": ["-DSQLITE_ENABLE_DBSTAT_VTAB=1 -DSQLITE_ENABLE_SNAPSHOT=1"]
+                    }
+                }
+            ]
+        ],
+        "sdkVersion": "52.0.0"
+    },
+    "name": "poke-budgy"
 }

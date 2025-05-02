@@ -1,4 +1,7 @@
 const serializeDateinAny = (obj: any): any => {
+    // Return null as is
+    if (obj === null) return null;
+
     // Serialize Date
     if (obj instanceof Date) {
         return obj.toISOString();

@@ -125,6 +125,8 @@ const budgetSlice = createSlice({
             }
         },
 
+        editExpenseCategory: (state, action) => {},
+
         deleteExpenseCategory: (state, action) => {
             const expenseCategoryId = action.payload as string;
             if (state.activeBudget) {
@@ -144,6 +146,8 @@ const budgetSlice = createSlice({
                 }
             }
         },
+
+        editExpense: (state, action) => {},
 
         deleteExpense: (state, action) => {
             const { expenseId, categoryId } = action.payload as { expenseId: string; categoryId: string };
@@ -167,8 +171,10 @@ export const {
     editIncome,
     deleteIncome,
     addExpenseCategory,
+    editExpenseCategory,
     deleteExpenseCategory,
     addExpense,
+    editExpense,
     deleteExpense,
 } = budgetSlice.actions;
 

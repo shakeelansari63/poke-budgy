@@ -3,12 +3,13 @@ import { Card, useTheme } from "react-native-paper";
 import React from "react";
 import { BarChart, barDataItem } from "react-native-gifted-charts";
 import { useSelector } from "react-redux";
-import { BudgetState } from "../model/store";
+import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
+import colors from "../constants/colors";
 
 const BudgetGraph = () => {
     const theme = useTheme();
-    const currentBudget = useSelector<BudgetState, Budget | null>((state) => state.activeBudget);
+    const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
     const totalIncome = currentBudget?.Incomes.reduce((acc, inc) => acc + inc.Amount, 0) ?? 0;
     const totalBudgeted = currentBudget?.Expenses.reduce((acc, exp) => acc + exp.Amount, 0) ?? 0;
     const totalSpent =
@@ -21,7 +22,7 @@ const BudgetGraph = () => {
         {
             label: "Income",
             value: totalIncome,
-            frontColor: "#2883b4",
+            frontColor: colors.Income,
             barWidth: 40,
             barBorderTopLeftRadius: 10,
             barBorderTopRightRadius: 10,
@@ -30,7 +31,7 @@ const BudgetGraph = () => {
         {
             label: "Budget",
             value: totalBudgeted,
-            frontColor: totalBudgeted < totalIncome ? "#3498db" : "#c0392b",
+            frontColor: totalBudgeted < totalIncome ? colors.BudgetInLimit : colors.BudgetAboveLimit,
             barWidth: 40,
             barBorderTopLeftRadius: 10,
             barBorderTopRightRadius: 10,
@@ -39,7 +40,7 @@ const BudgetGraph = () => {
         {
             label: "Spent",
             value: totalSpent,
-            frontColor: totalSpent < totalBudgeted ? "#e67e22" : "#b03a2e",
+            frontColor: totalSpent < totalBudgeted ? colors.SpentInLimit : colors.SpentAboveLimit,
             barWidth: 40,
             barBorderTopLeftRadius: 10,
             barBorderTopRightRadius: 10,
@@ -48,7 +49,7 @@ const BudgetGraph = () => {
         {
             label: "Saved",
             value: totalIncome - totalBudgeted,
-            frontColor: totalIncome - totalBudgeted >= 0 ? "#28b463" : "#922b21",
+            frontColor: totalIncome - totalBudgeted >= 0 ? colors.SavingPositive : colors.SavingNegative,
             barWidth: 40,
             barBorderTopLeftRadius: 10,
             barBorderTopRightRadius: 10,

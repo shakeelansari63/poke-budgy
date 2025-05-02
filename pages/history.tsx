@@ -1,20 +1,31 @@
 import { ScrollView } from "react-native";
-import { Text } from "react-native-paper";
+import { Card, Text } from "react-native-paper";
 import SafeView from "../components/safe-area-view";
 import { useSelector } from "react-redux";
-import { BudgetState } from "../model/store";
+import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
 import PastBudgetCard from "../components/past-budgets-cards";
 
 export default function History() {
-    const pastBudgets = useSelector<BudgetState, Budget[]>((state) => state.pastBudgets);
+    const pastBudgets = useSelector<StoreState, Budget[]>((state) => state.budget.pastBudgets);
 
     return (
         <SafeView>
             <ScrollView>
-                {pastBudgets.map((budget) => (
-                    <PastBudgetCard budget={budget} key={budget.Id} />
-                ))}
+                {pastBudgets.length > 0 ? (
+                    <>
+                        {pastBudgets.map((budget) => (
+                            <PastBudgetCard budget={budget} key={budget.Id} />
+                        ))}
+                    </>
+                ) : (
+                    <Card style={{ margin: 10 }}>
+                        {/* <Card.Content>
+
+                        </Card.Content> */}
+                        <Card.Title title="No past budgets !" />
+                    </Card>
+                )}
             </ScrollView>
         </SafeView>
     );

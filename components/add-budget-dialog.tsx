@@ -60,7 +60,7 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
                             mode="outlined"
                             label="Amount"
                             keyboardType="numeric"
-                            defaultValue={amount.toString()}
+                            defaultValue={amount === 0 ? "" : amount.toString()}
                             onChangeText={(txt) => {
                                 const number = txt.replace(/[^0-9]/g, "");
                                 const updateVal = number === "" ? 0 : parseFloat(number);
