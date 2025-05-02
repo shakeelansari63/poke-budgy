@@ -7,10 +7,10 @@ import store from "./storage/store";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
-import { GestureHandlerRootView, GestureDetector } from "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import TabLayout from "./pages/main";
 
-export default function RootLayout() {
+export default function App() {
     // Get system Color Scheme
     const colorScheme = useColorScheme();
 
