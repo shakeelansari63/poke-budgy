@@ -1,53 +1,47 @@
 import { FAB } from "react-native-paper";
 import { useState, createRef } from "react";
-import NewBudgetDialog from "./new-budget-dialog";
 import { useSelector } from "react-redux";
 import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import AddBudgetDialog from "./add-budget-dialog";
+import EditIncomeDialog from "./edit-income-dialog";
 
 const Fab = () => {
     const [fabOpen, setFabOpen] = useState<boolean>(false);
-    const newBudgetRef = createRef<BottomSheetModal>();
+    const newIncomeSheetRef = createRef<BottomSheetModal>();
+    const newExpenseCategorySheetRef = createRef<BottomSheetModal>();
     const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
-    const [cloneId, setCloneId] = useState<string | null>(null);
-
-    const cloneActiveBudget = () => {
-        setCloneId(currentBudget?.Id ?? null);
-        newBudgetRef.current?.present();
-    };
-
-    const createBlankBudget = () => {
-        setCloneId(null);
-        newBudgetRef.current?.present();
-    };
 
     const actions = [
         {
-            icon: "plus",
-            label: "Create new budget",
-            onPress: createBlankBudget,
+            icon: "cash-plus",
+            label: "Add Income",
+            onPress: () => newIncomeSheetRef.current?.present(),
+        },
+        {
+            icon: "basket-plus",
+            label: "Add Budget",
+            onPress: () => newExpenseCategorySheetRef.current?.present(),
         },
     ];
 
-    if (currentBudget)
-        actions.push({
-            icon: "content-duplicate",
-            label: "Clone to new budget",
-            onPress: cloneActiveBudget,
-        });
-
     return (
         <>
-            <FAB.Group
-                open={fabOpen}
-                icon={fabOpen ? "cancel" : "pencil"}
-                visible
-                style={{ position: "absolute", margin: 0, right: 0, bottom: 0, padding: 5 }}
-                onStateChange={({ open }) => setFabOpen(open)}
-                actions={actions}
-            />
-            <NewBudgetDialog cloneId={cloneId} sheetRef={newBudgetRef} />
+            {currentBudget !== null ? (
+                <>
+                    <FAB.Group
+                        open={fabOpen}
+                        icon={fabOpen ? "cancel" : "pencil"}
+                        visible
+                        style={{ position: "absolute", margin: 0, right: 0, bottom: 0, padding: 5 }}
+                        onStateChange={({ open }) => setFabOpen(open)}
+                        actions={actions}
+                    />
+                    <AddBudgetDialog sheetRef={newExpenseCategorySheetRef} />
+                    <EditIncomeDialog sheetRef={newIncomeSheetRef} />
+                </>
+            ) : null}
         </>
     );
 };

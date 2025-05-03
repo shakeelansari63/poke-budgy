@@ -4,12 +4,16 @@ import { List, Chip, IconButton, ProgressBar, useTheme, Portal, Modal, Card, But
 import { ExpenseCategory } from "../model/expense";
 import { useDispatch } from "react-redux";
 import { deleteExpenseCategory } from "../storage/slices/budget-slice";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import colors from "../constants/colors";
 
 interface BudgetProps {
     budget: ExpenseCategory;
 }
 
 const ExpenseCategoryLine = ({ budget }: BudgetProps) => {
+    const navigation = useNavigation<StackNavigationProp<any>>();
     const [deleteModalVisible, setDeleteModalVisible] = useState<boolean>(false);
     const theme = useTheme();
     const totalExpense = budget.Expenses.reduce((acc, expense) => acc + expense.Amount, 0);
@@ -39,8 +43,12 @@ const ExpenseCategoryLine = ({ budget }: BudgetProps) => {
                         style={{ margin: 0, padding: 0 }}
                     />
                 )}
+                onPress={() => navigation.navigate("budget-expense", { categoryId: budget.Id })}
             />
-            <ProgressBar progress={totalUsage} color={totalUsage === 1.0 ? theme.colors.error : theme.colors.primary} />
+            <ProgressBar
+                progress={totalUsage}
+                color={totalExpense > budget.Amount ? colors.SpentAboveLimit : colors.SpentInLimit}
+            />
             <Portal>
                 <Modal visible={deleteModalVisible} style={{ margin: 15 }}>
                     <Card>

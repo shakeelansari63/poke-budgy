@@ -17,10 +17,7 @@ export default function History() {
                     ))}
                 </>
             ) : (
-                <Card style={{ margin: 10 }}>
-                    {/* <Card.Content>
-
-                        </Card.Content> */}
+                <Card style={{ margin: 10, padding: 10 }}>
                     <Card.Title title="No past budgets !" />
                 </Card>
             )}

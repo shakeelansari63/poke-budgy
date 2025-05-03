@@ -125,7 +125,15 @@ const budgetSlice = createSlice({
             }
         },
 
-        editExpenseCategory: (state, action) => {},
+        editExpenseCategory: (state, action) => {
+            const expenseCategory = action.payload as ExpenseCategory;
+            if (state.activeBudget) {
+                state.activeBudget.Expenses = state.activeBudget.Expenses.filter(
+                    (category) => category.Id !== expenseCategory.Id
+                );
+                state.activeBudget.Expenses.push(expenseCategory);
+            }
+        },
 
         deleteExpenseCategory: (state, action) => {
             const expenseCategoryId = action.payload as string;
@@ -147,7 +155,16 @@ const budgetSlice = createSlice({
             }
         },
 
-        editExpense: (state, action) => {},
+        editExpense: (state, action) => {
+            const { expense, categoryId } = action.payload as { expense: Expense; categoryId: string };
+            if (state.activeBudget) {
+                const category = state.activeBudget.Expenses.find((category) => category.Id === categoryId);
+                if (category) {
+                    category.Expenses = category.Expenses.filter((exp) => expense.Id !== exp.Id);
+                    category.Expenses.push(expense);
+                }
+            }
+        },
 
         deleteExpense: (state, action) => {
             const { expenseId, categoryId } = action.payload as { expenseId: string; categoryId: string };

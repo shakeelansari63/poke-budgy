@@ -1,3 +1,4 @@
+import { View } from "react-native";
 import { useWindowDimensions } from "react-native";
 import { useTheme } from "react-native-paper";
 import React, { RefObject } from "react";
@@ -21,6 +22,8 @@ const Dialog = ({ children, sheetRef }: DialogProps) => {
         <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1}></BottomSheetBackdrop>
     );
 
+    const BottomPadding = () => <View style={{ padding: 10 }} />;
+
     return (
         <BottomSheetModal
             ref={sheetRef}
@@ -29,7 +32,10 @@ const Dialog = ({ children, sheetRef }: DialogProps) => {
             maxDynamicContentSize={height * 0.8}
             backdropComponent={backDrop}
         >
-            <BottomSheetScrollView>{children}</BottomSheetScrollView>
+            <BottomSheetScrollView>
+                {children}
+                <BottomPadding />
+            </BottomSheetScrollView>
         </BottomSheetModal>
     );
 };

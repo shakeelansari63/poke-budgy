@@ -20,7 +20,7 @@ const ExpenseSection = () => {
                     title="Budgets"
                     titleVariant="titleLarge"
                     subtitle={"Total: " + totalBudgeted}
-                    left={() => <Avatar.Icon icon="cart-arrow-up" size={40} />}
+                    left={() => <Avatar.Icon icon="basket" size={40} />}
                     right={() => (
                         <IconButton
                             icon="plus"
