@@ -1,6 +1,6 @@
 {
     "expo": {
-        "name": "poke-budgy",
+        "name": "Poke Budgy",
         "slug": "poke-budgy",
         "version": "1.0.0-b11",
         "orientation": "portrait",
@@ -44,8 +44,6 @@
                     }
                 }
             ]
-        ],
-        "sdkVersion": "52.0.0"
-    },
-    "name": "poke-budgy"
+        ]
+    }
 }

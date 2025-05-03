@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const Trends = () => {
+const Settings = () => {
     return (
         <View>
-            <Text>Trends</Text>
+            <Text>Settings</Text>
         </View>
     );
 };
 
-export default Trends;
+export default Settings;

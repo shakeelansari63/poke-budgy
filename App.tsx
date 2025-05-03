@@ -8,7 +8,8 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import TabLayout from "./pages/main";
+import { NavigationContainer } from "@react-navigation/native";
+import AppNavigator from "./pages/navigator";
 
 export default function App() {
     // Get system Color Scheme
@@ -25,7 +26,9 @@ export default function App() {
                         <Portal.Host>
                             <GestureHandlerRootView>
                                 <BottomSheetModalProvider>
-                                    <TabLayout />
+                                    <NavigationContainer theme={paperTheme}>
+                                        <AppNavigator />
+                                    </NavigationContainer>
                                 </BottomSheetModalProvider>
                             </GestureHandlerRootView>
                         </Portal.Host>

@@ -1,11 +1,11 @@
 import { ScrollView } from "react-native";
-import { Button, TextInput, Card, IconButton, useTheme } from "react-native-paper";
+import { Button, TextInput, Surface, Card, IconButton, useTheme } from "react-native-paper";
 import { useState, RefObject } from "react";
 import { Income } from "../model/income";
 import { DatePickerInput } from "react-native-paper-dates";
 import { useDispatch } from "react-redux";
 import { deleteIncome, editIncome, addIncome } from "../storage/slices/budget-slice";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import Dialog from "./dialog";
 
 interface EditIncomeDialogProps {
@@ -64,7 +64,7 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
 
     return (
         <Dialog sheetRef={sheetRef}>
-            <Card mode="elevated">
+            <Surface mode="flat">
                 <Card.Title
                     title={income == undefined ? "Add Income" : "Edit Income"}
                     titleVariant="titleLarge"
@@ -81,6 +81,7 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
                                 setIncomeSource(txt);
                             }}
                             style={{ marginBottom: 10 }}
+                            render={(props) => <BottomSheetTextInput {...props} />}
                         />
                         <TextInput
                             mode="outlined"
@@ -94,6 +95,7 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
                                 setIncomeAmount(updateVal);
                             }}
                             style={{ marginBottom: 10 }}
+                            render={(props) => <BottomSheetTextInput {...props} />}
                         />
                         <DatePickerInput
                             mode="outlined"
@@ -132,7 +134,7 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
                         Save
                     </Button>
                 </Card.Actions>
-            </Card>
+            </Surface>
         </Dialog>
     );
 };

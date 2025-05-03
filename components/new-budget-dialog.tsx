@@ -1,5 +1,5 @@
 import { ScrollView } from "react-native";
-import { useTheme, Card, IconButton, Button } from "react-native-paper";
+import { useTheme, Card, IconButton, Button, Surface } from "react-native-paper";
 import { useState, RefObject } from "react";
 import { DatePickerInput } from "react-native-paper-dates";
 import { createNewBudget } from "../storage/slices/budget-slice";
@@ -36,7 +36,7 @@ const NewBudgetDialog = ({ cloneId, sheetRef }: NewBudgetDialogProps) => {
 
     return (
         <Dialog sheetRef={sheetRef}>
-            <Card>
+            <Surface mode="flat">
                 <Card.Title
                     title={cloneId === null ? "Create new budget" : "Clone to new budget"}
                     titleVariant="titleLarge"
@@ -81,7 +81,7 @@ const NewBudgetDialog = ({ cloneId, sheetRef }: NewBudgetDialogProps) => {
                         Save
                     </Button>
                 </Card.Actions>
-            </Card>
+            </Surface>
         </Dialog>
     );
 };

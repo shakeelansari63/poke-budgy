@@ -1,10 +1,10 @@
-import { Button, TextInput, Card, IconButton, useTheme } from "react-native-paper";
+import { Button, TextInput, Surface, Card, IconButton, useTheme } from "react-native-paper";
 import { useState, RefObject } from "react";
 import { ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
 import { addExpenseCategory } from "../storage/slices/budget-slice";
 import { ExpenseCategory } from "../model/expense";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import Dialog from "./dialog";
 
 interface AddBudgetDialogProps {
@@ -41,7 +41,7 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
 
     return (
         <Dialog sheetRef={sheetRef}>
-            <Card>
+            <Surface mode="flat">
                 <Card.Title
                     title="Add Budget"
                     titleVariant="titleLarge"
@@ -55,6 +55,7 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
                             defaultValue={category}
                             onChangeText={(txt) => setCategory(txt)}
                             style={{ marginBottom: 10 }}
+                            render={(props) => <BottomSheetTextInput {...props} />}
                         />
                         <TextInput
                             mode="outlined"
@@ -67,6 +68,7 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
                                 setAmount(updateVal);
                             }}
                             style={{ marginBottom: 10 }}
+                            render={(props) => <BottomSheetTextInput {...props} />}
                         />
                     </ScrollView>
                 </Card.Content>
@@ -75,7 +77,7 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
                         Save
                     </Button>
                 </Card.Actions>
-            </Card>
+            </Surface>
         </Dialog>
     );
 };
