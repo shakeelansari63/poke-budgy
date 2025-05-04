@@ -2,9 +2,9 @@
     "expo": {
         "name": "Poke Budgy",
         "slug": "poke-budgy",
-        "version": "0.0.1-b4",
+        "version": "0.0.1-b5",
         "orientation": "portrait",
-        "icon": "./assets/images/icon.png",
+        "icon": "./assets/images/poke-budgy.png",
         "scheme": "pokebudgy",
         "userInterfaceStyle": "automatic",
         "newArchEnabled": true,
@@ -14,7 +14,7 @@
         },
         "android": {
             "adaptiveIcon": {
-                "foregroundImage": "./assets/images/adaptive-icon.png",
+                "foregroundImage": "./assets/images/poke-budgy.png",
                 "backgroundColor": "#ffffff"
             },
             "edgeToEdgeEnabled": true,
@@ -36,7 +36,7 @@
             [
                 "expo-splash-screen",
                 {
-                    "image": "./assets/images/splash-icon.png",
+                    "image": "./assets/images/poke-budgy.png",
                     "imageWidth": 200,
                     "resizeMode": "contain",
                     "backgroundColor": "#ffffff"
