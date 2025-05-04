@@ -8,7 +8,6 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { NavigationContainer } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
 
@@ -32,14 +31,16 @@ export default function RootLayout() {
                         <Portal.Host>
                             <GestureHandlerRootView>
                                 <BottomSheetModalProvider>
-                                    {/* <NavigationContainer theme={paperTheme}> */}
-                                    <Stack>
+                                    <Stack
+                                        screenOptions={{
+                                            headerTitleAlign: "center",
+                                        }}
+                                    >
                                         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
                                         <Stack.Screen name="settings" />
                                         <Stack.Screen name="budget-expense" />
                                         <Stack.Screen name="+not-found" />
                                     </Stack>
-                                    {/* </NavigationContainer> */}
                                 </BottomSheetModalProvider>
                             </GestureHandlerRootView>
                         </Portal.Host>

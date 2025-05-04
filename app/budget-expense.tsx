@@ -36,6 +36,7 @@ const BudgetExpenses = () => {
 
     return (
         <View>
+            <EditBudgetSpendDialog categoryId={expenseCategory.Id} sheetRef={sheetRef} />
             {expenseCategory.Expenses.length > 0 ? (
                 <Card style={{ margin: 10 }}>
                     <Card.Content>
@@ -72,7 +73,6 @@ const BudgetExpenses = () => {
                     <Card.Title title="No Expenses in this Category yet" />
                 )}
             </Card>
-            <EditBudgetSpendDialog categoryId={expenseCategory.Id} sheetRef={sheetRef} />
         </View>
     );
 };

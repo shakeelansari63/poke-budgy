@@ -89,13 +89,13 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
                         }
                         color={totalBudgeted <= totalIncome ? colors.BudgetInLimit : colors.BudgetAboveLimit}
                     />
-                    <BudgetLine
+                    {/* <BudgetLine
                         icon="bank-check"
                         type="Saving"
                         value={totalSaved}
                         progress={totalSaved >= 0 ? totalSaved / (totalIncome === 0 ? 1 : totalIncome) : 1}
                         color={totalSaved >= 0 ? colors.SavingPositive : colors.SavingNegative}
-                    />
+                    /> */}
                 </ScrollView>
             </Card.Content>
             <Card.Actions style={{ justifyContent: "space-between" }}>
