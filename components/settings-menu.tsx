@@ -1,5 +1,6 @@
 import { Dimensions } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useHeaderHeight } from "@react-navigation/elements";
 import { Menu, Divider } from "react-native-paper";
 import React from "react";
 import { useRouter } from "expo-router";
@@ -20,8 +21,10 @@ const SettingsMenu = ({ visible, setVisible }: MenuProps) => {
 
     const insets = useSafeAreaInsets();
 
+    const headerHeight = useHeaderHeight();
+
     const x = Dimensions.get("screen").width - insets.right;
-    const y = insets.top;
+    const y = headerHeight;
 
     const newBudgetRef = useRef<BottomSheetModal>(null);
     const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
@@ -46,7 +49,7 @@ const SettingsMenu = ({ visible, setVisible }: MenuProps) => {
 
     return (
         <>
-            <Menu visible={visible} onDismiss={() => setVisible(false)} anchor={{ x: x, y: y }}>
+            <Menu visible={visible} onDismiss={() => setVisible(false)} anchor={{ x: x, y: y }} elevation={5}>
                 <Menu.Item onPress={createBlankBudget} title="Create new Empty Plan" leadingIcon="plus" />
                 <Divider />
                 {currentBudget !== null ? (

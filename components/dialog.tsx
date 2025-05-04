@@ -31,6 +31,7 @@ const Dialog = ({ children, sheetRef }: DialogProps) => {
             enableDynamicSizing
             maxDynamicContentSize={height * 0.8}
             backdropComponent={backDrop}
+            handleIndicatorStyle={{ backgroundColor: theme.colors.onBackground }}
         >
             <BottomSheetScrollView>
                 {children}
