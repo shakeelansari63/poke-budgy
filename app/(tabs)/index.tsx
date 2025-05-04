@@ -2,7 +2,7 @@ import { ScrollView, View } from "react-native";
 import BudgetGraph from "../../components/budget-graph-card";
 import IncomeSection from "../../components/income-section";
 import ExpenseSection from "../../components/expense-section";
-import Fab from "../../components/fab";
+import FabMainPage from "../../components/fab-main-page";
 import SettingsMenu from "../../components/settings-menu";
 import { useNavigation } from "expo-router";
 import { useLayoutEffect, useState } from "react";
@@ -31,7 +31,7 @@ export default function Home() {
                 <ExpenseSection />
                 <EmptySpace />
             </ScrollView>
-            <Fab />
+            <FabMainPage />
         </>
     );
 }

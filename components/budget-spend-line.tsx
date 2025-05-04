@@ -12,7 +12,7 @@ interface BudgetSpendLineProp {
 }
 
 const BudgetSpendLine = ({ expense, categoryId }: BudgetSpendLineProp) => {
-    const sheetRef = React.createRef<BottomSheetModal>();
+    const sheetRef = React.useRef<BottomSheetModal>(null);
 
     const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
     const theme = useTheme();

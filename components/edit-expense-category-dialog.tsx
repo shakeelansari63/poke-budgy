@@ -2,18 +2,20 @@ import { Button, TextInput, Surface, Card, IconButton, useTheme } from "react-na
 import { useState, RefObject } from "react";
 import { ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
-import { addExpenseCategory } from "../storage/slices/budget-slice";
+import { addExpenseCategory, editExpenseCategory } from "../storage/slices/budget-slice";
 import { ExpenseCategory } from "../model/expense";
 import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import Dialog from "./dialog";
 
-interface AddBudgetDialogProps {
+interface EditExpenseCategoryDialogProps {
+    expenseCat?: ExpenseCategory;
     sheetRef: RefObject<BottomSheetModal | null>;
 }
 
-const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
-    const [category, setCategory] = useState<string>("");
-    const [amount, setAmount] = useState<number>(0);
+const EditExpenseCategoryDialog = ({ expenseCat, sheetRef }: EditExpenseCategoryDialogProps) => {
+    const [category, setCategory] = useState<string>(expenseCat?.Category ?? "");
+    const [amount, setAmount] = useState<number>(expenseCat?.Amount ?? 0);
+    const [dirty, setDirty] = useState<boolean>(false);
 
     const dispatch = useDispatch();
 
@@ -22,7 +24,7 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
         setAmount(0);
     };
 
-    const saveForm = () => {
+    const saveExpenseCategory = () => {
         if (category !== "" && amount !== 0) {
             const cat: ExpenseCategory = {
                 Id: "",
@@ -32,7 +34,22 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
             };
 
             dispatch(addExpenseCategory(cat));
+            sheetRef?.current?.dismiss();
             resetForm();
+        }
+    };
+
+    const updateExpenseCategory = () => {
+        if (!dirty) return;
+
+        if (category !== "" && amount !== 0 && expenseCat) {
+            const cat: ExpenseCategory = {
+                ...expenseCat,
+                Category: category,
+                Amount: amount,
+            };
+
+            dispatch(editExpenseCategory(cat));
             sheetRef?.current?.dismiss();
         }
     };
@@ -53,7 +70,10 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
                             mode="outlined"
                             label="Budget"
                             defaultValue={category}
-                            onChangeText={(txt) => setCategory(txt)}
+                            onChangeText={(txt) => {
+                                setDirty(true);
+                                setCategory(txt);
+                            }}
                             style={{ marginBottom: 10 }}
                             render={(props) => <BottomSheetTextInput {...props} />}
                         />
@@ -65,6 +85,7 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
                             onChangeText={(txt) => {
                                 const number = txt.replace(/[^0-9]/g, "");
                                 const updateVal = number === "" ? 0 : parseFloat(number);
+                                setDirty(true);
                                 setAmount(updateVal);
                             }}
                             style={{ marginBottom: 10 }}
@@ -73,7 +94,12 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
                     </ScrollView>
                 </Card.Content>
                 <Card.Actions>
-                    <Button mode="text" textColor={theme.colors.primary} icon="content-save" onPress={saveForm}>
+                    <Button
+                        mode="text"
+                        textColor={theme.colors.onPrimaryContainer}
+                        icon="content-save"
+                        onPress={expenseCat ? updateExpenseCategory : saveExpenseCategory}
+                    >
                         Save
                     </Button>
                 </Card.Actions>
@@ -82,4 +108,4 @@ const AddBudgetDialog = ({ sheetRef }: AddBudgetDialogProps) => {
     );
 };
 
-export default AddBudgetDialog;
+export default EditExpenseCategoryDialog;

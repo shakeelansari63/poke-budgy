@@ -10,6 +10,10 @@ import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
+import { en, registerTranslation } from "react-native-paper-dates";
+
+// Register Englist Translation of Dates
+registerTranslation("en", en);
 
 export default function RootLayout() {
     // Get system Color Scheme

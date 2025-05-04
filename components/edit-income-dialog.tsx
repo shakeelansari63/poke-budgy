@@ -106,6 +106,7 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
                             inputMode="start"
                             presentationStyle="pageSheet"
                             style={{ marginBottom: 10 }}
+                            render={(props) => <BottomSheetTextInput {...props} />}
                         />
                     </ScrollView>
                 </Card.Content>

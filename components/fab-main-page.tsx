@@ -1,16 +1,16 @@
 import { FAB } from "react-native-paper";
-import { useState, createRef } from "react";
+import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import AddBudgetDialog from "./add-budget-dialog";
+import AddBudgetDialog from "./edit-expense-category-dialog";
 import EditIncomeDialog from "./edit-income-dialog";
 
-const Fab = () => {
+const FabMainPage = () => {
     const [fabOpen, setFabOpen] = useState<boolean>(false);
-    const newIncomeSheetRef = createRef<BottomSheetModal>();
-    const newExpenseCategorySheetRef = createRef<BottomSheetModal>();
+    const newIncomeSheetRef = useRef<BottomSheetModal>(null);
+    const newExpenseCategorySheetRef = useRef<BottomSheetModal>(null);
     const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
 
     const actions = [
@@ -46,4 +46,4 @@ const Fab = () => {
     );
 };
 
-export default Fab;
+export default FabMainPage;

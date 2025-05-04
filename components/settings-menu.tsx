@@ -4,7 +4,7 @@ import { Menu, Divider } from "react-native-paper";
 import React from "react";
 import { useRouter } from "expo-router";
 import { useSelector } from "react-redux";
-import { useState, createRef } from "react";
+import { useState, useRef } from "react";
 import NewBudgetDialog from "./new-budget-dialog";
 import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
@@ -23,7 +23,7 @@ const SettingsMenu = ({ visible, setVisible }: MenuProps) => {
     const x = Dimensions.get("screen").width - insets.right;
     const y = insets.top;
 
-    const newBudgetRef = createRef<BottomSheetModal>();
+    const newBudgetRef = useRef<BottomSheetModal>(null);
     const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
     const [cloneId, setCloneId] = useState<string | null>(null);
 

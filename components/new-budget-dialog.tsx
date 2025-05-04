@@ -4,7 +4,7 @@ import { useState, RefObject } from "react";
 import { DatePickerInput } from "react-native-paper-dates";
 import { createNewBudget } from "../storage/slices/budget-slice";
 import { useDispatch } from "react-redux";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import Dialog from "./dialog";
 
 interface NewBudgetDialogProps {
@@ -58,6 +58,7 @@ const NewBudgetDialog = ({ cloneId, sheetRef }: NewBudgetDialogProps) => {
                             inputMode="start"
                             presentationStyle="pageSheet"
                             style={{ marginBottom: 10 }}
+                            render={(props) => <BottomSheetTextInput {...props} />}
                         />
                         <DatePickerInput
                             mode="outlined"
@@ -70,14 +71,20 @@ const NewBudgetDialog = ({ cloneId, sheetRef }: NewBudgetDialogProps) => {
                                     setEndDate(d);
                                 }
                             }}
-                            inputMode="start"
+                            inputMode="end"
                             presentationStyle="pageSheet"
                             style={{ marginBottom: 10 }}
+                            render={(props) => <BottomSheetTextInput {...props} />}
                         />
                     </ScrollView>
                 </Card.Content>
                 <Card.Actions>
-                    <Button mode="text" textColor={theme.colors.primary} icon="content-save" onPress={saveNewBudget}>
+                    <Button
+                        mode="text"
+                        textColor={theme.colors.onPrimaryContainer}
+                        icon="content-save"
+                        onPress={saveNewBudget}
+                    >
                         Save
                     </Button>
                 </Card.Actions>

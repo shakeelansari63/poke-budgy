@@ -1,4 +1,4 @@
-import { createRef, useState } from "react";
+import { useRef, useState } from "react";
 import { List, Chip, IconButton, Portal, Dialog, Divider, Button, Text, useTheme } from "react-native-paper";
 import { Income } from "../model/income";
 import EditIncomeDialog from "./edit-income-dialog";
@@ -11,7 +11,7 @@ interface IncomeProps {
 }
 
 const IncomeLine = ({ income }: IncomeProps) => {
-    const sheetRef = createRef<BottomSheetModal>();
+    const sheetRef = useRef<BottomSheetModal>(null);
     const [deleteModalVisible, setDeleteModalVisible] = useState<boolean>(false);
     const theme = useTheme();
     const dispactch = useDispatch();
