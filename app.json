@@ -2,29 +2,28 @@
     "expo": {
         "name": "Poke Budgy",
         "slug": "poke-budgy",
-        "version": "1.0.0-b13",
+        "version": "0.0.1-b1",
         "orientation": "portrait",
-        "icon": "./assets/icon.png",
+        "icon": "./assets/images/icon.png",
+        "scheme": "pokebudgy",
         "userInterfaceStyle": "automatic",
         "newArchEnabled": true,
-        "splash": {
-            "image": "./assets/splash-icon.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
-        },
         "ios": {
             "supportsTablet": true,
             "bundleIdentifier": "com.shakeelansari63.pokebudgy"
         },
         "android": {
             "adaptiveIcon": {
-                "foregroundImage": "./assets/adaptive-icon.png",
+                "foregroundImage": "./assets/images/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
             },
+            "edgeToEdgeEnabled": true,
             "package": "com.shakeelansari63.pokebudgy"
         },
         "web": {
-            "favicon": "./assets/favicon.png"
+            "bundler": "metro",
+            "output": "static",
+            "favicon": "./assets/images/favicon.png"
         },
         "extra": {
             "eas": {
@@ -33,6 +32,16 @@
         },
         "owner": "shakeelansari63",
         "plugins": [
+            "expo-router",
+            [
+                "expo-splash-screen",
+                {
+                    "image": "./assets/images/splash-icon.png",
+                    "imageWidth": 200,
+                    "resizeMode": "contain",
+                    "backgroundColor": "#ffffff"
+                }
+            ],
             [
                 "expo-sqlite",
                 {
@@ -44,6 +53,9 @@
                     }
                 }
             ]
-        ]
+        ],
+        "experiments": {
+            "typedRoutes": true
+        }
     }
 }

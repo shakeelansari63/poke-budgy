@@ -13,6 +13,11 @@ const budgetSlice = createSlice({
     name: "budget",
     initialState: initialState,
     reducers: {
+        resetStore: (state, action) => {
+            state.activeBudget = null;
+            state.pastBudgets = [];
+        },
+
         loadBudgets: (state, action) => {
             const savedState = action.payload as BudgetState;
             state.activeBudget = savedState.activeBudget;
@@ -179,6 +184,7 @@ const budgetSlice = createSlice({
 });
 
 export const {
+    resetStore,
     loadBudgets,
     createNewBudget,
     deletePastBudget,

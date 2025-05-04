@@ -1,9 +1,9 @@
 import { ScrollView } from "react-native";
 import { Card } from "react-native-paper";
 import { useSelector } from "react-redux";
-import { StoreState } from "../model/store";
-import { Budget } from "../model/budget";
-import PastBudgetCard from "../components/past-budgets-cards";
+import { StoreState } from "../../model/store";
+import { Budget } from "../../model/budget";
+import PastBudgetCard from "../../components/past-budgets-cards";
 
 export default function History() {
     const pastBudgets = useSelector<StoreState, Budget[]>((state) => state.budget.pastBudgets);

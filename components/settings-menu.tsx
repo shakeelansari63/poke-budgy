@@ -1,10 +1,8 @@
 import { Dimensions } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Menu, Divider } from "react-native-paper";
-import { useHeaderHeight } from "@react-navigation/elements";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { useRouter } from "expo-router";
 import { useSelector } from "react-redux";
 import { useState, createRef } from "react";
 import NewBudgetDialog from "./new-budget-dialog";
@@ -18,13 +16,12 @@ interface MenuProps {
 }
 
 const SettingsMenu = ({ visible, setVisible }: MenuProps) => {
-    const navigations = useNavigation<StackNavigationProp<any>>();
+    const router = useRouter();
 
     const insets = useSafeAreaInsets();
-    const headerHeight = useHeaderHeight();
 
     const x = Dimensions.get("screen").width - insets.right;
-    const y = headerHeight;
+    const y = insets.top;
 
     const newBudgetRef = createRef<BottomSheetModal>();
     const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
@@ -43,7 +40,7 @@ const SettingsMenu = ({ visible, setVisible }: MenuProps) => {
     };
 
     const gotoSettings = () => {
-        navigations.navigate("settings");
+        router.navigate("/settings");
         setVisible(false);
     };
 

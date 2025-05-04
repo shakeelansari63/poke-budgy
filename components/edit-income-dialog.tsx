@@ -4,7 +4,7 @@ import { useState, RefObject } from "react";
 import { Income } from "../model/income";
 import { DatePickerInput } from "react-native-paper-dates";
 import { useDispatch } from "react-redux";
-import { deleteIncome, editIncome, addIncome } from "../storage/slices/budget-slice";
+import { editIncome, addIncome } from "../storage/slices/budget-slice";
 import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import Dialog from "./dialog";
 
@@ -42,11 +42,6 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
         );
         sheetRef.current?.dismiss();
         resetForm();
-    };
-
-    const deleteIncomeHandler = () => {
-        dispatch(deleteIncome(income?.Id));
-        sheetRef.current?.dismiss();
     };
 
     const updateIncomeHandler = () => {
@@ -115,19 +110,9 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
                     </ScrollView>
                 </Card.Content>
                 <Card.Actions>
-                    {income !== undefined ? (
-                        <Button
-                            mode="text"
-                            textColor={theme.colors.error}
-                            icon="trash-can"
-                            onPress={deleteIncomeHandler}
-                        >
-                            Delete
-                        </Button>
-                    ) : null}
                     <Button
                         mode="text"
-                        textColor={theme.colors.primary}
+                        textColor={theme.colors.onPrimaryContainer}
                         icon="content-save"
                         onPress={income === undefined ? addIncomeHandler : updateIncomeHandler}
                     >

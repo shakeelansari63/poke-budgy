@@ -6,9 +6,17 @@ const ActiveBudgetKey = "active";
 const InactiveBudgetKeyPrefix = "past/";
 
 export const BudgetStore: BudgetStoreModel = {
+    resetStore: () => {
+        Storage.clearSync();
+    },
+
     getActiveBudget: () => {
-        const item = Storage.getItemSync(ActiveBudgetKey);
-        return item === null ? null : (JSON.parse(item) as Budget);
+        const budgetKeyExist = Storage.getAllKeysSync().find((key) => key === ActiveBudgetKey);
+        if (budgetKeyExist) {
+            const item = Storage.getItemSync(ActiveBudgetKey);
+            return item === null ? null : (JSON.parse(item) as Budget);
+        }
+        return null;
     },
 
     getInactiveBudgets: () => {

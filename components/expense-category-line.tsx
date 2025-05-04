@@ -1,11 +1,21 @@
 import { View } from "react-native";
 import { useState } from "react";
-import { List, Chip, IconButton, ProgressBar, useTheme, Portal, Modal, Card, Button, Text } from "react-native-paper";
+import {
+    List,
+    Chip,
+    IconButton,
+    ProgressBar,
+    useTheme,
+    Portal,
+    Dialog,
+    Divider,
+    Button,
+    Text,
+} from "react-native-paper";
 import { ExpenseCategory } from "../model/expense";
 import { useDispatch } from "react-redux";
 import { deleteExpenseCategory } from "../storage/slices/budget-slice";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { useRouter } from "expo-router";
 import colors from "../constants/colors";
 
 interface BudgetProps {
@@ -13,7 +23,7 @@ interface BudgetProps {
 }
 
 const ExpenseCategoryLine = ({ budget }: BudgetProps) => {
-    const navigation = useNavigation<StackNavigationProp<any>>();
+    const router = useRouter();
     const [deleteModalVisible, setDeleteModalVisible] = useState<boolean>(false);
     const theme = useTheme();
     const totalExpense = budget.Expenses.reduce((acc, expense) => acc + expense.Amount, 0);
@@ -43,39 +53,37 @@ const ExpenseCategoryLine = ({ budget }: BudgetProps) => {
                         style={{ margin: 0, padding: 0 }}
                     />
                 )}
-                onPress={() => navigation.navigate("budget-expense", { categoryId: budget.Id })}
+                onPress={() => router.navigate({ pathname: "/budget-expense", params: { categoryId: budget.Id } })}
             />
             <ProgressBar
                 progress={totalUsage}
                 color={totalExpense > budget.Amount ? colors.SpentAboveLimit : colors.SpentInLimit}
             />
+            <Divider />
             <Portal>
-                <Modal visible={deleteModalVisible} style={{ margin: 15 }}>
-                    <Card>
-                        <Card.Title title="Are you sure?" />
-                        <Card.Content>
-                            <Text>Are you sure you want to delete the Budget "{budget.Category}"?</Text>
-                        </Card.Content>
-                        <Card.Actions>
-                            <Button
-                                mode="text"
-                                textColor={theme.colors.onBackground}
-                                icon="cancel"
-                                onPress={() => setDeleteModalVisible(false)}
-                            >
-                                Cancel
-                            </Button>
-                            <Button
-                                mode="text"
-                                textColor={theme.colors.error}
-                                icon="trash-can"
-                                onPress={deleteCategory}
-                            >
-                                Delete
-                            </Button>
-                        </Card.Actions>
-                    </Card>
-                </Modal>
+                <Dialog
+                    visible={deleteModalVisible}
+                    style={{ margin: 15 }}
+                    onDismiss={() => setDeleteModalVisible(false)}
+                >
+                    <Dialog.Title>Are you sure?</Dialog.Title>
+                    <Dialog.Content>
+                        <Text>Are you sure you want to delete the Budget "{budget.Category}"?</Text>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                        <Button
+                            mode="text"
+                            textColor={theme.colors.onBackground}
+                            icon="cancel"
+                            onPress={() => setDeleteModalVisible(false)}
+                        >
+                            Cancel
+                        </Button>
+                        <Button mode="text" textColor={theme.colors.error} icon="trash-can" onPress={deleteCategory}>
+                            Delete
+                        </Button>
+                    </Dialog.Actions>
+                </Dialog>
             </Portal>
         </View>
     );

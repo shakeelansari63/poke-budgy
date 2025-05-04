@@ -3,7 +3,7 @@ import { Button, TextInput, Surface, Card, IconButton, useTheme } from "react-na
 import { useState, RefObject } from "react";
 import { DatePickerInput } from "react-native-paper-dates";
 import { useDispatch } from "react-redux";
-import { addExpense, editExpense, deleteExpense } from "../storage/slices/budget-slice";
+import { addExpense, editExpense } from "../storage/slices/budget-slice";
 import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import Dialog from "./dialog";
 import { Expense } from "../model/expense";
@@ -56,11 +56,6 @@ const EditBudgetSpendDialog = ({ expense, categoryId, sheetRef }: EditBudgetSpen
                 categoryId: categoryId,
             })
         );
-        sheetRef.current?.dismiss();
-    };
-
-    const deleteExpenseHandler = () => {
-        dispatch(deleteExpense({ expenseId: expense?.Id, categoryId: categoryId }));
         sheetRef.current?.dismiss();
     };
 
@@ -117,19 +112,9 @@ const EditBudgetSpendDialog = ({ expense, categoryId, sheetRef }: EditBudgetSpen
                     </ScrollView>
                 </Card.Content>
                 <Card.Actions>
-                    {expense !== undefined ? (
-                        <Button
-                            mode="text"
-                            textColor={theme.colors.error}
-                            icon="trash-can"
-                            onPress={deleteExpenseHandler}
-                        >
-                            Delete
-                        </Button>
-                    ) : null}
                     <Button
                         mode="text"
-                        textColor={theme.colors.primary}
+                        textColor={theme.colors.onPrimaryContainer}
                         icon="content-save"
                         onPress={expense === undefined ? addExpenseHandler : updateExpenseHandler}
                     >

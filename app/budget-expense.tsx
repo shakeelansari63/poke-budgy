@@ -1,9 +1,9 @@
+import { useNavigation, useLocalSearchParams } from "expo-router";
 import { View } from "react-native";
 import { Card, IconButton, ProgressBar, Text } from "react-native-paper";
 import React from "react";
 import { useLayoutEffect } from "react";
 import { ExpenseCategory } from "../model/expense";
-import { StackProps } from "../model/stack-props";
 import BudgetSpendLine from "../components/budget-spend-line";
 import EditBudgetSpendDialog from "../components/budget-spend-dialog";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
@@ -12,9 +12,11 @@ import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
 import colors from "../constants/colors";
 
-const BudgetExpenses = ({ navigation, route }: StackProps) => {
+const BudgetExpenses = () => {
+    const navigation = useNavigation();
+    const { categoryId } = useLocalSearchParams() as { categoryId: string };
+
     const sheetRef = React.createRef<BottomSheetModal>();
-    const { categoryId } = route.params as { categoryId: string };
     const activeBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
     const expenseCategory: ExpenseCategory = activeBudget?.Expenses.find((exp) => exp.Id === categoryId) ?? {
         Id: "",

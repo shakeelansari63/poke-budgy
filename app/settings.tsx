@@ -1,7 +1,8 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import { Text } from "react-native-paper";
 import React from "react";
 import { useLayoutEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "expo-router";
 
 const Settings = () => {
     const navigation = useNavigation();
