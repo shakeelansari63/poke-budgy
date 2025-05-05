@@ -99,19 +99,27 @@ const BudgetExpenses = () => {
                 ) : null}
                 <Card style={{ margin: 10 }}>
                     {expenseCategory.Expenses.length > 0 ? (
-                        <SwipeableFlatList
-                            data={expenseCategory.Expenses}
-                            keyExtractor={(expense: Expense) => expense.Id}
-                            renderItem={({ item }: { item: Expense }) => (
-                                <BudgetSpendLine expense={item} categoryId={categoryId} />
-                            )}
-                            enableOpenMultipleRows={false}
-                            renderRightActions={(item: Expense) => (
-                                <View style={{ backgroundColor: theme.colors.errorContainer }}>
-                                    <IconButton icon="trash-can-outline" onPress={() => deletePressHandler(item)} />
-                                </View>
-                            )}
-                        />
+                        <>
+                            <Card.Title title="Expenditure" />
+                            <Card.Content>
+                                <SwipeableFlatList
+                                    data={expenseCategory.Expenses}
+                                    keyExtractor={(expense: Expense) => expense.Id}
+                                    renderItem={({ item }: { item: Expense }) => (
+                                        <BudgetSpendLine expense={item} categoryId={categoryId} />
+                                    )}
+                                    enableOpenMultipleRows={false}
+                                    renderRightActions={(item: Expense) => (
+                                        <View style={{ backgroundColor: theme.colors.errorContainer }}>
+                                            <IconButton
+                                                icon="trash-can-outline"
+                                                onPress={() => deletePressHandler(item)}
+                                            />
+                                        </View>
+                                    )}
+                                />
+                            </Card.Content>
+                        </>
                     ) : (
                         <Card.Title title="No Expenses in this Category yet" />
                     )}

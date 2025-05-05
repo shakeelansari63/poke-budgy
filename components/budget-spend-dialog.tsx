@@ -63,7 +63,7 @@ const EditBudgetSpendDialog = ({ expense, categoryId, sheetRef }: EditBudgetSpen
         <Dialog sheetRef={sheetRef}>
             <Surface mode="flat">
                 <Card.Title
-                    title={expense == undefined ? "Add Expense" : "Edit Expense"}
+                    title={expense === undefined ? "Add Expense" : "Edit Expense"}
                     titleVariant="titleLarge"
                     right={() => <IconButton icon="close" onPress={() => sheetRef.current?.dismiss()} />}
                 />
