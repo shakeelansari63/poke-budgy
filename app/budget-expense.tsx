@@ -1,9 +1,9 @@
 import { useNavigation, useLocalSearchParams } from "expo-router";
 import { ScrollView, View } from "react-native";
-import { Card, IconButton, ProgressBar, Text } from "react-native-paper";
+import { Card, IconButton, ProgressBar, Text, Portal, Dialog, Button, useTheme } from "react-native-paper";
 import React from "react";
 import { useLayoutEffect } from "react";
-import { ExpenseCategory } from "../model/expense";
+import { ExpenseCategory, Expense } from "../model/expense";
 import BudgetSpendLine from "../components/budget-spend-line";
 import FabBudgetPage from "../components/fab-budget-page";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
@@ -12,6 +12,9 @@ import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
 import colors from "../constants/colors";
 import EditExpenseCategoryDialog from "../components/edit-expense-category-dialog";
+import { useDispatch } from "react-redux";
+import { deleteExpense } from "../storage/slices/budget-slice";
+import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
 
 const BudgetExpenses = () => {
     const navigation = useNavigation();
@@ -24,6 +27,22 @@ const BudgetExpenses = () => {
         Amount: 0,
         Category: "",
         Expenses: [],
+    };
+
+    const [expenseToDelete, setExpenseToDelete] = React.useState<Expense | null>(null);
+    const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
+    const theme = useTheme();
+    const dispactch = useDispatch();
+
+    const delExpense = () => {
+        if (expenseToDelete) dispactch(deleteExpense({ categoryId: categoryId, expenseId: expenseToDelete.Id }));
+        setDeleteModalVisible(false);
+        setExpenseToDelete(null);
+    };
+
+    const deletePressHandler = (expense: Expense) => {
+        setExpenseToDelete(expense);
+        setDeleteModalVisible(true);
     };
 
     const AddButton = () => <IconButton icon="pencil" size={24} onPress={() => sheetRef.current?.present()} />;
@@ -80,22 +99,48 @@ const BudgetExpenses = () => {
                 ) : null}
                 <Card style={{ margin: 10 }}>
                     {expenseCategory.Expenses.length > 0 ? (
-                        <>
-                            <Card.Title title="Expenditures" />
-                            <Card.Content>
-                                {expenseCategory.Expenses.map((expense) => (
-                                    <BudgetSpendLine
-                                        categoryId={expenseCategory.Id}
-                                        expense={expense}
-                                        key={expense.Id}
-                                    />
-                                ))}
-                            </Card.Content>
-                        </>
+                        <SwipeableFlatList
+                            data={expenseCategory.Expenses}
+                            keyExtractor={(expense: Expense) => expense.Id}
+                            renderItem={({ item }: { item: Expense }) => (
+                                <BudgetSpendLine expense={item} categoryId={categoryId} />
+                            )}
+                            enableOpenMultipleRows={false}
+                            renderRightActions={(item: Expense) => (
+                                <View style={{ backgroundColor: theme.colors.errorContainer }}>
+                                    <IconButton icon="trash-can-outline" onPress={() => deletePressHandler(item)} />
+                                </View>
+                            )}
+                        />
                     ) : (
                         <Card.Title title="No Expenses in this Category yet" />
                     )}
                 </Card>
+                <Portal>
+                    <Dialog
+                        visible={deleteModalVisible}
+                        style={{ margin: 15 }}
+                        onDismiss={() => setDeleteModalVisible(false)}
+                    >
+                        <Dialog.Title>Are you sure?</Dialog.Title>
+                        <Dialog.Content>
+                            <Text>Are you sure you want to delete the Expense "{expenseToDelete?.Comment}"?</Text>
+                        </Dialog.Content>
+                        <Dialog.Actions>
+                            <Button
+                                mode="text"
+                                textColor={theme.colors.onBackground}
+                                icon="cancel"
+                                onPress={() => setDeleteModalVisible(false)}
+                            >
+                                Cancel
+                            </Button>
+                            <Button mode="text" textColor={theme.colors.error} icon="trash-can" onPress={delExpense}>
+                                Delete
+                            </Button>
+                        </Dialog.Actions>
+                    </Dialog>
+                </Portal>
             </ScrollView>
             <FabBudgetPage expenseCat={expenseCategory} />
         </>

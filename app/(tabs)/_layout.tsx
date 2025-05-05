@@ -25,6 +25,13 @@ export default function TabLayout() {
                 headerTitleAlign: "center",
                 headerShown: true,
                 tabBarButton: HapticTab,
+                headerLeft: () => (
+                    <Avatar.Image
+                        size={48}
+                        source={require("../../assets/images/icon.png")}
+                        style={{ marginLeft: 10 }}
+                    />
+                ),
                 tabBarStyle: Platform.select({
                     ios: {
                         position: "absolute",
@@ -37,13 +44,6 @@ export default function TabLayout() {
                 name="index"
                 options={{
                     title: "My Budget",
-                    headerLeft: () => (
-                        <Avatar.Image
-                            size={36}
-                            source={require("../../assets/images/icon.png")}
-                            style={{ marginLeft: 10 }}
-                        />
-                    ),
                     tabBarIcon: ({ size, focused }) => (
                         <Icon
                             size={size}
