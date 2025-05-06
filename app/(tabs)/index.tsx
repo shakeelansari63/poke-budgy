@@ -1,4 +1,4 @@
-import { ScrollView, View } from "react-native";
+import { SectionList, View } from "react-native";
 import BudgetGraph from "../../components/budget-graph-card";
 import IncomeSection from "../../components/income-section";
 import ExpenseSection from "../../components/expense-section";
@@ -22,15 +22,30 @@ export default function Home() {
         });
     }, [navigation]);
 
+    const sections = [
+        {
+            data: [{ id: 0, node: <BudgetGraph /> }],
+        },
+        {
+            data: [{ id: 1, node: <IncomeSection /> }],
+        },
+        {
+            data: [{ id: 2, node: <ExpenseSection /> }],
+        },
+
+        {
+            data: [{ id: 3, node: <EmptySpace /> }],
+        },
+    ];
+
     return (
         <>
             <SettingsMenu visible={menuVisible} setVisible={setMenuVisible} />
-            <ScrollView>
-                <BudgetGraph />
-                <IncomeSection />
-                <ExpenseSection />
-                <EmptySpace />
-            </ScrollView>
+            <SectionList
+                sections={sections}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => item.node}
+            />
             <FabMainPage />
         </>
     );
