@@ -1,15 +1,18 @@
 import Storage from "expo-sqlite/kv-store";
-import { BudgetStoreModel } from "../model/persistent";
+import { PersistentStoreModel } from "../model/persistent";
 import { Budget } from "../model/budget";
+import { Settings } from "@/model/settings";
 
 const ActiveBudgetKey = "active";
 const InactiveBudgetKeyPrefix = "past/";
+const SettingsKey = "settings";
 
-export const BudgetStore: BudgetStoreModel = {
+export const DataStore: PersistentStoreModel = {
     resetStore: () => {
         Storage.clearSync();
     },
 
+    // Budget Related Options
     getActiveBudget: () => {
         const budgetKeyExist = Storage.getAllKeysSync().find((key) => key === ActiveBudgetKey);
         if (budgetKeyExist) {
@@ -20,7 +23,7 @@ export const BudgetStore: BudgetStoreModel = {
     },
 
     getInactiveBudgets: () => {
-        const allKeys = Storage.getAllKeysSync().filter((key) => key !== ActiveBudgetKey);
+        const allKeys = Storage.getAllKeysSync().filter((key) => key.startsWith(InactiveBudgetKeyPrefix));
         return allKeys
             .map((key) => {
                 const item = Storage.getItemSync(key);
@@ -40,7 +43,7 @@ export const BudgetStore: BudgetStoreModel = {
 
     updateInactiveBudgets: (budgets: Budget[]) => {
         const stateKeys = budgets.map((budget) => `${InactiveBudgetKeyPrefix}${budget.Id}`);
-        const storeKeys = Storage.getAllKeysSync().filter((key) => key !== ActiveBudgetKey);
+        const storeKeys = Storage.getAllKeysSync().filter((key) => key.startsWith(InactiveBudgetKeyPrefix));
 
         // Add budgets in State but not in Store
         budgets.forEach((budget) => {
@@ -52,5 +55,19 @@ export const BudgetStore: BudgetStoreModel = {
         storeKeys.forEach((key) => {
             if (!stateKeys.includes(key)) Storage.removeItemSync(key);
         });
+    },
+
+    // Settings relation methods
+    getSettings: () => {
+        const settingsKeyExist = Storage.getAllKeysSync().find((key) => key === SettingsKey);
+        if (settingsKeyExist) {
+            const item = Storage.getItemSync(SettingsKey);
+            return item === null ? null : (JSON.parse(item) as Settings);
+        }
+        return null;
+    },
+
+    setSettings: (settings: Settings) => {
+        Storage.setItemSync(SettingsKey, JSON.stringify(settings));
     },
 };

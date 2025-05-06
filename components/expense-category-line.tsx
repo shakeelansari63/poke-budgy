@@ -4,6 +4,7 @@ import { List, Chip, IconButton, ProgressBar, Divider } from "react-native-paper
 import { ExpenseCategory } from "../model/expense";
 import { useRouter } from "expo-router";
 import colors from "../constants/colors";
+import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface BudgetProps {
     budget: ExpenseCategory;
@@ -11,6 +12,7 @@ interface BudgetProps {
 
 const ExpenseCategoryLine = ({ budget }: BudgetProps) => {
     const router = useRouter();
+    const currencySymbol = useCurrencySymbol();
     const totalExpense = budget.Expenses.reduce((acc, expense) => acc + expense.Amount, 0);
     const totalUsage = totalExpense >= budget.Amount ? 1.0 : (totalExpense * 1.0) / budget.Amount;
 
@@ -20,7 +22,7 @@ const ExpenseCategoryLine = ({ budget }: BudgetProps) => {
                 title={budget.Category}
                 left={() => (
                     <Chip compact={true} elevated={true}>
-                        {budget.Amount}
+                        {currencySymbol} {budget.Amount}
                     </Chip>
                 )}
                 onPress={() => router.navigate({ pathname: "/budget-expense", params: { categoryId: budget.Id } })}

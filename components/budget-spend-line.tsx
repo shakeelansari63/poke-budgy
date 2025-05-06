@@ -3,6 +3,7 @@ import React from "react";
 import { Expense } from "../model/expense";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import EditBudgetSpendDialog from "./budget-spend-dialog";
+import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface BudgetSpendLineProp {
     expense: Expense;
@@ -11,6 +12,7 @@ interface BudgetSpendLineProp {
 
 const BudgetSpendLine = ({ expense, categoryId }: BudgetSpendLineProp) => {
     const sheetRef = React.useRef<BottomSheetModal>(null);
+    const currencySymbol = useCurrencySymbol();
 
     return (
         <>
@@ -19,7 +21,7 @@ const BudgetSpendLine = ({ expense, categoryId }: BudgetSpendLineProp) => {
                 title={expense.Comment}
                 left={() => (
                     <Chip compact={true} elevated={true}>
-                        {expense.Amount}
+                        {currencySymbol} {expense.Amount}
                     </Chip>
                 )}
                 onPress={() => {

@@ -11,8 +11,10 @@ import { View } from "react-native";
 import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
 import { useDispatch } from "react-redux";
 import { deleteExpenseCategory } from "../storage/slices/budget-slice";
+import { useCurrencySymbol } from "../hooks/use-settings";
 
 const ExpenseSection = () => {
+    const currencySymbol = useCurrencySymbol();
     const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
     const totalBudgeted = currentBudget?.Expenses.reduce((acc, category) => acc + category.Amount, 0);
     const sheetRef = React.useRef<BottomSheetModal>(null);
@@ -39,7 +41,7 @@ const ExpenseSection = () => {
                 <Card.Title
                     title="Budgets"
                     titleVariant="titleLarge"
-                    subtitle={"Total: " + totalBudgeted}
+                    subtitle={`Total: ${currencySymbol} ${totalBudgeted}`}
                     left={() => <Avatar.Icon icon="basket" size={40} />}
                     right={() => (
                         <IconButton

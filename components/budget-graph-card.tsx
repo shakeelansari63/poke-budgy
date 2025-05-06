@@ -7,6 +7,7 @@ import { Budget } from "../model/budget";
 import colors from "../constants/colors";
 import { dateOption } from "../constants/app-constants";
 import DateChip from "./date-chip";
+import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface HorizontalBarProps {
     label: string;
@@ -48,6 +49,7 @@ const HorizontalBar = ({ label, value, barColor }: HorizontalBarProps) => {
 
 const BudgetGraph = () => {
     const theme = useTheme();
+    const currencySymbol = useCurrencySymbol();
     const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
     const totalIncome = currentBudget?.Incomes.reduce((acc, inc) => acc + inc.Amount, 0) ?? 0;
     const totalBudgeted = currentBudget?.Expenses.reduce((acc, exp) => acc + exp.Amount, 0) ?? 0;
@@ -93,7 +95,9 @@ const BudgetGraph = () => {
                     <DateChip>To: {endDate ?? ""}</DateChip>
                 </View>
                 <Text variant="headlineSmall">Monthly Saving</Text>
-                <Text variant="displaySmall">{totalSaving}</Text>
+                <Text variant="displaySmall">
+                    {currencySymbol} {totalSaving}
+                </Text>
                 <View style={{ padding: 10 }}></View>
                 <View style={{ flexDirection: "row", marginBottom: 20 }}>
                     <View style={{ flex: 0.5, justifyContent: "flex-start" }}>
@@ -104,7 +108,7 @@ const BudgetGraph = () => {
                             </Text>
                         </View>
                         <Text variant="headlineMedium" style={{ color: theme.colors.onPrimaryContainer }}>
-                            {totalIncome}
+                            {currencySymbol} {totalIncome}
                         </Text>
                     </View>
                     <View style={{ flex: 0.5, justifyContent: "flex-end" }}>
@@ -115,7 +119,7 @@ const BudgetGraph = () => {
                             </Text>
                         </View>
                         <Text variant="headlineMedium" style={{ alignSelf: "flex-end", color: theme.colors.error }}>
-                            {totalBudgeted}
+                            {currencySymbol} {totalBudgeted}
                         </Text>
                     </View>
                 </View>

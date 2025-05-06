@@ -3,6 +3,7 @@ import React from "react";
 import colors from "../constants/colors";
 import { Card, Text, ProgressBar } from "react-native-paper";
 import { ExpenseCategory } from "@/model/expense";
+import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface BudgetSpendSummarySectionProps {
     expenseCategory: ExpenseCategory;
@@ -10,6 +11,8 @@ interface BudgetSpendSummarySectionProps {
 
 const BudgetSpendSummarySection = ({ expenseCategory }: BudgetSpendSummarySectionProps) => {
     const totalSpend = expenseCategory.Expenses.reduce((acc, exp) => acc + exp.Amount, 0);
+    const currencySymbol = useCurrencySymbol();
+
     return expenseCategory.Expenses.length > 0 ? (
         <Card style={{ margin: 10 }}>
             <Card.Content>
@@ -18,7 +21,9 @@ const BudgetSpendSummarySection = ({ expenseCategory }: BudgetSpendSummarySectio
                         <Text>Budget Limit</Text>
                     </View>
                     <View style={{ flex: 0.7, alignSelf: "center" }}>
-                        <Text>{expenseCategory.Amount}</Text>
+                        <Text>
+                            {currencySymbol} {expenseCategory.Amount}
+                        </Text>
                     </View>
                 </View>
                 <View style={{ flexDirection: "row" }}>
@@ -26,7 +31,9 @@ const BudgetSpendSummarySection = ({ expenseCategory }: BudgetSpendSummarySectio
                         <Text>Spend</Text>
                     </View>
                     <View style={{ flex: 0.3 }}>
-                        <Text>{totalSpend}</Text>
+                        <Text>
+                            {currencySymbol} {totalSpend}
+                        </Text>
                     </View>
                     <View style={{ flex: 0.4, alignSelf: "center" }}>
                         <ProgressBar

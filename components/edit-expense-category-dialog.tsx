@@ -6,6 +6,7 @@ import { addExpenseCategory, editExpenseCategory } from "../storage/slices/budge
 import { ExpenseCategory } from "../model/expense";
 import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import Dialog from "./dialog";
+import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface EditExpenseCategoryDialogProps {
     expenseCat?: ExpenseCategory;
@@ -16,6 +17,7 @@ const EditExpenseCategoryDialog = ({ expenseCat, sheetRef }: EditExpenseCategory
     const [category, setCategory] = useState<string>(expenseCat?.Category ?? "");
     const [amount, setAmount] = useState<number>(expenseCat?.Amount ?? 0);
     const [dirty, setDirty] = useState<boolean>(false);
+    const currencySymbol = useCurrencySymbol();
 
     const dispatch = useDispatch();
 
@@ -90,6 +92,7 @@ const EditExpenseCategoryDialog = ({ expenseCat, sheetRef }: EditExpenseCategory
                             }}
                             style={{ marginBottom: 10 }}
                             render={(props) => <BottomSheetTextInput {...props} />}
+                            left={<TextInput.Affix text={currencySymbol} />}
                         />
                     </ScrollView>
                 </Card.Content>

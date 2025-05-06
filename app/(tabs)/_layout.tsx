@@ -2,22 +2,10 @@ import { Tabs } from "expo-router";
 import React from "react";
 import { Platform } from "react-native";
 import { Icon, Avatar, useTheme, Text } from "react-native-paper";
-import { useDispatch } from "react-redux";
-import { loadBudgets } from "../../storage/slices/budget-slice";
-import { BudgetState } from "../../model/store";
-import { BudgetStore } from "../../storage/persistent-store";
-import { HapticTab } from "@/components/haptic-tabs";
+import { HapticTab } from "../../components/haptic-tabs";
 
 export default function TabLayout() {
-    const dispatch = useDispatch();
     const theme = useTheme();
-    React.useEffect(() => {
-        const initialState: BudgetState = {
-            activeBudget: BudgetStore.getActiveBudget(),
-            pastBudgets: BudgetStore.getInactiveBudgets(),
-        };
-        dispatch(loadBudgets(initialState));
-    }, []);
 
     return (
         <Tabs

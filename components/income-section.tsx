@@ -11,8 +11,10 @@ import { Income } from "../model/income";
 import { useDispatch } from "react-redux";
 import { deleteIncome } from "../storage/slices/budget-slice";
 import { View } from "react-native";
+import { useCurrencySymbol } from "../hooks/use-settings";
 
 const IncomeSection = () => {
+    const currencySymbol = useCurrencySymbol();
     const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
     const totalIncome = currentBudget?.Incomes.reduce((acc, income) => acc + income.Amount, 0);
     const sheetRef = React.useRef<BottomSheetModal>(null);
@@ -39,7 +41,7 @@ const IncomeSection = () => {
                 <Card.Title
                     title="Incomes"
                     titleVariant="titleLarge"
-                    subtitle={"Total: " + totalIncome}
+                    subtitle={`Total: ${currencySymbol} ${totalIncome}`}
                     left={() => <Avatar.Icon icon="cash" size={40} />}
                     right={() => (
                         <IconButton

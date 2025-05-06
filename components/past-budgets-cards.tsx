@@ -9,6 +9,7 @@ import { dateOption } from "../constants/app-constants";
 import DateChip from "./date-chip";
 import NewBudgetDialog from "./new-budget-dialog";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface PastBudgetCardProp {
     budget: Budget;
@@ -16,6 +17,7 @@ interface PastBudgetCardProp {
 
 const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
     const theme = useTheme();
+    const currencySymbol = useCurrencySymbol();
     const dispatch = useDispatch();
     const sheetRef = React.useRef<BottomSheetModal | null>(null);
     const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
@@ -57,7 +59,7 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
                                     </Text>
                                 </View>
                                 <Text variant="headlineMedium" style={{ color: theme.colors.onPrimaryContainer }}>
-                                    {totalIncome}
+                                    {currencySymbol} {totalIncome}
                                 </Text>
                             </View>
                             <View style={{ flex: 0.5, justifyContent: "flex-end" }}>
@@ -76,7 +78,7 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
                                     variant="headlineMedium"
                                     style={{ alignSelf: "flex-end", color: theme.colors.error }}
                                 >
-                                    {totalBudgeted}
+                                    {currencySymbol} {totalBudgeted}
                                 </Text>
                             </View>
                         </View>

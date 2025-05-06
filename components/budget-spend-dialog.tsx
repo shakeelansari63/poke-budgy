@@ -7,6 +7,7 @@ import { addExpense, editExpense } from "../storage/slices/budget-slice";
 import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import Dialog from "./dialog";
 import { Expense } from "../model/expense";
+import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface EditBudgetSpendDialogProps {
     expense?: Expense;
@@ -20,6 +21,7 @@ const EditBudgetSpendDialog = ({ expense, categoryId, sheetRef }: EditBudgetSpen
     const [expenseAmount, setExpenseAmount] = useState(expense?.Amount ?? 0);
     const [expenseDate, setExpenseDate] = useState(parsedDate ?? new Date());
     const [dirty, setDirty] = useState(false);
+    const currencySymbol = useCurrencySymbol();
 
     const dispatch = useDispatch();
 
@@ -93,6 +95,7 @@ const EditBudgetSpendDialog = ({ expense, categoryId, sheetRef }: EditBudgetSpen
                             }}
                             style={{ marginBottom: 10 }}
                             render={(props) => <BottomSheetTextInput {...props} />}
+                            left={<TextInput.Affix text={currencySymbol} />}
                         />
                         <DatePickerInput
                             mode="outlined"

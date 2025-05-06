@@ -1,6 +1,7 @@
+import { Settings } from "../../model/settings";
 import { Budget } from "../../model/budget";
 import { StoreState } from "../../model/store";
-import { BudgetStore } from "../persistent-store";
+import { DataStore } from "../persistent-store";
 
 export const persistStore = (store: any) => (next: any) => (action: any) => {
     next(action);
@@ -19,7 +20,7 @@ export const persistStore = (store: any) => (next: any) => (action: any) => {
             const activeBudget: Budget | null = (store.getState() as StoreState).budget.activeBudget;
             if (activeBudget === null) break;
 
-            BudgetStore.setActiveBudget(activeBudget);
+            DataStore.setActiveBudget(activeBudget);
             break;
 
         case "budget/createNewBudget":
@@ -27,13 +28,19 @@ export const persistStore = (store: any) => (next: any) => (action: any) => {
             const oldBudgets: Budget[] = (store.getState() as StoreState).budget.pastBudgets;
             if (newBudget === null) break;
 
-            BudgetStore.setActiveBudget(newBudget);
-            BudgetStore.updateInactiveBudgets(oldBudgets);
+            DataStore.setActiveBudget(newBudget);
+            DataStore.updateInactiveBudgets(oldBudgets);
             break;
 
         case "budget/deletePastBudget":
             const pastBudgets: Budget[] = (store.getState() as StoreState).budget.pastBudgets;
-            BudgetStore.updateInactiveBudgets(pastBudgets);
+            DataStore.updateInactiveBudgets(pastBudgets);
+            break;
+
+        case "setting/setCurrency":
+        case "setting/setTheme":
+            const settings: Settings = (store.getState() as StoreState).setting;
+            DataStore.setSettings(settings);
             break;
     }
 };

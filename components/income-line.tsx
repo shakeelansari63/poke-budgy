@@ -3,6 +3,7 @@ import { List, Chip, Divider } from "react-native-paper";
 import { Income } from "../model/income";
 import EditIncomeDialog from "./edit-income-dialog";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface IncomeProps {
     income: Income;
@@ -10,6 +11,7 @@ interface IncomeProps {
 
 const IncomeLine = ({ income }: IncomeProps) => {
     const sheetRef = useRef<BottomSheetModal>(null);
+    const currencySymbol = useCurrencySymbol();
 
     return (
         <>
@@ -18,7 +20,7 @@ const IncomeLine = ({ income }: IncomeProps) => {
                 title={income.Source}
                 left={() => (
                     <Chip compact={true} elevated={true}>
-                        {income.Amount}
+                        {currencySymbol} {income.Amount}
                     </Chip>
                 )}
                 onPress={() => sheetRef.current?.present()}

@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { editIncome, addIncome } from "../storage/slices/budget-slice";
 import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import Dialog from "./dialog";
+import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface EditIncomeDialogProps {
     income?: Income;
@@ -19,6 +20,7 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
     const [incomeAmount, setIncomeAmount] = useState(income?.Amount ?? 0);
     const [incomeDate, setIncomeDate] = useState(parsedDate ?? new Date());
     const [dirty, setDirty] = useState(false);
+    const currencySymbol = useCurrencySymbol();
 
     const dispatch = useDispatch();
 
@@ -91,6 +93,7 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
                             }}
                             style={{ marginBottom: 10 }}
                             render={(props) => <BottomSheetTextInput {...props} />}
+                            left={<TextInput.Affix text={currencySymbol} />}
                         />
                         <DatePickerInput
                             mode="outlined"
