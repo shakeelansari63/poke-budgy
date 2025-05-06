@@ -1,10 +1,14 @@
 import { ScrollView, View } from "react-native";
-import { Card, Chip, Icon, Text, Button, ProgressBar, IconButton, useTheme } from "react-native-paper";
+import { Card, Icon, Text, Button, useTheme, Portal, Dialog } from "react-native-paper";
 import React from "react";
 import { Budget } from "../model/budget";
 import colors from "../constants/colors";
 import { useDispatch } from "react-redux";
 import { deletePastBudget } from "../storage/slices/budget-slice";
+import { dateOption } from "../constants/app-constants";
+import DateChip from "./date-chip";
+import NewBudgetDialog from "./new-budget-dialog";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 interface PastBudgetCardProp {
     budget: Budget;
@@ -13,13 +17,8 @@ interface PastBudgetCardProp {
 const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
     const theme = useTheme();
     const dispatch = useDispatch();
-
-    const dateOption: Intl.DateTimeFormatOptions = {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-        timeZone: "UTC",
-    };
+    const sheetRef = React.useRef<BottomSheetModal | null>(null);
+    const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
 
     const startDate: string =
         typeof budget.StartDate == "string"
@@ -32,81 +31,107 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
 
     const totalIncome = budget?.Incomes.reduce((acc, inc) => acc + inc.Amount, 0) ?? 0;
     const totalBudgeted = budget?.Expenses.reduce((acc, exp) => acc + exp.Amount, 0) ?? 0;
-    const totalSaved = totalIncome - totalBudgeted;
 
-    const DateChip = ({ children }: { children: React.ReactNode }) => (
-        <Chip
-            icon={({ size }) => <Icon source="calendar" color={theme.colors.onBackground} size={size} />}
-            textStyle={{ fontSize: 10 }}
-            style={{ backgroundColor: theme.colors.tertiaryContainer }}
-        >
-            {children}
-        </Chip>
-    );
-
-    const BudgetLine = ({
-        icon,
-        type,
-        value,
-        progress,
-        color,
-    }: {
-        icon: string;
-        type: string;
-        value: number;
-        progress: number;
-        color: string;
-    }) => (
-        <View style={{ flexDirection: "row", marginVertical: 5 }}>
-            <View style={{ flex: 0.6, flexDirection: "row", justifyContent: "flex-start", alignSelf: "center" }}>
-                <Icon source={icon} size={24} />
-                <View style={{ padding: 5 }} />
-                <Text variant="titleSmall">
-                    {type}: {value}
-                </Text>
-            </View>
-            <View style={{ flex: 0.4, justifyContent: "flex-start", alignSelf: "center" }}>
-                <ProgressBar progress={progress} color={color} />
-            </View>
-        </View>
-    );
+    const delPastBudget = () => {
+        dispatch(deletePastBudget(budget.Id));
+        setDeleteModalVisible(false);
+    };
 
     return (
-        <Card style={{ margin: 10 }}>
-            <Card.Content>
-                <ScrollView>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                        <DateChip>From: {startDate}</DateChip>
-                        <DateChip>To: {endDate}</DateChip>
-                    </View>
-                    <BudgetLine icon="bank-plus" type="Income" value={totalIncome} progress={1} color={colors.Income} />
-                    <BudgetLine
-                        icon="cash-minus"
-                        type="Budget"
-                        value={totalBudgeted}
-                        progress={
-                            totalBudgeted <= totalIncome ? totalBudgeted / (totalIncome === 0 ? 1 : totalIncome) : 1
-                        }
-                        color={totalBudgeted <= totalIncome ? colors.BudgetInLimit : colors.BudgetAboveLimit}
-                    />
-                    {/* <BudgetLine
-                        icon="bank-check"
-                        type="Saving"
-                        value={totalSaved}
-                        progress={totalSaved >= 0 ? totalSaved / (totalIncome === 0 ? 1 : totalIncome) : 1}
-                        color={totalSaved >= 0 ? colors.SavingPositive : colors.SavingNegative}
-                    /> */}
-                </ScrollView>
-            </Card.Content>
-            <Card.Actions style={{ justifyContent: "space-between" }}>
-                <Button icon="trash-can" mode="text" textColor={theme.colors.onErrorContainer} compact={true}>
-                    Delete
-                </Button>
-                <Button icon="content-duplicate" mode="text" textColor={theme.colors.onPrimaryContainer} compact={true}>
-                    Clone
-                </Button>
-            </Card.Actions>
-        </Card>
+        <>
+            <Card style={{ margin: 10 }}>
+                <Card.Content>
+                    <ScrollView>
+                        <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 20 }}>
+                            <DateChip>From: {startDate}</DateChip>
+                            <DateChip>To: {endDate}</DateChip>
+                        </View>
+                        <View style={{ flexDirection: "row", marginBottom: 10 }}>
+                            <View style={{ flex: 0.5, justifyContent: "flex-start" }}>
+                                <View style={{ flexDirection: "row" }}>
+                                    <View style={{ marginRight: 5 }}>
+                                        <Icon source="bank-plus" color={theme.colors.onPrimaryContainer} size={24} />
+                                    </View>
+                                    <Text variant="titleMedium" style={{ color: theme.colors.onPrimaryContainer }}>
+                                        Income
+                                    </Text>
+                                </View>
+                                <Text variant="headlineMedium" style={{ color: theme.colors.onPrimaryContainer }}>
+                                    {totalIncome}
+                                </Text>
+                            </View>
+                            <View style={{ flex: 0.5, justifyContent: "flex-end" }}>
+                                <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+                                    <View style={{ marginRight: 5 }}>
+                                        <Icon source="cash-minus" color={theme.colors.error} size={24} />
+                                    </View>
+                                    <Text
+                                        variant="titleMedium"
+                                        style={{ alignSelf: "flex-end", color: theme.colors.error }}
+                                    >
+                                        Budget
+                                    </Text>
+                                </View>
+                                <Text
+                                    variant="headlineMedium"
+                                    style={{ alignSelf: "flex-end", color: theme.colors.error }}
+                                >
+                                    {totalBudgeted}
+                                </Text>
+                            </View>
+                        </View>
+                    </ScrollView>
+                </Card.Content>
+                <Card.Actions style={{ justifyContent: "space-between" }}>
+                    <Button
+                        icon="trash-can"
+                        mode="text"
+                        textColor={theme.colors.onErrorContainer}
+                        compact={true}
+                        onPress={() => setDeleteModalVisible(true)}
+                    >
+                        Delete
+                    </Button>
+                    <Button
+                        icon="content-duplicate"
+                        mode="text"
+                        textColor={theme.colors.onPrimaryContainer}
+                        compact={true}
+                        onPress={() => sheetRef.current?.present()}
+                    >
+                        Clone
+                    </Button>
+                </Card.Actions>
+            </Card>
+            <NewBudgetDialog cloneId={budget.Id} sheetRef={sheetRef} />
+            <Portal>
+                <Dialog
+                    visible={deleteModalVisible}
+                    style={{ margin: 15 }}
+                    onDismiss={() => setDeleteModalVisible(false)}
+                >
+                    <Dialog.Title>Are you sure?</Dialog.Title>
+                    <Dialog.Content>
+                        <Text>
+                            Are you sure you want to delete the history plan for "{startDate}" - "{endDate}"?
+                        </Text>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                        <Button
+                            mode="text"
+                            textColor={theme.colors.onBackground}
+                            icon="cancel"
+                            onPress={() => setDeleteModalVisible(false)}
+                        >
+                            Cancel
+                        </Button>
+                        <Button mode="text" textColor={theme.colors.error} icon="trash-can" onPress={delPastBudget}>
+                            Delete
+                        </Button>
+                    </Dialog.Actions>
+                </Dialog>
+            </Portal>
+        </>
     );
 };
 

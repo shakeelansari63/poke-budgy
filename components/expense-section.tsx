@@ -19,10 +19,10 @@ const ExpenseSection = () => {
     const [expenseCategoryToDelete, setExpenseCategoryToDelete] = React.useState<ExpenseCategory | null>(null);
     const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
     const theme = useTheme();
-    const dispactch = useDispatch();
+    const dispatch = useDispatch();
 
     const delExpenseCategory = () => {
-        if (expenseCategoryToDelete) dispactch(deleteExpenseCategory(expenseCategoryToDelete.Id));
+        if (expenseCategoryToDelete) dispatch(deleteExpenseCategory(expenseCategoryToDelete.Id));
         setDeleteModalVisible(false);
         setExpenseCategoryToDelete(null);
     };

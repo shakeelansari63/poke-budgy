@@ -28,7 +28,7 @@ export default function TabLayout() {
                 headerLeft: () => (
                     <Avatar.Image
                         size={48}
-                        source={require("../../assets/images/icon.png")}
+                        source={require("../../assets/images/icon-circle.png")}
                         style={{ marginLeft: 10 }}
                     />
                 ),
