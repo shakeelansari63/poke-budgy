@@ -1,11 +1,13 @@
 import { View } from "react-native";
 import React from "react";
-import { Card, Portal, Dialog, Button, Text, IconButton, useTheme } from "react-native-paper";
+import { Card, IconButton, useTheme } from "react-native-paper";
 import { ExpenseCategory, Expense } from "../model/expense";
 import { useDispatch } from "react-redux";
 import { deleteExpense } from "../storage/slices/budget-slice";
-import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
 import BudgetSpendLine from "../components/budget-spend-line";
+import ConfirmationDialog from "./confirmation-dialog";
+import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
+import SwipeQuickActions, { SwipeQuickActionData } from "./swipe-quick-actions";
 
 interface BudgetSpendSectionProps {
     expenseCategory: ExpenseCategory;
@@ -37,20 +39,26 @@ const BudgetSpendSection = ({ expenseCategory }: BudgetSpendSectionProps) => {
                         <Card.Title title="Expenditure" />
                         <Card.Content>
                             <SwipeableFlatList
-                                swipeableProps={{
-                                    dragOffsetFromRightEdge: 50,
-                                }}
                                 data={expenseCategory.Expenses}
                                 keyExtractor={(expense: Expense) => expense.Id}
-                                renderItem={({ item }: { item: Expense }) => (
-                                    <BudgetSpendLine expense={item} categoryId={expenseCategory.Id} />
+                                renderItem={({ item, index }: { item: Expense; index: number }) => (
+                                    <BudgetSpendLine
+                                        expense={item}
+                                        categoryId={expenseCategory.Id}
+                                        isLast={index === expenseCategory.Expenses.length - 1}
+                                    />
                                 )}
                                 enableOpenMultipleRows={false}
-                                renderRightActions={(item: Expense) => (
-                                    <View style={{ backgroundColor: theme.colors.errorContainer }}>
-                                        <IconButton icon="trash-can-outline" onPress={() => deletePressHandler(item)} />
-                                    </View>
-                                )}
+                                renderRightActions={(item: Expense) => {
+                                    const data: SwipeQuickActionData[] = [
+                                        {
+                                            icon: "trash-can-outline",
+                                            action: () => deletePressHandler(item),
+                                            backgroundColor: theme.colors.errorContainer,
+                                        },
+                                    ];
+                                    return <SwipeQuickActions data={data} />;
+                                }}
                             />
                         </Card.Content>
                     </View>
@@ -58,31 +66,15 @@ const BudgetSpendSection = ({ expenseCategory }: BudgetSpendSectionProps) => {
                     <Card.Title title="No Expenses in this Category yet" />
                 )}
             </Card>
-            <Portal>
-                <Dialog
-                    visible={deleteModalVisible}
-                    style={{ margin: 15 }}
-                    onDismiss={() => setDeleteModalVisible(false)}
-                >
-                    <Dialog.Title>Are you sure?</Dialog.Title>
-                    <Dialog.Content>
-                        <Text>Are you sure you want to delete the Expense "{expenseToDelete?.Comment}"?</Text>
-                    </Dialog.Content>
-                    <Dialog.Actions>
-                        <Button
-                            mode="text"
-                            textColor={theme.colors.onBackground}
-                            icon="cancel"
-                            onPress={() => setDeleteModalVisible(false)}
-                        >
-                            Cancel
-                        </Button>
-                        <Button mode="text" textColor={theme.colors.error} icon="trash-can" onPress={delExpense}>
-                            Delete
-                        </Button>
-                    </Dialog.Actions>
-                </Dialog>
-            </Portal>
+            <ConfirmationDialog
+                visible={deleteModalVisible}
+                title="Are you sure?"
+                confirmText={`Are you sure you want to delete the Expense "${expenseToDelete?.Comment}"?`}
+                primaryActionName="Delete"
+                primaryActionColor={theme.colors.error}
+                primaryActionHandler={delExpense}
+                cancelActionHandler={() => setDeleteModalVisible(false)}
+            />
         </>
     );
 };

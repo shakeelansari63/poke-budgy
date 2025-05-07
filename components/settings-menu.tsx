@@ -52,7 +52,7 @@ const SettingsMenu = ({ visible, setVisible }: MenuProps) => {
             <Menu visible={visible} onDismiss={() => setVisible(false)} anchor={{ x: x, y: y }} elevation={5}>
                 <Menu.Item onPress={createBlankBudget} title="Create new Empty Plan" leadingIcon="plus" />
                 <Divider />
-                {currentBudget !== null ? (
+                {currentBudget !== null && (
                     <>
                         <Menu.Item
                             onPress={cloneActiveBudget}
@@ -61,7 +61,7 @@ const SettingsMenu = ({ visible, setVisible }: MenuProps) => {
                         />
                         <Divider />
                     </>
-                ) : null}
+                )}
                 <Menu.Item onPress={gotoSettings} title="Settings" leadingIcon="cog" />
             </Menu>
             <NewBudgetDialog cloneId={cloneId} sheetRef={newBudgetRef} />

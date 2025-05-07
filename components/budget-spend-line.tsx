@@ -8,9 +8,10 @@ import { useCurrencySymbol } from "../hooks/use-settings";
 interface BudgetSpendLineProp {
     expense: Expense;
     categoryId: string;
+    isLast?: boolean;
 }
 
-const BudgetSpendLine = ({ expense, categoryId }: BudgetSpendLineProp) => {
+const BudgetSpendLine = ({ expense, categoryId, isLast }: BudgetSpendLineProp) => {
     const sheetRef = React.useRef<BottomSheetModal>(null);
     const currencySymbol = useCurrencySymbol();
 
@@ -28,7 +29,7 @@ const BudgetSpendLine = ({ expense, categoryId }: BudgetSpendLineProp) => {
                     sheetRef.current?.present();
                 }}
             />
-            <Divider />
+            {!isLast && <Divider />}
         </>
     );
 };

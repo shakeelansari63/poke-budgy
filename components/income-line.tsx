@@ -7,9 +7,10 @@ import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface IncomeProps {
     income: Income;
+    isLast?: boolean;
 }
 
-const IncomeLine = ({ income }: IncomeProps) => {
+const IncomeLine = ({ income, isLast }: IncomeProps) => {
     const sheetRef = useRef<BottomSheetModal>(null);
     const currencySymbol = useCurrencySymbol();
 
@@ -25,7 +26,7 @@ const IncomeLine = ({ income }: IncomeProps) => {
                 )}
                 onPress={() => sheetRef.current?.present()}
             />
-            <Divider />
+            {!isLast && <Divider />}
         </>
     );
 };

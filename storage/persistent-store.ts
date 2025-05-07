@@ -8,8 +8,15 @@ const InactiveBudgetKeyPrefix = "past/";
 const SettingsKey = "settings";
 
 export const DataStore: PersistentStoreModel = {
-    resetStore: () => {
-        Storage.clearSync();
+    resetBudgetStore: () => {
+        // Delete Past Budgets
+        const allPastKeys = Storage.getAllKeysSync().filter((key) => key.startsWith(InactiveBudgetKeyPrefix));
+        allPastKeys.forEach((key) => {
+            Storage.removeItemSync(key);
+        });
+
+        // Delete Active Budget
+        Storage.removeItemSync(ActiveBudgetKey);
     },
 
     // Budget Related Options
@@ -69,5 +76,9 @@ export const DataStore: PersistentStoreModel = {
 
     setSettings: (settings: Settings) => {
         Storage.setItemSync(SettingsKey, JSON.stringify(settings));
+    },
+
+    resetSettingStore: () => {
+        Storage.removeItemSync(SettingsKey);
     },
 };

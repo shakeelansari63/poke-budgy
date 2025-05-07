@@ -1,17 +1,18 @@
 import React from "react";
-import { Text, Card, IconButton, Avatar, Portal, Dialog, Button, useTheme } from "react-native-paper";
+import { Text, Card, IconButton, Avatar, useTheme } from "react-native-paper";
 import { useSelector } from "react-redux";
 import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
 import IncomeLine from "./income-line";
 import EditIncomeDialog from "./edit-income-dialog";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
 import { Income } from "../model/income";
 import { useDispatch } from "react-redux";
 import { deleteIncome } from "../storage/slices/budget-slice";
-import { View } from "react-native";
 import { useCurrencySymbol } from "../hooks/use-settings";
+import ConfirmationDialog from "./confirmation-dialog";
+import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
+import SwipeQuickActions, { SwipeQuickActionData } from "./swipe-quick-actions";
 
 const IncomeSection = () => {
     const currencySymbol = useCurrencySymbol();
@@ -43,14 +44,18 @@ const IncomeSection = () => {
                     titleVariant="titleLarge"
                     subtitle={`Total: ${currencySymbol} ${totalIncome}`}
                     left={() => <Avatar.Icon icon="cash" size={40} />}
-                    right={() => (
-                        <IconButton
-                            icon="plus"
-                            onPress={() => {
-                                sheetRef.current?.present();
-                            }}
-                        />
-                    )}
+                    right={() => {
+                        return (
+                            currentBudget !== null && (
+                                <IconButton
+                                    icon="plus"
+                                    onPress={() => {
+                                        sheetRef.current?.present();
+                                    }}
+                                />
+                            )
+                        );
+                    }}
                 />
                 <Card.Content>
                     {currentBudget === null ? (
@@ -62,42 +67,37 @@ const IncomeSection = () => {
                             }}
                             data={currentBudget.Incomes}
                             keyExtractor={(income: Income) => income.Id}
-                            renderItem={({ item }: { item: Income }) => <IncomeLine key={item.Id} income={item} />}
-                            enableOpenMultipleRows={false}
-                            renderRightActions={(item: Income) => (
-                                <View style={{ backgroundColor: theme.colors.errorContainer }}>
-                                    <IconButton icon="trash-can-outline" onPress={() => deletePressHandler(item)} />
-                                </View>
+                            renderItem={({ item, index }: { item: Income; index: number }) => (
+                                <IncomeLine
+                                    key={item.Id}
+                                    income={item}
+                                    isLast={index === currentBudget.Incomes.length - 1}
+                                />
                             )}
+                            enableOpenMultipleRows={false}
+                            renderRightActions={(item: Income) => {
+                                const data: SwipeQuickActionData[] = [
+                                    {
+                                        icon: "trash-can-outline",
+                                        action: () => deletePressHandler(item),
+                                        backgroundColor: theme.colors.errorContainer,
+                                    },
+                                ];
+                                return <SwipeQuickActions data={data} />;
+                            }}
                         />
                     )}
                 </Card.Content>
             </Card>
-            <Portal>
-                <Dialog
-                    visible={deleteModalVisible}
-                    style={{ margin: 15 }}
-                    onDismiss={() => setDeleteModalVisible(false)}
-                >
-                    <Dialog.Title>Are you sure?</Dialog.Title>
-                    <Dialog.Content>
-                        <Text>Are you sure you want to delete the Income "{incomeToDelete?.Source}"?</Text>
-                    </Dialog.Content>
-                    <Dialog.Actions>
-                        <Button
-                            mode="text"
-                            textColor={theme.colors.onBackground}
-                            icon="cancel"
-                            onPress={() => setDeleteModalVisible(false)}
-                        >
-                            Cancel
-                        </Button>
-                        <Button mode="text" textColor={theme.colors.error} icon="trash-can" onPress={delIncome}>
-                            Delete
-                        </Button>
-                    </Dialog.Actions>
-                </Dialog>
-            </Portal>
+            <ConfirmationDialog
+                visible={deleteModalVisible}
+                title="Are you sure?"
+                confirmText={`Are you sure you want to delete the Income "${incomeToDelete?.Source}"?`}
+                primaryActionName="Delete"
+                primaryActionColor={theme.colors.error}
+                primaryActionHandler={delIncome}
+                cancelActionHandler={() => setDeleteModalVisible(false)}
+            />
         </>
     );
 };

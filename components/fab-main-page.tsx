@@ -28,7 +28,7 @@ const FabMainPage = () => {
 
     return (
         <>
-            {currentBudget !== null ? (
+            {currentBudget !== null && (
                 <>
                     <FAB.Group
                         open={fabOpen}
@@ -41,7 +41,7 @@ const FabMainPage = () => {
                     <AddBudgetDialog sheetRef={newExpenseCategorySheetRef} />
                     <EditIncomeDialog sheetRef={newIncomeSheetRef} />
                 </>
-            ) : null}
+            )}
         </>
     );
 };

@@ -8,9 +8,10 @@ import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface BudgetProps {
     budget: ExpenseCategory;
+    isLast?: boolean;
 }
 
-const ExpenseCategoryLine = ({ budget }: BudgetProps) => {
+const ExpenseCategoryLine = ({ budget, isLast }: BudgetProps) => {
     const router = useRouter();
     const currencySymbol = useCurrencySymbol();
     const totalExpense = budget.Expenses.reduce((acc, expense) => acc + expense.Amount, 0);
@@ -31,7 +32,7 @@ const ExpenseCategoryLine = ({ budget }: BudgetProps) => {
                 progress={totalUsage}
                 color={totalExpense > budget.Amount ? colors.SpentAboveLimit : colors.SpentInLimit}
             />
-            <Divider />
+            {!isLast && <Divider />}
         </View>
     );
 };

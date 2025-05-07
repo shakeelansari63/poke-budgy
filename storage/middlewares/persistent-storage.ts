@@ -37,10 +37,18 @@ export const persistStore = (store: any) => (next: any) => (action: any) => {
             DataStore.updateInactiveBudgets(pastBudgets);
             break;
 
+        case "budget/resetStore":
+            DataStore.resetBudgetStore();
+            break;
+
         case "setting/setCurrency":
         case "setting/setTheme":
             const settings: Settings = (store.getState() as StoreState).setting;
             DataStore.setSettings(settings);
+            break;
+
+        case "setting/resetSetting":
+            DataStore.resetSettingStore();
             break;
     }
 };

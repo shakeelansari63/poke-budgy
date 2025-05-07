@@ -23,9 +23,14 @@ const settingSlice = createSlice({
         setTheme: (state, action) => {
             state.theme = action.payload as "dark" | "light" | "device";
         },
+
+        resetSetting: (state, action) => {
+            state.currency = initialState.currency;
+            state.theme = initialState.theme;
+        },
     },
 });
 
-export const { loadSettings, setCurrency, setTheme } = settingSlice.actions;
+export const { loadSettings, setCurrency, setTheme, resetSetting } = settingSlice.actions;
 
 export default settingSlice.reducer;

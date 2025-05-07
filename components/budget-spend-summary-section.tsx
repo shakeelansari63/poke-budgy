@@ -13,42 +13,46 @@ const BudgetSpendSummarySection = ({ expenseCategory }: BudgetSpendSummarySectio
     const totalSpend = expenseCategory.Expenses.reduce((acc, exp) => acc + exp.Amount, 0);
     const currencySymbol = useCurrencySymbol();
 
-    return expenseCategory.Expenses.length > 0 ? (
-        <Card style={{ margin: 10 }}>
-            <Card.Content>
-                <View style={{ flexDirection: "row" }}>
-                    <View style={{ flex: 0.3 }}>
-                        <Text>Budget Limit</Text>
+    return (
+        expenseCategory.Expenses.length > 0 && (
+            <Card style={{ margin: 10 }}>
+                <Card.Content>
+                    <View style={{ flexDirection: "row" }}>
+                        <View style={{ flex: 0.3 }}>
+                            <Text>Budget Limit</Text>
+                        </View>
+                        <View style={{ flex: 0.7, alignSelf: "center" }}>
+                            <Text>
+                                {currencySymbol} {expenseCategory.Amount}
+                            </Text>
+                        </View>
                     </View>
-                    <View style={{ flex: 0.7, alignSelf: "center" }}>
-                        <Text>
-                            {currencySymbol} {expenseCategory.Amount}
-                        </Text>
+                    <View style={{ flexDirection: "row" }}>
+                        <View style={{ flex: 0.3 }}>
+                            <Text>Spend</Text>
+                        </View>
+                        <View style={{ flex: 0.3 }}>
+                            <Text>
+                                {currencySymbol} {totalSpend}
+                            </Text>
+                        </View>
+                        <View style={{ flex: 0.4, alignSelf: "center" }}>
+                            <ProgressBar
+                                progress={
+                                    totalSpend > expenseCategory.Amount
+                                        ? 1
+                                        : totalSpend / (expenseCategory.Amount === 0 ? 1 : expenseCategory.Amount)
+                                }
+                                color={
+                                    totalSpend > expenseCategory.Amount ? colors.SpentAboveLimit : colors.SpentInLimit
+                                }
+                            />
+                        </View>
                     </View>
-                </View>
-                <View style={{ flexDirection: "row" }}>
-                    <View style={{ flex: 0.3 }}>
-                        <Text>Spend</Text>
-                    </View>
-                    <View style={{ flex: 0.3 }}>
-                        <Text>
-                            {currencySymbol} {totalSpend}
-                        </Text>
-                    </View>
-                    <View style={{ flex: 0.4, alignSelf: "center" }}>
-                        <ProgressBar
-                            progress={
-                                totalSpend > expenseCategory.Amount
-                                    ? 1
-                                    : totalSpend / (expenseCategory.Amount === 0 ? 1 : expenseCategory.Amount)
-                            }
-                            color={totalSpend > expenseCategory.Amount ? colors.SpentAboveLimit : colors.SpentInLimit}
-                        />
-                    </View>
-                </View>
-            </Card.Content>
-        </Card>
-    ) : null;
+                </Card.Content>
+            </Card>
+        )
+    );
 };
 
 export default BudgetSpendSummarySection;

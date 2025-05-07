@@ -7,11 +7,12 @@ import EditExpenseCategoryDialog from "./edit-expense-category-dialog";
 import React from "react";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { ExpenseCategory } from "../model/expense";
-import { View } from "react-native";
-import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
 import { useDispatch } from "react-redux";
 import { deleteExpenseCategory } from "../storage/slices/budget-slice";
 import { useCurrencySymbol } from "../hooks/use-settings";
+import ConfirmationDialog from "./confirmation-dialog";
+import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
+import SwipeQuickActions, { SwipeQuickActionData } from "./swipe-quick-actions";
 
 const ExpenseSection = () => {
     const currencySymbol = useCurrencySymbol();
@@ -43,66 +44,56 @@ const ExpenseSection = () => {
                     titleVariant="titleLarge"
                     subtitle={`Total: ${currencySymbol} ${totalBudgeted}`}
                     left={() => <Avatar.Icon icon="basket" size={40} />}
-                    right={() => (
-                        <IconButton
-                            icon="plus"
-                            onPress={() => {
-                                sheetRef.current?.present();
-                            }}
-                        />
-                    )}
+                    right={() => {
+                        return (
+                            currentBudget !== null && (
+                                <IconButton
+                                    icon="plus"
+                                    onPress={() => {
+                                        sheetRef.current?.present();
+                                    }}
+                                />
+                            )
+                        );
+                    }}
                 />
                 <Card.Content>
                     {currentBudget === null ? (
                         <Text>No active budget</Text>
                     ) : (
                         <SwipeableFlatList
-                            swipeableProps={{
-                                dragOffsetFromRightEdge: 50,
-                            }}
                             data={currentBudget.Expenses}
                             keyExtractor={(expense: ExpenseCategory) => expense.Id}
-                            renderItem={({ item }: { item: ExpenseCategory }) => <ExpenseCategoryLine budget={item} />}
-                            enableOpenMultipleRows={false}
-                            renderRightActions={(item: ExpenseCategory) => (
-                                <View style={{ backgroundColor: theme.colors.errorContainer }}>
-                                    <IconButton icon="trash-can-outline" onPress={() => deletePressHandler(item)} />
-                                </View>
+                            renderItem={({ item, index }: { item: ExpenseCategory; index: number }) => (
+                                <ExpenseCategoryLine
+                                    budget={item}
+                                    isLast={index === currentBudget.Expenses.length - 1}
+                                />
                             )}
+                            enableOpenMultipleRows={false}
+                            renderRightActions={(item: ExpenseCategory) => {
+                                const data: SwipeQuickActionData[] = [
+                                    {
+                                        icon: "trash-can-outline",
+                                        action: () => deletePressHandler(item),
+                                        backgroundColor: theme.colors.errorContainer,
+                                    },
+                                ];
+                                return <SwipeQuickActions data={data} />;
+                            }}
                         />
                     )}
                 </Card.Content>
             </Card>
-            <Portal>
-                <Dialog
-                    visible={deleteModalVisible}
-                    style={{ margin: 15 }}
-                    onDismiss={() => setDeleteModalVisible(false)}
-                >
-                    <Dialog.Title>Are you sure?</Dialog.Title>
-                    <Dialog.Content>
-                        <Text>Are you sure you want to delete the Budget "{expenseCategoryToDelete?.Category}"?</Text>
-                    </Dialog.Content>
-                    <Dialog.Actions>
-                        <Button
-                            mode="text"
-                            textColor={theme.colors.onBackground}
-                            icon="cancel"
-                            onPress={() => setDeleteModalVisible(false)}
-                        >
-                            Cancel
-                        </Button>
-                        <Button
-                            mode="text"
-                            textColor={theme.colors.error}
-                            icon="trash-can"
-                            onPress={delExpenseCategory}
-                        >
-                            Delete
-                        </Button>
-                    </Dialog.Actions>
-                </Dialog>
-            </Portal>
+            <ConfirmationDialog
+                visible={deleteModalVisible}
+                title="Are you sure?"
+                confirmText={`Are you sure you want to delete the Budget "${expenseCategoryToDelete?.Category}"?`}
+                primaryActionName="Delete"
+                primaryActionColor={theme.colors.error}
+                primaryActionHandler={delExpenseCategory}
+                cancelActionHandler={() => setDeleteModalVisible(false)}
+            />
         </>
     );
 };

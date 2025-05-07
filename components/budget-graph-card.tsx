@@ -13,37 +13,40 @@ interface HorizontalBarProps {
     label: string;
     value: number;
     barColor: string;
+    visible?: boolean;
 }
 
-const HorizontalBar = ({ label, value, barColor }: HorizontalBarProps) => {
+const HorizontalBar = ({ label, value, barColor, visible }: HorizontalBarProps) => {
     const theme = useTheme();
 
     return (
-        <View style={{ flexDirection: "row" }}>
-            <View style={{ flex: 0.3, alignSelf: "center" }}>
-                <Text variant="titleMedium" style={{ marginRight: 10 }}>
-                    {label}
-                </Text>
-            </View>
-            <View
-                style={{
-                    flex: 0.7,
-                    justifyContent: "flex-start",
-                    alignSelf: "center",
-                }}
-            >
-                <ProgressBar
-                    progress={value}
-                    color={barColor}
+        visible && (
+            <View style={{ flexDirection: "row" }}>
+                <View style={{ flex: 0.3, alignSelf: "center" }}>
+                    <Text variant="titleMedium" style={{ marginRight: 10 }}>
+                        {label}
+                    </Text>
+                </View>
+                <View
                     style={{
-                        height: 16,
-                        backgroundColor: theme.colors.primaryContainer,
-                        borderLeftWidth: 1,
-                        borderLeftColor: theme.colors.onBackground,
+                        flex: 0.7,
+                        justifyContent: "flex-start",
+                        alignSelf: "center",
                     }}
-                />
+                >
+                    <ProgressBar
+                        progress={value}
+                        color={barColor}
+                        style={{
+                            height: 16,
+                            backgroundColor: theme.colors.primaryContainer,
+                            borderLeftWidth: 1,
+                            borderLeftColor: theme.colors.onBackground,
+                        }}
+                    />
+                </View>
             </View>
-        </View>
+        )
     );
 };
 
@@ -69,64 +72,94 @@ const BudgetGraph = () => {
             ? new Date(currentBudget.EndDate).toLocaleDateString("en-US", dateOption)
             : currentBudget?.EndDate.toLocaleDateString("en-US", dateOption);
 
+    const baselineCost =
+        totalIncome >= totalBudgeted
+            ? totalIncome >= totalSpent
+                ? totalIncome
+                : totalSpent
+            : totalBudgeted >= totalSpent
+            ? totalBudgeted
+            : totalSpent;
+
     const graphData = [
         {
             label: "Income",
-            value: 1,
+            value: totalIncome / (baselineCost === 0 ? 1 : baselineCost),
             barColor: colors.Income,
+            visible: totalIncome > 0,
         },
         {
             label: "Budget",
-            value: totalBudgeted / (totalIncome === 0 ? 1 : totalIncome),
+            value: totalBudgeted / (baselineCost === 0 ? 1 : baselineCost),
             barColor: totalBudgeted < totalIncome ? colors.BudgetInLimit : colors.BudgetAboveLimit,
+            visible: totalBudgeted > 0,
         },
         {
             label: "Spent",
-            value: totalSpent / (totalIncome === 0 ? 1 : totalIncome),
+            value: totalSpent / (baselineCost === 0 ? 1 : baselineCost),
             barColor: totalSpent < totalBudgeted ? colors.SpentInLimit : colors.SpentAboveLimit,
+            visible: totalSpent > 0,
         },
     ];
 
     return (
         <Card mode="elevated" style={{ margin: 10, backgroundColor: theme.colors.primaryContainer }}>
-            <Card.Content>
-                <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 20 }}>
-                    <DateChip>From: {startDate ?? ""}</DateChip>
-                    <DateChip>To: {endDate ?? ""}</DateChip>
-                </View>
-                <Text variant="headlineSmall">Monthly Saving</Text>
-                <Text variant="displaySmall">
-                    {currencySymbol} {totalSaving}
-                </Text>
-                <View style={{ padding: 10 }}></View>
-                <View style={{ flexDirection: "row", marginBottom: 20 }}>
-                    <View style={{ flex: 0.5, justifyContent: "flex-start" }}>
-                        <View style={{ flexDirection: "row" }}>
-                            <Icon source="menu-up" color={theme.colors.onPrimaryContainer} size={24} />
-                            <Text variant="titleMedium" style={{ color: theme.colors.onPrimaryContainer }}>
-                                Income
+            {currentBudget !== null ? (
+                <Card.Content>
+                    <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 20 }}>
+                        <DateChip>From: {startDate ?? ""}</DateChip>
+                        <DateChip>To: {endDate ?? ""}</DateChip>
+                    </View>
+                    <Text variant="headlineSmall">Monthly Saving</Text>
+                    <Text variant="displaySmall">
+                        {currencySymbol} {totalSaving}
+                    </Text>
+                    <View style={{ padding: 10 }}></View>
+                    <View style={{ flexDirection: "row", marginBottom: 20 }}>
+                        <View style={{ flex: 0.5, justifyContent: "flex-start" }}>
+                            <View style={{ flexDirection: "row" }}>
+                                <Icon source="menu-up" color={theme.colors.onPrimaryContainer} size={24} />
+                                <Text variant="titleMedium" style={{ color: theme.colors.onPrimaryContainer }}>
+                                    Income
+                                </Text>
+                            </View>
+                            <Text variant="headlineMedium" style={{ color: theme.colors.onPrimaryContainer }}>
+                                {currencySymbol} {totalIncome}
                             </Text>
                         </View>
-                        <Text variant="headlineMedium" style={{ color: theme.colors.onPrimaryContainer }}>
-                            {currencySymbol} {totalIncome}
-                        </Text>
-                    </View>
-                    <View style={{ flex: 0.5, justifyContent: "flex-end" }}>
-                        <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-                            <Icon source="menu-down" color={theme.colors.error} size={24} />
-                            <Text variant="titleMedium" style={{ alignSelf: "flex-end", color: theme.colors.error }}>
-                                Budget
+                        <View style={{ flex: 0.5, justifyContent: "flex-end" }}>
+                            <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+                                <Icon source="menu-down" color={theme.colors.error} size={24} />
+                                <Text
+                                    variant="titleMedium"
+                                    style={{ alignSelf: "flex-end", color: theme.colors.error }}
+                                >
+                                    Budget
+                                </Text>
+                            </View>
+                            <Text variant="headlineMedium" style={{ alignSelf: "flex-end", color: theme.colors.error }}>
+                                {currencySymbol} {totalBudgeted}
                             </Text>
                         </View>
-                        <Text variant="headlineMedium" style={{ alignSelf: "flex-end", color: theme.colors.error }}>
-                            {currencySymbol} {totalBudgeted}
-                        </Text>
                     </View>
-                </View>
-                {graphData.map((bar, idx) => (
-                    <HorizontalBar label={bar.label} value={bar.value} barColor={bar.barColor} key={idx} />
-                ))}
-            </Card.Content>
+                    {baselineCost !== 0 &&
+                        graphData.map((bar, idx) => (
+                            <HorizontalBar
+                                label={bar.label}
+                                value={bar.value}
+                                barColor={bar.barColor}
+                                key={idx}
+                                visible={bar.visible}
+                            />
+                        ))}
+                </Card.Content>
+            ) : (
+                <Card.Title
+                    title="You have no Budget yet !!!"
+                    titleVariant="titleLarge"
+                    subtitle="Create new budget from options on top"
+                />
+            )}
         </Card>
     );
 };

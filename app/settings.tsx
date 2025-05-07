@@ -1,5 +1,5 @@
-import { View } from "react-native";
-import { Card, Text, Divider, Icon } from "react-native-paper";
+import { ScrollView } from "react-native";
+import { Card, Divider, Button, useTheme } from "react-native-paper";
 import React from "react";
 import { useLayoutEffect } from "react";
 import { useNavigation } from "expo-router";
@@ -10,11 +10,16 @@ import { Dropdown } from "react-native-paper-dropdown";
 import { Currencies } from "../constants/currencies";
 import { useDispatch } from "react-redux";
 import { setCurrency, setTheme } from "../storage/slices/settings-slice";
-import SettingMenuLine from "@/components/setting-menu-line";
+import { resetStore } from "../storage/slices/budget-slice";
+import SettingMenuLine from "../components/setting-menu-line";
+import ConfirmationDialog from "../components/confirmation-dialog";
 
 const SettingsScreen = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
+    const theme = useTheme();
+
+    const [resetDataVisible, setResetDataVisible] = React.useState<boolean>(false);
 
     const settings: Settings = useSelector<StoreState, Settings>((state) => state.setting);
 
@@ -43,42 +48,77 @@ const SettingsScreen = () => {
         if (thm) dispatch(setTheme(thm));
     };
 
+    const resetBudgetData = () => {
+        dispatch(resetStore({}));
+        setResetDataVisible(false);
+    };
+
     return (
-        <Card style={{ margin: 10 }}>
-            <Card.Content>
-                <SettingMenuLine
-                    icon="currency-sign"
-                    settingName="Currency"
-                    settingNode={
-                        <Dropdown
-                            label="Currency"
-                            placeholder="Select Currency"
-                            options={currencies}
-                            value={settings.currency}
-                            onSelect={setNewCurrency}
-                            mode="outlined"
-                            hideMenuHeader={true}
-                        />
-                    }
-                />
-                <SettingMenuLine
-                    icon="brightness-6"
-                    settingName="Theme"
-                    settingNode={
-                        <Dropdown
-                            label="Theme"
-                            placeholder="Select Theme"
-                            options={themes}
-                            value={settings.theme}
-                            onSelect={setNewTheme}
-                            mode="outlined"
-                            hideMenuHeader={true}
-                        />
-                    }
-                />
-                <Divider />
-            </Card.Content>
-        </Card>
+        <ScrollView>
+            <Card style={{ margin: 10 }}>
+                <Card.Title title="App Settings" titleVariant="titleLarge" />
+                <Card.Content>
+                    <SettingMenuLine
+                        icon="currency-sign"
+                        settingName="Currency"
+                        settingNode={
+                            <Dropdown
+                                label="Currency"
+                                placeholder="Select Currency"
+                                options={currencies}
+                                value={settings.currency}
+                                onSelect={setNewCurrency}
+                                mode="outlined"
+                                hideMenuHeader={true}
+                            />
+                        }
+                    />
+                    <SettingMenuLine
+                        icon="brightness-6"
+                        settingName="Theme"
+                        noDivider={true}
+                        settingNode={
+                            <Dropdown
+                                label="Theme"
+                                placeholder="Select Theme"
+                                options={themes}
+                                value={settings.theme}
+                                onSelect={setNewTheme}
+                                mode="outlined"
+                                hideMenuHeader={true}
+                            />
+                        }
+                    />
+                </Card.Content>
+            </Card>
+            <Card style={{ margin: 10 }}>
+                <Card.Title title="Data Settings" titleVariant="titleLarge" />
+                <Card.Content>
+                    <SettingMenuLine
+                        noDivider={true}
+                        settingNode={
+                            <Button
+                                icon="delete-forever"
+                                onPress={() => setResetDataVisible(true)}
+                                buttonColor={theme.colors.errorContainer}
+                                textColor={theme.colors.onErrorContainer}
+                            >
+                                Reset all Data
+                            </Button>
+                        }
+                    />
+                </Card.Content>
+            </Card>
+            <ConfirmationDialog
+                title="Are you Sure"
+                confirmText="Are you sure you want to reset the app Data? "
+                visible={resetDataVisible}
+                primaryActionColor={theme.colors.error}
+                primaryActionName="Reset"
+                primaryActionHandler={resetBudgetData}
+                cancelActionHandler={() => setResetDataVisible(false)}
+            />
+        </ScrollView>
     );
 };
 

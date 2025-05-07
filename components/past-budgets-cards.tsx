@@ -10,6 +10,7 @@ import DateChip from "./date-chip";
 import NewBudgetDialog from "./new-budget-dialog";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useCurrencySymbol } from "../hooks/use-settings";
+import ConfirmationDialog from "./confirmation-dialog";
 
 interface PastBudgetCardProp {
     budget: Budget;
@@ -106,33 +107,15 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
                 </Card.Actions>
             </Card>
             <NewBudgetDialog cloneId={budget.Id} sheetRef={sheetRef} />
-            <Portal>
-                <Dialog
-                    visible={deleteModalVisible}
-                    style={{ margin: 15 }}
-                    onDismiss={() => setDeleteModalVisible(false)}
-                >
-                    <Dialog.Title>Are you sure?</Dialog.Title>
-                    <Dialog.Content>
-                        <Text>
-                            Are you sure you want to delete the history plan for "{startDate}" - "{endDate}"?
-                        </Text>
-                    </Dialog.Content>
-                    <Dialog.Actions>
-                        <Button
-                            mode="text"
-                            textColor={theme.colors.onBackground}
-                            icon="cancel"
-                            onPress={() => setDeleteModalVisible(false)}
-                        >
-                            Cancel
-                        </Button>
-                        <Button mode="text" textColor={theme.colors.error} icon="trash-can" onPress={delPastBudget}>
-                            Delete
-                        </Button>
-                    </Dialog.Actions>
-                </Dialog>
-            </Portal>
+            <ConfirmationDialog
+                visible={deleteModalVisible}
+                title="Are you sure?"
+                confirmText={`Are you sure you want to delete the history plan for "${startDate}" - "${endDate}"?`}
+                primaryActionName="Delete"
+                primaryActionColor={theme.colors.error}
+                primaryActionHandler={delPastBudget}
+                cancelActionHandler={() => setDeleteModalVisible(false)}
+            />
         </>
     );
 };
