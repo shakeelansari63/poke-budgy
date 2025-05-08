@@ -18,4 +18,6 @@ const colors: ColorPalete = {
     SavingNegative: "#922b21",
 };
 
+export const PieChartColors: string[] = ["#EC6B56", "#FFC154", "#47B39C", "#003F5C", "#58508D"];
+
 export default colors;

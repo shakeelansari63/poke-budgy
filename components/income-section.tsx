@@ -42,7 +42,7 @@ const IncomeSection = () => {
                 <Card.Title
                     title="Incomes"
                     titleVariant="titleLarge"
-                    subtitle={`Total: ${currencySymbol} ${totalIncome}`}
+                    subtitle={currentBudget !== null && `Total: ${currencySymbol} ${totalIncome}`}
                     left={() => <Avatar.Icon icon="cash" size={40} />}
                     right={() => {
                         return (

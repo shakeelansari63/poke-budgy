@@ -60,6 +60,11 @@ const budgetSlice = createSlice({
                         category.Expenses = [];
                     });
 
+                    // Change dates for Incomes
+                    copyBudget.Incomes.forEach((income) => {
+                        income.IncomeDate = startDate;
+                    });
+
                     newBudget.Incomes = copyBudget.Incomes;
                     newBudget.Expenses = copyBudget.Expenses;
                 }

@@ -42,7 +42,7 @@ const ExpenseSection = () => {
                 <Card.Title
                     title="Budgets"
                     titleVariant="titleLarge"
-                    subtitle={`Total: ${currencySymbol} ${totalBudgeted}`}
+                    subtitle={currentBudget !== null && `Total: ${currencySymbol} ${totalBudgeted}`}
                     left={() => <Avatar.Icon icon="basket" size={40} />}
                     right={() => {
                         return (
