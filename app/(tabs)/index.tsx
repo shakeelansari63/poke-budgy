@@ -45,6 +45,7 @@ export default function Home() {
                 sections={sections}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => item.node}
+                showsVerticalScrollIndicator={false}
             />
             <FabMainPage />
         </>

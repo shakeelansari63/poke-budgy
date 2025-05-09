@@ -62,6 +62,9 @@ const ExpenseSection = () => {
                         <Text>No active budget</Text>
                     ) : (
                         <SwipeableFlatList
+                            swipeableProps={{
+                                dragOffsetFromRightEdge: 50,
+                            }}
                             data={currentBudget.Expenses}
                             keyExtractor={(expense: ExpenseCategory) => expense.Id}
                             renderItem={({ item, index }: { item: ExpenseCategory; index: number }) => (

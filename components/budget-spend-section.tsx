@@ -39,6 +39,9 @@ const BudgetSpendSection = ({ expenseCategory }: BudgetSpendSectionProps) => {
                         <Card.Title title="Expenditure" />
                         <Card.Content>
                             <SwipeableFlatList
+                                swipeableProps={{
+                                    dragOffsetFromRightEdge: 50,
+                                }}
                                 data={expenseCategory.Expenses}
                                 keyExtractor={(expense: Expense) => expense.Id}
                                 renderItem={({ item, index }: { item: Expense; index: number }) => (

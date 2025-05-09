@@ -9,7 +9,7 @@ export default function History() {
     const pastBudgets = useSelector<StoreState, Budget[]>((state) => state.budget.pastBudgets);
 
     return (
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
             {pastBudgets.length > 0 ? (
                 <>
                     {pastBudgets.map((budget) => (

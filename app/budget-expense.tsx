@@ -53,6 +53,7 @@ const BudgetExpenses = () => {
                 sections={sections}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => item.node}
+                showsVerticalScrollIndicator={false}
             />
             <FabBudgetPage expenseCat={expenseCategory} />
         </>

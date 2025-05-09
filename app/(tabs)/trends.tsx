@@ -1,4 +1,4 @@
-import { ScrollView, Dimensions } from "react-native";
+import { SectionList, Dimensions, View } from "react-native";
 import { Card, Text } from "react-native-paper";
 import { Dropdown } from "react-native-paper-dropdown";
 import React from "react";
@@ -58,79 +58,135 @@ const Trends = () => {
     const screenWidth = Dimensions.get("screen");
     const graphWidthWithPadding = screenWidth.width - 20 - 40;
 
-    return periodBudgets.length <= 0 ||
-        (!incomeAvailable && !expenseCatAvailable && !spentData && !top5BudgetsAvailable) ? (
-        <Card style={{ margin: 10 }}>
-            <Card.Title
-                title="No Data available"
-                titleVariant="titleLarge"
-                subtitle="Create new budgets to see trends here"
-            />
-        </Card>
-    ) : (
-        <>
-            {/* Dropdown */}
-            <Card style={{ margin: 10 }}>
-                <Card.Content>
-                    <Dropdown
-                        options={trendOptions}
-                        onSelect={setSelectedTrendPeriod}
-                        mode="outlined"
-                        value={currentTrend}
-                    />
-                </Card.Content>
-            </Card>
-            <ScrollView>
-                {/* Income Card */}
-                {incomeAvailable && (
-                    <Card style={{ margin: 10 }}>
-                        <Card.Title title="Income Trend" titleVariant="titleLarge" />
-                        <Card.Content>
-                            <BarGraph
-                                data={incomeData.map((data) => ({ label: data.key, value: data.value }))}
-                                width={graphWidthWithPadding}
-                            />
-                        </Card.Content>
-                    </Card>
-                )}
+    const sections: { data: { id: number; node: React.ReactElement }[] }[] = [];
 
-                {/* Budget Card */}
-                {expenseCatAvailable && (
-                    <Card style={{ margin: 10 }}>
-                        <Card.Title title="Budget Trend" titleVariant="titleLarge" />
-                        <Card.Content>
-                            <BarGraph
-                                data={expenseCatData.map((data) => ({ label: data.key, value: data.value }))}
-                                width={graphWidthWithPadding}
+    if (periodBudgets.length <= 0 || (!incomeAvailable && !expenseCatAvailable && !spentData && !top5BudgetsAvailable))
+        sections.push({
+            data: [
+                {
+                    id: 0,
+                    node: (
+                        <Card style={{ margin: 10 }}>
+                            <Card.Title
+                                title="No Data available"
+                                titleVariant="titleLarge"
+                                subtitle="Create new budgets to see trends here"
                             />
-                        </Card.Content>
-                    </Card>
-                )}
+                        </Card>
+                    ),
+                },
+            ],
+        });
+    else {
+        sections.push({
+            data: [
+                {
+                    id: 0,
+                    node: (
+                        <Card style={{ margin: 10 }}>
+                            <Card.Content>
+                                <Dropdown
+                                    options={trendOptions}
+                                    onSelect={setSelectedTrendPeriod}
+                                    mode="outlined"
+                                    value={currentTrend}
+                                    hideMenuHeader={true}
+                                />
+                            </Card.Content>
+                        </Card>
+                    ),
+                },
+            ],
+        });
 
-                {/* Savings Card */}
-                {spendAvailable && (
-                    <Card style={{ margin: 10 }}>
-                        <Card.Title title="Spend Trend" titleVariant="titleLarge" />
-                        <Card.Content>
-                            <BarGraph
-                                data={spentData.map((data) => ({ label: data.key, value: data.value }))}
-                                width={graphWidthWithPadding}
-                            />
-                        </Card.Content>
-                    </Card>
-                )}
+        if (incomeAvailable)
+            sections.push({
+                data: [
+                    {
+                        id: sections.length,
+                        node: (
+                            <Card style={{ margin: 10 }}>
+                                <Card.Title title="Income Trend" titleVariant="titleLarge" />
+                                <Card.Content>
+                                    {/* <Text>Hello</Text> */}
+                                    <BarGraph
+                                        data={incomeData.map((data) => ({ label: data.key, value: data.value }))}
+                                        width={graphWidthWithPadding}
+                                    />
+                                </Card.Content>
+                            </Card>
+                        ),
+                    },
+                ],
+            });
 
-                {/* Top 5 Budgets Card */}
-                {top5BudgetsAvailable && (
-                    <Card style={{ margin: 10 }}>
-                        <Card.Title title="Top 5 Budgets" titleVariant="titleLarge" />
-                        <Card.Content>
-                            <PieGraph data={top5Budgets.map((data) => ({ label: data.key, value: data.value }))} />
-                        </Card.Content>
-                    </Card>
-                )}
-            </ScrollView>
-        </>
+        if (expenseCatAvailable)
+            sections.push({
+                data: [
+                    {
+                        id: sections.length,
+                        node: (
+                            <Card style={{ margin: 10 }}>
+                                <Card.Title title="Budget Trend" titleVariant="titleLarge" />
+                                <Card.Content>
+                                    <BarGraph
+                                        data={expenseCatData.map((data) => ({ label: data.key, value: data.value }))}
+                                        width={graphWidthWithPadding}
+                                    />
+                                </Card.Content>
+                            </Card>
+                        ),
+                    },
+                ],
+            });
+
+        if (spendAvailable)
+            sections.push({
+                data: [
+                    {
+                        id: sections.length,
+                        node: (
+                            <Card style={{ margin: 10 }}>
+                                <Card.Title title="Spend Trend" titleVariant="titleLarge" />
+                                <Card.Content>
+                                    <BarGraph
+                                        data={spentData.map((data) => ({ label: data.key, value: data.value }))}
+                                        width={graphWidthWithPadding}
+                                    />
+                                </Card.Content>
+                            </Card>
+                        ),
+                    },
+                ],
+            });
+
+        if (top5BudgetsAvailable)
+            sections.push({
+                data: [
+                    {
+                        id: sections.length,
+                        node: (
+                            <Card style={{ margin: 10 }}>
+                                <Card.Title title="Top 5 Budgets" titleVariant="titleLarge" />
+                                <Card.Content>
+                                    <PieGraph
+                                        data={top5Budgets.map((data) => ({ label: data.key, value: data.value }))}
+                                    />
+                                </Card.Content>
+                            </Card>
+                        ),
+                    },
+                ],
+            });
+    }
+
+    return (
+        <SectionList
+            sections={sections}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => item.node}
+            showsVerticalScrollIndicator={false}
+        />
     );
 };
 
