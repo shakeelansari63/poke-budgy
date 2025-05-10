@@ -17,37 +17,35 @@ const BudgetSpendSummarySection = ({ expenseCategory }: BudgetSpendSummarySectio
         expenseCategory.Expenses.length > 0 && (
             <Card style={{ margin: 10 }}>
                 <Card.Content>
-                    <View style={{ flexDirection: "row" }}>
-                        <View style={{ flex: 0.3 }}>
-                            <Text variant="titleMedium">Budget Limit</Text>
+                    <View style={{ flexDirection: "row", marginBottom: 10 }}>
+                        <View style={{ flex: 0.5 }}>
+                            <Text variant="titleLarge">Budget Limit</Text>
                         </View>
-                        <View style={{ flex: 0.7, alignSelf: "center" }}>
-                            <Text variant="titleMedium">
+                        <View style={{ flex: 0.5, alignSelf: "center" }}>
+                            <Text variant="titleLarge">
                                 {currencySymbol} {expenseCategory.Amount.toFixed(2)}
                             </Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: "row" }}>
-                        <View style={{ flex: 0.3 }}>
-                            <Text variant="titleMedium">Spend</Text>
+                    <View style={{ flexDirection: "row", marginBottom: 10 }}>
+                        <View style={{ flex: 0.5 }}>
+                            <Text variant="titleLarge">Spend</Text>
                         </View>
-                        <View style={{ flex: 0.3 }}>
-                            <Text variant="titleMedium">
+                        <View style={{ flex: 0.5, alignSelf: "center" }}>
+                            <Text variant="titleLarge">
                                 {currencySymbol} {totalSpend.toFixed(2)}
                             </Text>
                         </View>
-                        <View style={{ flex: 0.4, alignSelf: "center" }}>
-                            <ProgressBar
-                                progress={
-                                    totalSpend > expenseCategory.Amount
-                                        ? 1
-                                        : totalSpend / (expenseCategory.Amount === 0 ? 1 : expenseCategory.Amount)
-                                }
-                                color={
-                                    totalSpend > expenseCategory.Amount ? colors.SpentAboveLimit : colors.SpentInLimit
-                                }
-                            />
-                        </View>
+                    </View>
+                    <View style={{ marginBottom: 10 }}>
+                        <ProgressBar
+                            progress={
+                                totalSpend > expenseCategory.Amount
+                                    ? 1
+                                    : totalSpend / (expenseCategory.Amount === 0 ? 1 : expenseCategory.Amount)
+                            }
+                            color={totalSpend > expenseCategory.Amount ? colors.SpentAboveLimit : colors.SpentInLimit}
+                        />
                     </View>
                 </Card.Content>
             </Card>

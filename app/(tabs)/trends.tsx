@@ -61,7 +61,7 @@ const Trends = () => {
     const top5BudgetsAvailable = top5Budgets.reduce((acc, inc) => acc + inc.value, 0) > 0;
 
     const screenWidth = Dimensions.get("screen");
-    const graphWidthWithPadding = screenWidth.width - 20 - 40;
+    const graphWidthWithPadding = screenWidth.width - 20 - 50;
 
     const sections: { data: { id: number; node: React.ReactElement }[] }[] = [];
 

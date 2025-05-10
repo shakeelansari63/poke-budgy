@@ -36,7 +36,7 @@ const BudgetSpendSection = ({ expenseCategory }: BudgetSpendSectionProps) => {
             <Card style={{ margin: 10 }}>
                 {expenseCategory.Expenses.length > 0 ? (
                     <View>
-                        <Card.Title title="Expenditure" />
+                        <Card.Title title="Expenditure" titleVariant="titleLarge" />
                         <Card.Content>
                             <SwipeableFlatList
                                 swipeableProps={{
