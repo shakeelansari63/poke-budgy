@@ -28,11 +28,7 @@ export const getStartOfMonthDate = (date: Date) => {
 export const getEndOfMonthDate = (date: Date) => {
     const newDate = getDateWithoutTime(date);
     newDate.setMonth(newDate.getMonth() + 1);
-    newDate.setDate(0);
-    newDate.setHours(23);
-    newDate.setMinutes(59);
-    newDate.setSeconds(59);
-    newDate.setMilliseconds(999);
+    newDate.setDate(1);
 
     return newDate;
 };
@@ -47,12 +43,9 @@ export const getStartOfThisYearDate = () => {
 
 export const getEndOfThisYearDate = () => {
     const newDate = getDateWithoutTime();
-    newDate.setMonth(11);
-    newDate.setDate(31);
-    newDate.setHours(23);
-    newDate.setMinutes(59);
-    newDate.setSeconds(59);
-    newDate.setMilliseconds(999);
+    newDate.setFullYear(newDate.getFullYear() + 1);
+    newDate.setMonth(0);
+    newDate.setDate(1);
 
     return newDate;
 };
@@ -69,14 +62,10 @@ export const getStartOfPastYearDate = (years?: number) => {
 
 export const getEndOfPastYearDate = (years?: number) => {
     const newDate = getDateWithoutTime();
-    const yearsToGoPast = years ?? 1;
+    const yearsToGoPast = years ? years - 1 : 0;
     newDate.setFullYear(newDate.getFullYear() - yearsToGoPast);
-    newDate.setMonth(11);
-    newDate.setDate(31);
-    newDate.setHours(23);
-    newDate.setMinutes(59);
-    newDate.setSeconds(59);
-    newDate.setMilliseconds(999);
+    newDate.setMonth(0);
+    newDate.setDate(1);
 
     return newDate;
 };
