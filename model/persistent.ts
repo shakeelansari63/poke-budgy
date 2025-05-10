@@ -6,7 +6,7 @@ export interface PersistentStoreModel {
     getActiveBudget: () => Budget | null;
     getInactiveBudgets: () => Budget[];
     getInactiveBudgetById: (id: string) => Budget | null;
-    setActiveBudget: (budget: Budget) => void;
+    setActiveBudget: (budget: Budget | null) => void;
     updateInactiveBudgets: (budgets: Budget[]) => void;
     resetBudgetStore: () => void;
 

@@ -8,21 +8,24 @@ import { StatusBar, StatusBarStyle } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import * as SplashScreen from "expo-splash-screen";
 import { Stack } from "expo-router";
-import { useFonts } from "expo-font";
 import { en, registerTranslation } from "react-native-paper-dates";
 import React from "react";
-import { Settings } from "../model/settings";
-import { loadBudgets } from "../storage/slices/budget-slice";
-import { loadSettings } from "../storage/slices/settings-slice";
-import { BudgetState } from "../model/store";
-import { DataStore } from "../storage/persistent-store";
+import { loadBudgetFromStore } from "../storage/slices/budget-slice";
+import { loadSettingsFromStore } from "../storage/slices/settings-slice";
 import { useCurrentTheme } from "../hooks/use-settings";
 
 // Register Englist Translation of Dates
 registerTranslation("en", en);
 
 export default function RootLayout() {
+    // Set Splash Screen Options
+    SplashScreen.setOptions({
+        duration: 2000,
+        fade: true,
+    });
+
     return (
         <Provider store={store}>
             <AppMain />
@@ -49,23 +52,12 @@ const AppMain = () => {
 
     const statusBarStyle: StatusBarStyle = appTheme === "device" ? "auto" : appTheme === "dark" ? "light" : "dark";
 
-    // USe Font
-    const [loaded] = useFonts({
-        SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-    });
-
     const dispatch = useDispatch();
 
-    React.useLayoutEffect(() => {
-        const savedBudgets: BudgetState = {
-            activeBudget: DataStore.getActiveBudget(),
-            pastBudgets: DataStore.getInactiveBudgets(),
-        };
-
-        const savedSettings: Settings = DataStore.getSettings() ?? { currency: "USD", theme: "device" };
-
-        dispatch(loadBudgets(savedBudgets));
-        dispatch(loadSettings(savedSettings));
+    React.useEffect(() => {
+        // Dispatch all load actions
+        dispatch(loadBudgetFromStore({}));
+        dispatch(loadSettingsFromStore({}));
     }, []);
 
     return (

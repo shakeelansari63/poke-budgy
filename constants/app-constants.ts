@@ -10,3 +10,5 @@ export const dateOption: Intl.DateTimeFormatOptions = {
 export const monthFromDateOption: Intl.DateTimeFormatOptions = {
     month: "short",
 };
+
+export const backupMimeType = "application/json";

@@ -1,5 +1,7 @@
+import { PersistentStoreModel } from "@/model/persistent";
 import { Settings } from "../../model/settings";
 import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { DataStore } from "../persistent-store";
 
 const initialState: Settings = {
     currency: "USD",
@@ -14,6 +16,12 @@ const settingSlice = createSlice({
             const settings = action.payload as Settings;
             state.currency = settings.currency;
             state.theme = settings.theme;
+        },
+
+        loadSettingsFromStore: (state, action) => {
+            const settings = DataStore.getSettings();
+            state.currency = settings?.currency ?? "USD";
+            state.theme = settings?.theme ?? "device";
         },
 
         setCurrency: (state, action) => {
@@ -31,6 +39,6 @@ const settingSlice = createSlice({
     },
 });
 
-export const { loadSettings, setCurrency, setTheme, resetSetting } = settingSlice.actions;
+export const { loadSettingsFromStore, setCurrency, setTheme, resetSetting } = settingSlice.actions;
 
 export default settingSlice.reducer;

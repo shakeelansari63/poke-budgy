@@ -1,4 +1,5 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { View } from "react-native";
 import { List, Chip, Divider } from "react-native-paper";
 import { Income } from "../model/income";
 import EditIncomeDialog from "./edit-income-dialog";
@@ -26,7 +27,13 @@ const IncomeLine = ({ income, isLast }: IncomeProps) => {
                 )}
                 onPress={() => sheetRef.current?.present()}
             />
-            {!isLast && <Divider />}
+            <View style={{ padding: 5 }} />
+            {!isLast && (
+                <>
+                    <Divider />
+                    <View style={{ padding: 5 }} />
+                </>
+            )}
         </>
     );
 };

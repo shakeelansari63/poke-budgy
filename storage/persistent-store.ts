@@ -44,8 +44,14 @@ export const DataStore: PersistentStoreModel = {
         return item === null ? null : (JSON.parse(item) as Budget);
     },
 
-    setActiveBudget: (budget: Budget) => {
-        Storage.setItemSync(ActiveBudgetKey, JSON.stringify(budget));
+    setActiveBudget: (budget: Budget | null) => {
+        if (budget === null) {
+            // Check if budget exist and delete it to set null;
+            const currentActive = Storage.getItemSync(ActiveBudgetKey);
+            if (currentActive) {
+                Storage.removeItemSync(ActiveBudgetKey);
+            }
+        } else Storage.setItemSync(ActiveBudgetKey, JSON.stringify(budget));
     },
 
     updateInactiveBudgets: (budgets: Budget[]) => {

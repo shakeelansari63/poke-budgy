@@ -28,11 +28,12 @@ const ExpenseCategoryLine = ({ budget, isLast }: BudgetProps) => {
                 )}
                 onPress={() => router.navigate({ pathname: "/budget-expense", params: { categoryId: budget.Id } })}
             />
+            <View style={{ padding: 5 }} />
             <ProgressBar
                 progress={totalUsage}
                 color={totalExpense > budget.Amount ? colors.SpentAboveLimit : colors.SpentInLimit}
             />
-            {!isLast && <Divider />}
+            <View style={{ padding: 5 }} />
         </View>
     );
 };

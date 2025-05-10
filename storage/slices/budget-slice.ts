@@ -3,6 +3,8 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 import { Budget } from "../../model/budget";
 import { Income } from "../../model/income";
 import { ExpenseCategory, Expense } from "../../model/expense";
+import { PersistentStoreModel } from "@/model/persistent";
+import { DataStore } from "../persistent-store";
 
 const initialState: BudgetState = {
     pastBudgets: [],
@@ -22,6 +24,11 @@ const budgetSlice = createSlice({
             const savedState = action.payload as BudgetState;
             state.activeBudget = savedState.activeBudget;
             state.pastBudgets = savedState.pastBudgets;
+        },
+
+        loadBudgetFromStore: (state, action) => {
+            state.activeBudget = DataStore.getActiveBudget();
+            state.pastBudgets = DataStore.getInactiveBudgets();
         },
 
         createNewBudget: (state, action) => {
@@ -190,7 +197,7 @@ const budgetSlice = createSlice({
 
 export const {
     resetStore,
-    loadBudgets,
+    loadBudgetFromStore,
     createNewBudget,
     deletePastBudget,
     deleteActiveBudget,

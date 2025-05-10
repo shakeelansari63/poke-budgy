@@ -99,6 +99,27 @@ const Trends = () => {
             ],
         });
 
+        // Show Top 5 Budgets Graph
+        if (top5BudgetsAvailable)
+            sections.push({
+                data: [
+                    {
+                        id: sections.length,
+                        node: (
+                            <Card style={{ margin: 10 }}>
+                                <Card.Title title="Top 5 Budgets" titleVariant="titleLarge" />
+                                <Card.Content>
+                                    <PieGraph
+                                        data={top5Budgets.map((data) => ({ label: data.key, value: data.value }))}
+                                    />
+                                </Card.Content>
+                            </Card>
+                        ),
+                    },
+                ],
+            });
+
+        // Show graph for Income per month
         if (incomeAvailable)
             sections.push({
                 data: [
@@ -120,6 +141,7 @@ const Trends = () => {
                 ],
             });
 
+        // Show graph for Expense Categories per month
         if (expenseCatAvailable)
             sections.push({
                 data: [
@@ -140,6 +162,7 @@ const Trends = () => {
                 ],
             });
 
+        // Show graph for Expense per month
         if (spendAvailable)
             sections.push({
                 data: [
@@ -152,25 +175,6 @@ const Trends = () => {
                                     <BarGraph
                                         data={spentData.map((data) => ({ label: data.key, value: data.value }))}
                                         width={graphWidthWithPadding}
-                                    />
-                                </Card.Content>
-                            </Card>
-                        ),
-                    },
-                ],
-            });
-
-        if (top5BudgetsAvailable)
-            sections.push({
-                data: [
-                    {
-                        id: sections.length,
-                        node: (
-                            <Card style={{ margin: 10 }}>
-                                <Card.Title title="Top 5 Budgets" titleVariant="titleLarge" />
-                                <Card.Content>
-                                    <PieGraph
-                                        data={top5Budgets.map((data) => ({ label: data.key, value: data.value }))}
                                     />
                                 </Card.Content>
                             </Card>

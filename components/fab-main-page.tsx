@@ -32,7 +32,7 @@ const FabMainPage = () => {
                 <>
                     <FAB.Group
                         open={fabOpen}
-                        icon={fabOpen ? "cancel" : "pencil"}
+                        icon={fabOpen ? "cancel" : "plus-thick"}
                         visible
                         style={{ position: "absolute", margin: 0, right: 0, bottom: 0, padding: 5 }}
                         onStateChange={({ open }) => setFabOpen(open)}

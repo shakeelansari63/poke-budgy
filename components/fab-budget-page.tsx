@@ -15,7 +15,7 @@ const FabBudgetPage = ({ expenseCat }: FabBudgetPageProps) => {
     return (
         <>
             <FAB
-                icon="plus"
+                icon="plus-thick"
                 onPress={() => sheetRef.current?.present()}
                 style={{ position: "absolute", margin: 10, right: insets.right, bottom: insets.bottom }}
             />
