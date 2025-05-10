@@ -19,21 +19,21 @@ const BudgetSpendSummarySection = ({ expenseCategory }: BudgetSpendSummarySectio
                 <Card.Content>
                     <View style={{ flexDirection: "row" }}>
                         <View style={{ flex: 0.3 }}>
-                            <Text>Budget Limit</Text>
+                            <Text variant="titleMedium">Budget Limit</Text>
                         </View>
                         <View style={{ flex: 0.7, alignSelf: "center" }}>
-                            <Text>
-                                {currencySymbol} {expenseCategory.Amount}
+                            <Text variant="titleMedium">
+                                {currencySymbol} {expenseCategory.Amount.toFixed(2)}
                             </Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: "row" }}>
                         <View style={{ flex: 0.3 }}>
-                            <Text>Spend</Text>
+                            <Text variant="titleMedium">Spend</Text>
                         </View>
                         <View style={{ flex: 0.3 }}>
-                            <Text>
-                                {currencySymbol} {totalSpend}
+                            <Text variant="titleMedium">
+                                {currencySymbol} {totalSpend.toFixed(2)}
                             </Text>
                         </View>
                         <View style={{ flex: 0.4, alignSelf: "center" }}>

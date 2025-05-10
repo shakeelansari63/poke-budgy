@@ -23,7 +23,7 @@ const ExpenseCategoryLine = ({ budget, isLast }: BudgetProps) => {
                 title={budget.Category}
                 left={() => (
                     <Chip compact={true} elevated={true}>
-                        {currencySymbol} {budget.Amount}
+                        {currencySymbol} {budget.Amount.toFixed(2)}
                     </Chip>
                 )}
                 onPress={() => router.navigate({ pathname: "/budget-expense", params: { categoryId: budget.Id } })}

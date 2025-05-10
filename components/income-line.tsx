@@ -22,7 +22,7 @@ const IncomeLine = ({ income, isLast }: IncomeProps) => {
                 title={income.Source}
                 left={() => (
                     <Chip compact={true} elevated={true}>
-                        {currencySymbol} {income.Amount}
+                        {currencySymbol} {income.Amount.toFixed(2)}
                     </Chip>
                 )}
                 onPress={() => sheetRef.current?.present()}

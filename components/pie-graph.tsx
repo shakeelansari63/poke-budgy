@@ -93,7 +93,7 @@ const PieGraph = ({ data }: BarGraphProp) => {
             </View>
             <RenderLegend
                 data={data.map((point, idx) => ({
-                    text: `${point.label}: ${currencySymbol} ${point.value}`,
+                    text: `${point.label}: ${currencySymbol} ${point.value.toFixed(2)}`,
                     color: PieChartColors[idx],
                 }))}
             />

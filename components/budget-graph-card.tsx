@@ -112,7 +112,7 @@ const BudgetGraph = () => {
                     </View>
                     <Text variant="headlineSmall">Monthly Saving</Text>
                     <Text variant="displaySmall">
-                        {currencySymbol} {totalSaving}
+                        {currencySymbol} {totalSaving.toFixed(2)}
                     </Text>
                     <View style={{ padding: 10 }}></View>
                     <View style={{ flexDirection: "row", marginBottom: 20 }}>
@@ -124,7 +124,7 @@ const BudgetGraph = () => {
                                 </Text>
                             </View>
                             <Text variant="headlineMedium" style={{ color: theme.colors.onPrimaryContainer }}>
-                                {currencySymbol} {totalIncome}
+                                {currencySymbol} {totalIncome.toFixed(2)}
                             </Text>
                         </View>
                         <View style={{ flex: 0.5, justifyContent: "flex-end" }}>
@@ -138,7 +138,7 @@ const BudgetGraph = () => {
                                 </Text>
                             </View>
                             <Text variant="headlineMedium" style={{ alignSelf: "flex-end", color: theme.colors.error }}>
-                                {currencySymbol} {totalBudgeted}
+                                {currencySymbol} {totalBudgeted.toFixed(2)}
                             </Text>
                         </View>
                     </View>

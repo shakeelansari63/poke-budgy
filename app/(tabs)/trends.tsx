@@ -38,12 +38,17 @@ const Trends = () => {
 
     // Get Past Budgets for these periods
     const allBudgets = useSelector<StoreState, BudgetState>((state) => state.budget);
-    const periodBudgets = allBudgets.pastBudgets.filter(
-        (budget: Budget) => new Date(budget.StartDate) >= startPeriod && new Date(budget.EndDate) <= endPeriod
-    );
+    const periodBudgets = [
+        ...allBudgets.pastBudgets.filter(
+            (budget: Budget) => new Date(budget.StartDate) >= startPeriod && new Date(budget.EndDate) <= endPeriod
+        ),
+    ];
+
+    // Sort Period Budget
+    periodBudgets.sort((a, b) => new Date(a.StartDate).getTime() - new Date(b.StartDate).getTime());
 
     // Add Active Budget to This list
-    if (allBudgets.activeBudget) periodBudgets.push(allBudgets.activeBudget);
+    if (allBudgets.activeBudget && currentTrend !== Period.Last_Year) periodBudgets.push(allBudgets.activeBudget);
 
     // Data For Income Graph
     const incomeData = getMonthWiseIncome(periodBudgets);

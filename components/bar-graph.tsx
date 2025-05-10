@@ -69,7 +69,7 @@ const BarGraph = ({ data, width, height, showLine }: BarGraphProp) => {
                             color: theme.colors.onTertiaryContainer,
                         }}
                     >
-                        {item.value}
+                        {item.value.toFixed(2)}
                     </Badge>
                 )}
             />

@@ -7,12 +7,17 @@ import PastBudgetCard from "../../components/past-budgets-cards";
 
 export default function History() {
     const pastBudgets = useSelector<StoreState, Budget[]>((state) => state.budget.pastBudgets);
+    const sortedBudgets = [...pastBudgets].sort((a, b) => {
+        const aDate = new Date(a.StartDate);
+        const bDate = new Date(b.StartDate);
+        return aDate.getTime() - bDate.getTime();
+    });
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             {pastBudgets.length > 0 ? (
                 <>
-                    {pastBudgets.map((budget) => (
+                    {sortedBudgets.map((budget) => (
                         <PastBudgetCard budget={budget} key={budget.Id} />
                     ))}
                 </>
