@@ -1,0 +1,2050 @@
+{
+  "budget": {
+    "activeBudget": {
+      "Id": "pfaEZ0lmUuaIXBHsoEtQ3",
+      "StartDate": "2025-05-01T18:30:00.000Z",
+      "EndDate": "2025-05-31T18:30:00.000Z",
+      "Incomes": [
+        {
+          "Id": "ohm1v3Ow1bvZahi13Kevz",
+          "IncomeDate": "2025-05-01T18:30:00.000Z",
+          "Source": "Freelance",
+          "Amount": 4907.48
+        }
+      ],
+      "Expenses": [
+        {
+          "Id": "7mk8al84JrKQkQwkaDm0j",
+          "Category": "Rent",
+          "Amount": 958.77,
+          "Expenses": [
+            {
+              "Id": "ecTkS-3-dtle5aeQ9aeFm",
+              "ExpenseDate": "2025-05-02T18:30:00.000Z",
+              "Amount": 177.24,
+              "Comment": "Doctor visit"
+            },
+            {
+              "Id": "QPGpwNLHRVfGLZ7vz4doY",
+              "ExpenseDate": "2025-05-06T18:30:00.000Z",
+              "Amount": 253.46,
+              "Comment": "Movie night"
+            },
+            {
+              "Id": "h7cWcnXAvzOSwDemnf_8Z",
+              "ExpenseDate": "2025-05-26T18:30:00.000Z",
+              "Amount": 98.06,
+              "Comment": "Doctor visit"
+            },
+            {
+              "Id": "21Za-z_hYeVn74LhRvAXP",
+              "ExpenseDate": "2025-05-27T18:30:00.000Z",
+              "Amount": 19.68,
+              "Comment": "Grocery shopping"
+            },
+            {
+              "Id": "S9z2VaJtERVxtLAfqQTt1",
+              "ExpenseDate": "2025-05-05T18:30:00.000Z",
+              "Amount": 276.68,
+              "Comment": "Movie night"
+            },
+            {
+              "Id": "yXGkdXWz0mvaOVmE2kdiC",
+              "ExpenseDate": "2025-05-25T18:30:00.000Z",
+              "Amount": 133.65,
+              "Comment": "Utility bill"
+            }
+          ]
+        },
+        {
+          "Id": "WJblYm0fzooZ3klD8l7Dw",
+          "Category": "Rent",
+          "Amount": 978.06,
+          "Expenses": [
+            {
+              "Id": "Pb1W31142Pwu8KfhzxYYg",
+              "ExpenseDate": "2025-05-19T18:30:00.000Z",
+              "Amount": 357.85,
+              "Comment": "Transport cost"
+            },
+            {
+              "Id": "ClufNDd1Ns40CY-uCWGk5",
+              "ExpenseDate": "2025-05-14T18:30:00.000Z",
+              "Amount": 181.17,
+              "Comment": "Utility bill"
+            },
+            {
+              "Id": "p9YIHLKy-ozycY12qTd1A",
+              "ExpenseDate": "2025-05-14T18:30:00.000Z",
+              "Amount": 439.04,
+              "Comment": "Doctor visit"
+            }
+          ]
+        },
+        {
+          "Id": "o9HO2KA6mooCNaoldOgga",
+          "Category": "Groceries",
+          "Amount": 1117.18,
+          "Expenses": [
+            {
+              "Id": "MTrZi1VDlIxXo9mHrozcz",
+              "ExpenseDate": "2025-05-05T18:30:00.000Z",
+              "Amount": 359.65,
+              "Comment": "Grocery shopping"
+            },
+            {
+              "Id": "zaSBEirllPGpmqw6s-_4p",
+              "ExpenseDate": "2025-05-06T18:30:00.000Z",
+              "Amount": 476.9,
+              "Comment": "Transport cost"
+            },
+            {
+              "Id": "fBYKNLAKg6CpaiWragTYP",
+              "ExpenseDate": "2025-05-17T18:30:00.000Z",
+              "Amount": 50.92,
+              "Comment": "Movie night"
+            },
+            {
+              "Id": "TvQk57oRZWi6E5i9cFjXw",
+              "ExpenseDate": "2025-05-18T18:30:00.000Z",
+              "Amount": 77.65,
+              "Comment": "Utility bill"
+            },
+            {
+              "Id": "XPspSUUgUtf6wD540CON0",
+              "ExpenseDate": "2025-05-25T18:30:00.000Z",
+              "Amount": 152.06,
+              "Comment": "Grocery shopping"
+            }
+          ]
+        }
+      ]
+    },
+    "pastBudgets": [
+      {
+        "Id": "sIc3CcWeoIB6vU0pV0QvR",
+        "StartDate": "2024-01-01T18:30:00.000Z",
+        "EndDate": "2024-01-31T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "Nsm4i9VYAjFJX4UU5LaaK",
+            "IncomeDate": "2024-01-01T18:30:00.000Z",
+            "Source": "Freelance",
+            "Amount": 6209.69
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "tIA95JEtItUUgMz43xMMB",
+            "Category": "Healthcare",
+            "Amount": 1604.97,
+            "Expenses": [
+              {
+                "Id": "mAmx8zvSehyWiGOO3nqTh",
+                "ExpenseDate": "2024-01-21T18:30:00.000Z",
+                "Amount": 314.91,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "1WSeB0QXMRndIXf9T2K7H",
+                "ExpenseDate": "2024-01-11T18:30:00.000Z",
+                "Amount": 293.88,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "fzYeHEHBxxew7u6ULUY2n",
+                "ExpenseDate": "2024-01-12T18:30:00.000Z",
+                "Amount": 83.82,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "3dzt9aNHOkOtDckjyQr6Q",
+                "ExpenseDate": "2024-01-07T18:30:00.000Z",
+                "Amount": 474.85,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "SjO-GMbhQCVPCV7hnQhQw",
+                "ExpenseDate": "2024-01-27T18:30:00.000Z",
+                "Amount": 437.51,
+                "Comment": "Transport cost"
+              }
+            ]
+          },
+          {
+            "Id": "o1DJkNKzsPttm5iZMIwNP",
+            "Category": "Healthcare",
+            "Amount": 1550.55,
+            "Expenses": [
+              {
+                "Id": "MLLrdFprhy1pKzvbflz-K",
+                "ExpenseDate": "2024-01-09T18:30:00.000Z",
+                "Amount": 483.24,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "c8cy-Yy_rq3ZFE00lSj2l",
+                "ExpenseDate": "2024-01-09T18:30:00.000Z",
+                "Amount": 223.34,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "lSTA77y9r1O93cgbloQfW",
+                "ExpenseDate": "2024-01-05T18:30:00.000Z",
+                "Amount": 360.77,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "H9b-MNDi_kcNwUXMpNNHh",
+                "ExpenseDate": "2024-01-15T18:30:00.000Z",
+                "Amount": 48.05,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "YLJ8sAjMZxIzD5yvFb1Kb",
+                "ExpenseDate": "2024-01-24T18:30:00.000Z",
+                "Amount": 221.68,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "K39ZYeIwPhfGST-UYk8fE",
+                "ExpenseDate": "2024-01-18T18:30:00.000Z",
+                "Amount": 213.47,
+                "Comment": "Doctor visit"
+              }
+            ]
+          },
+          {
+            "Id": "Vvx7fIo074Ax5VhrnfiyE",
+            "Category": "Utilities",
+            "Amount": 658.29,
+            "Expenses": [
+              {
+                "Id": "LATe5Rs67g6OXHweucFpu",
+                "ExpenseDate": "2024-01-12T18:30:00.000Z",
+                "Amount": 224.56,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "PWKZnQLVqQbrTAG47ozDr",
+                "ExpenseDate": "2024-01-07T18:30:00.000Z",
+                "Amount": 193.5,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "4yqb1kSdQyA9bKlAyhZuo",
+                "ExpenseDate": "2024-01-10T18:30:00.000Z",
+                "Amount": 240.23,
+                "Comment": "Movie night"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "dWmpmyIt--k6Dngjr85yS",
+        "StartDate": "2024-02-01T18:30:00.000Z",
+        "EndDate": "2024-02-29T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "Kj2a0Qx_eOB6ihqMFpVCQ",
+            "IncomeDate": "2024-02-01T18:30:00.000Z",
+            "Source": "Freelance",
+            "Amount": 2988.91
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "orBu7Uitf1QKi9eEGvkIk",
+            "Category": "Entertainment",
+            "Amount": 689.82,
+            "Expenses": [
+              {
+                "Id": "G3nzZq798XOFG9TxXF4Ya",
+                "ExpenseDate": "2024-02-19T18:30:00.000Z",
+                "Amount": 133.3,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "IIGUeUOmEc8bpTNrv3YNt",
+                "ExpenseDate": "2024-02-25T18:30:00.000Z",
+                "Amount": 184.14,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "W87pVyCXnDkX6vbScInzk",
+                "ExpenseDate": "2024-02-06T18:30:00.000Z",
+                "Amount": 128.45,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "oLdsMNdcdYytSl1S9_r2_",
+                "ExpenseDate": "2024-02-01T18:30:00.000Z",
+                "Amount": 71.1,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "GMvIrnGT5C6Qepxp497sE",
+                "ExpenseDate": "2024-02-15T18:30:00.000Z",
+                "Amount": 88.31,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "_vEaR41Z1A8ZoeIsNxHrh",
+                "ExpenseDate": "2024-02-05T18:30:00.000Z",
+                "Amount": 84.52,
+                "Comment": "Movie night"
+              }
+            ]
+          },
+          {
+            "Id": "DiexWIajq4hvhvLP-bFH0",
+            "Category": "Entertainment",
+            "Amount": 1163.73,
+            "Expenses": [
+              {
+                "Id": "5TZud5xj9WZsoDkOUfSpQ",
+                "ExpenseDate": "2024-02-17T18:30:00.000Z",
+                "Amount": 411.55,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "PVQr95ypKGOxaE-malM3E",
+                "ExpenseDate": "2024-02-03T18:30:00.000Z",
+                "Amount": 339.96,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "v7Zm5sv97bdBsmI8I0yxp",
+                "ExpenseDate": "2024-02-24T18:30:00.000Z",
+                "Amount": 10.97,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "zjclzHj4uHtT4FCISvWCJ",
+                "ExpenseDate": "2024-02-01T18:30:00.000Z",
+                "Amount": 401.25,
+                "Comment": "Doctor visit"
+              }
+            ]
+          },
+          {
+            "Id": "tWo5JvWnBwi6IhH00zfUV",
+            "Category": "Groceries",
+            "Amount": 736.32,
+            "Expenses": [
+              {
+                "Id": "Sm1oJJHXV_D0gBoQxxaCC",
+                "ExpenseDate": "2024-02-14T18:30:00.000Z",
+                "Amount": 12.93,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "l1fLwxjE51lsuh0-13aKU",
+                "ExpenseDate": "2024-02-07T18:30:00.000Z",
+                "Amount": 365.08,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "gm4Gauplr7u55lqvifoV-",
+                "ExpenseDate": "2024-02-05T18:30:00.000Z",
+                "Amount": 358.31,
+                "Comment": "Doctor visit"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "hv0YWeFtQeZntxYpfEcER",
+        "StartDate": "2024-03-01T18:30:00.000Z",
+        "EndDate": "2024-03-31T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "EBUIRHa8OEpn5a9lpX7bx",
+            "IncomeDate": "2024-03-01T18:30:00.000Z",
+            "Source": "Gift",
+            "Amount": 5310.83
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "BNzDLmplBvuPouLIEAHqS",
+            "Category": "Utilities",
+            "Amount": 647.72,
+            "Expenses": [
+              {
+                "Id": "rQMn8dWmtVtVPMEPDDda3",
+                "ExpenseDate": "2024-03-25T18:30:00.000Z",
+                "Amount": 168.58,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "u4mmOXrpjUUPax7LFP6Vp",
+                "ExpenseDate": "2024-03-23T18:30:00.000Z",
+                "Amount": 205.57,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "9zmm2iQuAD8DmNuDcSHi4",
+                "ExpenseDate": "2024-03-09T18:30:00.000Z",
+                "Amount": 273.57,
+                "Comment": "Grocery shopping"
+              }
+            ]
+          },
+          {
+            "Id": "nQNiFQsbbWX3XgIuiQkOW",
+            "Category": "Healthcare",
+            "Amount": 823.82,
+            "Expenses": [
+              {
+                "Id": "ZXsMfp59ICQFy8xBH56Ic",
+                "ExpenseDate": "2024-03-14T18:30:00.000Z",
+                "Amount": 138.2,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "Iq2mx79kIt6JnauH0dLKn",
+                "ExpenseDate": "2024-03-02T18:30:00.000Z",
+                "Amount": 101.34,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "1eYtjJTS2YaWR8qIDQDFx",
+                "ExpenseDate": "2024-03-05T18:30:00.000Z",
+                "Amount": 317.0,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "ulZJEpyl-JrKoitHw-u38",
+                "ExpenseDate": "2024-03-27T18:30:00.000Z",
+                "Amount": 98.52,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "CUC4ESmHfh9JnTHU_sM1V",
+                "ExpenseDate": "2024-03-09T18:30:00.000Z",
+                "Amount": 168.76,
+                "Comment": "Doctor visit"
+              }
+            ]
+          },
+          {
+            "Id": "QMaafBLt161dEw4o2OBGs",
+            "Category": "Transportation",
+            "Amount": 1567.35,
+            "Expenses": [
+              {
+                "Id": "Vd4bvrFPT5WyAzMAtgakr",
+                "ExpenseDate": "2024-03-11T18:30:00.000Z",
+                "Amount": 479.14,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "wztvl9w3Lr-ozlnvX8RA8",
+                "ExpenseDate": "2024-03-25T18:30:00.000Z",
+                "Amount": 350.28,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "bcDidSMhBvQhjq36NrTDI",
+                "ExpenseDate": "2024-03-02T18:30:00.000Z",
+                "Amount": 331.89,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "cb3DQZj5UUSNQ03hwgMAB",
+                "ExpenseDate": "2024-03-04T18:30:00.000Z",
+                "Amount": 315.67,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "5afTQPnZx3mu-g8uszsw1",
+                "ExpenseDate": "2024-03-20T18:30:00.000Z",
+                "Amount": 90.37,
+                "Comment": "Transport cost"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "f4fvw9FiZuFCDyLLKiLYf",
+        "StartDate": "2024-04-01T18:30:00.000Z",
+        "EndDate": "2024-04-30T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "OncnrpNmY3yQEkI4pB0R5",
+            "IncomeDate": "2024-04-01T18:30:00.000Z",
+            "Source": "Gift",
+            "Amount": 3819.29
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "qrzPNAJnVOfiWBjtxiesI",
+            "Category": "Groceries",
+            "Amount": 1802.88,
+            "Expenses": [
+              {
+                "Id": "eW5Q-VuzfDKbM7MkHYa5E",
+                "ExpenseDate": "2024-04-16T18:30:00.000Z",
+                "Amount": 108.24,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "xCbyGeMpQh32yUW0G7wmr",
+                "ExpenseDate": "2024-04-04T18:30:00.000Z",
+                "Amount": 395.88,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "K0NFEPuJrEAxnx81OTcIc",
+                "ExpenseDate": "2024-04-22T18:30:00.000Z",
+                "Amount": 347.09,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "jEpT_gbs-YRwjpLl0lf6M",
+                "ExpenseDate": "2024-04-10T18:30:00.000Z",
+                "Amount": 242.24,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "cG2qZMUdBiVMwOU9ll8nS",
+                "ExpenseDate": "2024-04-12T18:30:00.000Z",
+                "Amount": 347.38,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "_hj7C88AypmBTonkMBB15",
+                "ExpenseDate": "2024-04-06T18:30:00.000Z",
+                "Amount": 362.05,
+                "Comment": "Doctor visit"
+              }
+            ]
+          },
+          {
+            "Id": "svce_wDl0zO6OgMuYqmad",
+            "Category": "Healthcare",
+            "Amount": 781.9,
+            "Expenses": [
+              {
+                "Id": "oBUGlztYCA-ZHnYG3C1vN",
+                "ExpenseDate": "2024-04-20T18:30:00.000Z",
+                "Amount": 488.87,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "hzgCyLGG1YivMp1GuW0uu",
+                "ExpenseDate": "2024-04-11T18:30:00.000Z",
+                "Amount": 142.01,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "bKQsXp-gQHdDJGRw-VZop",
+                "ExpenseDate": "2024-04-09T18:30:00.000Z",
+                "Amount": 114.09,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "3L_ZHR3JijO-EmEOt2S9C",
+                "ExpenseDate": "2024-04-20T18:30:00.000Z",
+                "Amount": 36.93,
+                "Comment": "Utility bill"
+              }
+            ]
+          },
+          {
+            "Id": "rJclxRSkDcRGA4F8lTO2C",
+            "Category": "Transportation",
+            "Amount": 1269.33,
+            "Expenses": [
+              {
+                "Id": "oYmNTb8zYrGPWi9jSGlNe",
+                "ExpenseDate": "2024-04-16T18:30:00.000Z",
+                "Amount": 312.81,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "BnE5PxSVxUrqKSqNe3_L2",
+                "ExpenseDate": "2024-04-02T18:30:00.000Z",
+                "Amount": 15.9,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "2fpwdlQD7Y-Yedx_luKbw",
+                "ExpenseDate": "2024-04-20T18:30:00.000Z",
+                "Amount": 44.96,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "fZRgc62Yb2kqZexoZaT--",
+                "ExpenseDate": "2024-04-19T18:30:00.000Z",
+                "Amount": 187.89,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "ynsnVx43KAzybFfWJd6XV",
+                "ExpenseDate": "2024-04-27T18:30:00.000Z",
+                "Amount": 341.87,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "AsqErZPT3VQPLFqxS1ilb",
+                "ExpenseDate": "2024-04-15T18:30:00.000Z",
+                "Amount": 365.9,
+                "Comment": "Movie night"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "mEnT2HOU0F4u63r9pg1x5",
+        "StartDate": "2024-05-01T18:30:00.000Z",
+        "EndDate": "2024-05-31T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "lWOk38_tn2YgZQY1CDWjE",
+            "IncomeDate": "2024-05-01T18:30:00.000Z",
+            "Source": "Bonus",
+            "Amount": 3229.53
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "kP4TnzeqFixTJ769NLoGi",
+            "Category": "Transportation",
+            "Amount": 961.16,
+            "Expenses": [
+              {
+                "Id": "lisuoUxco_jFzsRtIwHNe",
+                "ExpenseDate": "2024-05-22T18:30:00.000Z",
+                "Amount": 493.84,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "JDc_ujqeL43ZMCYpLFu6V",
+                "ExpenseDate": "2024-05-19T18:30:00.000Z",
+                "Amount": 237.02,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "aS_EdrSef-mH__dS1OqKO",
+                "ExpenseDate": "2024-05-22T18:30:00.000Z",
+                "Amount": 144.38,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "HXkQnmDLmFC3h3MWu1LvN",
+                "ExpenseDate": "2024-05-20T18:30:00.000Z",
+                "Amount": 12.95,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "ntYHkjFomSLloxKjfigNj",
+                "ExpenseDate": "2024-05-22T18:30:00.000Z",
+                "Amount": 72.97,
+                "Comment": "Transport cost"
+              }
+            ]
+          },
+          {
+            "Id": "RyFwoREW148j9DHJekZHa",
+            "Category": "Transportation",
+            "Amount": 901.78,
+            "Expenses": [
+              {
+                "Id": "O1lIPhH95humUbErUMeMc",
+                "ExpenseDate": "2024-05-08T18:30:00.000Z",
+                "Amount": 246.07,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "MkoibSp5w5kDzOmAFp0jT",
+                "ExpenseDate": "2024-05-21T18:30:00.000Z",
+                "Amount": 190.28,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "FCZdXCylZnqPOoczYGqVl",
+                "ExpenseDate": "2024-05-06T18:30:00.000Z",
+                "Amount": 465.43,
+                "Comment": "Utility bill"
+              }
+            ]
+          },
+          {
+            "Id": "DkPioZKnO3_7g4GolpRjs",
+            "Category": "Groceries",
+            "Amount": 669.05,
+            "Expenses": [
+              {
+                "Id": "Q1eZfvA_LgchTJnJkVtxU",
+                "ExpenseDate": "2024-05-06T18:30:00.000Z",
+                "Amount": 85.45,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "64ve-bl-Od2spedqDcYwo",
+                "ExpenseDate": "2024-05-08T18:30:00.000Z",
+                "Amount": 413.51,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "F482UL0ffzMe1MY7NSIH7",
+                "ExpenseDate": "2024-05-27T18:30:00.000Z",
+                "Amount": 170.09,
+                "Comment": "Transport cost"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "YWn3Ck8PIqKPnpEl88lf9",
+        "StartDate": "2024-06-01T18:30:00.000Z",
+        "EndDate": "2024-06-30T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "LQEpTe1ATBfFEkzGrZI-d",
+            "IncomeDate": "2024-06-01T18:30:00.000Z",
+            "Source": "Gift",
+            "Amount": 5307.91
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "8BOgZaW3DqewLiKoB-IQC",
+            "Category": "Groceries",
+            "Amount": 873.92,
+            "Expenses": [
+              {
+                "Id": "zh3YmzQyzLCFcy0-CiN9y",
+                "ExpenseDate": "2024-06-13T18:30:00.000Z",
+                "Amount": 415.2,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "AFGohUpzfS2nqYwlXoT-t",
+                "ExpenseDate": "2024-06-01T18:30:00.000Z",
+                "Amount": 78.34,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "G24zSdtNQBakkqs3yzexy",
+                "ExpenseDate": "2024-06-16T18:30:00.000Z",
+                "Amount": 380.38,
+                "Comment": "Utility bill"
+              }
+            ]
+          },
+          {
+            "Id": "IXORGPQdQShau_GffqzTi",
+            "Category": "Rent",
+            "Amount": 1023.18,
+            "Expenses": [
+              {
+                "Id": "4Ry1d7SnqHGheSaGkHMgO",
+                "ExpenseDate": "2024-06-20T18:30:00.000Z",
+                "Amount": 114.4,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "s0fTb4u2YnXSFhw3mtPQI",
+                "ExpenseDate": "2024-06-10T18:30:00.000Z",
+                "Amount": 390.78,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "ZpieOQtTGCE0cS_wBNtwy",
+                "ExpenseDate": "2024-06-26T18:30:00.000Z",
+                "Amount": 349.96,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "18r0JubYt5hG0TIyLKrGH",
+                "ExpenseDate": "2024-06-19T18:30:00.000Z",
+                "Amount": 168.04,
+                "Comment": "Doctor visit"
+              }
+            ]
+          },
+          {
+            "Id": "WeNjRKtXGgFHDWj37nk6z",
+            "Category": "Rent",
+            "Amount": 799.9,
+            "Expenses": [
+              {
+                "Id": "lAkFltXjqCBA12Eu6Ur4a",
+                "ExpenseDate": "2024-06-03T18:30:00.000Z",
+                "Amount": 173.17,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "wHmatseoXngIB1aKXBYjP",
+                "ExpenseDate": "2024-06-22T18:30:00.000Z",
+                "Amount": 425.91,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "Bpr5IKonm6CbVRuo4e0Ad",
+                "ExpenseDate": "2024-06-25T18:30:00.000Z",
+                "Amount": 200.82,
+                "Comment": "Movie night"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "8-sSYALRVFXcd9IRqolei",
+        "StartDate": "2024-07-01T18:30:00.000Z",
+        "EndDate": "2024-07-31T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "__QBJba3FpFKZjf6d8uIm",
+            "IncomeDate": "2024-07-01T18:30:00.000Z",
+            "Source": "Freelance",
+            "Amount": 2806.48
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "OlSqpMVihou8VWknRzUye",
+            "Category": "Healthcare",
+            "Amount": 1872.31,
+            "Expenses": [
+              {
+                "Id": "v9Z_q6SgVMqWE5doIos3m",
+                "ExpenseDate": "2024-07-20T18:30:00.000Z",
+                "Amount": 448.15,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "xL2WUJRUK__-lJZdhYGvr",
+                "ExpenseDate": "2024-07-19T18:30:00.000Z",
+                "Amount": 415.35,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "r8DcZV0bLne1-jP_UuKcK",
+                "ExpenseDate": "2024-07-23T18:30:00.000Z",
+                "Amount": 263.18,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "y7HV_HhLzGIsCjk5mLOzn",
+                "ExpenseDate": "2024-07-16T18:30:00.000Z",
+                "Amount": 26.25,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "1OsXg569ObXF_I-r3Lukn",
+                "ExpenseDate": "2024-07-20T18:30:00.000Z",
+                "Amount": 354.69,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "JFSKCkWi1TNmh2ryGejhq",
+                "ExpenseDate": "2024-07-09T18:30:00.000Z",
+                "Amount": 364.69,
+                "Comment": "Grocery shopping"
+              }
+            ]
+          },
+          {
+            "Id": "dr9N687DURNqrEs0QQPxR",
+            "Category": "Groceries",
+            "Amount": 1364.83,
+            "Expenses": [
+              {
+                "Id": "RnE1q_QIoMfJHt46v_cqp",
+                "ExpenseDate": "2024-07-13T18:30:00.000Z",
+                "Amount": 377.4,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "AKOH9d_VEyet39RYOZM10",
+                "ExpenseDate": "2024-07-11T18:30:00.000Z",
+                "Amount": 273.15,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "4D0kSFLEsWqeUM_a7K0N5",
+                "ExpenseDate": "2024-07-11T18:30:00.000Z",
+                "Amount": 103.01,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "1dcP9vqjJXboZ9FzldyaD",
+                "ExpenseDate": "2024-07-23T18:30:00.000Z",
+                "Amount": 177.25,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "WBYhDQtiviuzJYQ-mB838",
+                "ExpenseDate": "2024-07-22T18:30:00.000Z",
+                "Amount": 434.02,
+                "Comment": "Utility bill"
+              }
+            ]
+          },
+          {
+            "Id": "qOr-wBWy8z7YSRzTrCwBv",
+            "Category": "Entertainment",
+            "Amount": 1276.38,
+            "Expenses": [
+              {
+                "Id": "na5zHSKxy1gYxZL4MtRIq",
+                "ExpenseDate": "2024-07-20T18:30:00.000Z",
+                "Amount": 200.94,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "BSqWXL6d7PhSW-qMfTbBr",
+                "ExpenseDate": "2024-07-27T18:30:00.000Z",
+                "Amount": 61.7,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "vCy6C3O733RGhO-iUr50A",
+                "ExpenseDate": "2024-07-05T18:30:00.000Z",
+                "Amount": 475.1,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "FjAkbm7MI7vIzwuS40Qm2",
+                "ExpenseDate": "2024-07-24T18:30:00.000Z",
+                "Amount": 240.65,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "l5cKFhbL0HtH8RkZpyA1Q",
+                "ExpenseDate": "2024-07-20T18:30:00.000Z",
+                "Amount": 253.92,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "o7Uluz6MX242eXXsH0Coy",
+                "ExpenseDate": "2024-07-10T18:30:00.000Z",
+                "Amount": 44.07,
+                "Comment": "Doctor visit"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "2m6mjxbNskY9dZqiNEx2C",
+        "StartDate": "2024-08-01T18:30:00.000Z",
+        "EndDate": "2024-08-31T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "9wQ9AV46enSOeD0aK1RBP",
+            "IncomeDate": "2024-08-01T18:30:00.000Z",
+            "Source": "Investment",
+            "Amount": 6264.35
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "VKZZi1P3SeWAb-V5PNqEZ",
+            "Category": "Groceries",
+            "Amount": 1283.68,
+            "Expenses": [
+              {
+                "Id": "Tr4hfTmujsZ03blNu_iek",
+                "ExpenseDate": "2024-08-09T18:30:00.000Z",
+                "Amount": 408.98,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "B9vAickEF_O9sPwPlY8ma",
+                "ExpenseDate": "2024-08-15T18:30:00.000Z",
+                "Amount": 82.32,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "eZ7EfNpsoLNYrVleCeDyb",
+                "ExpenseDate": "2024-08-01T18:30:00.000Z",
+                "Amount": 127.58,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "WdJ13JiK_4yNFpKaSUsqk",
+                "ExpenseDate": "2024-08-19T18:30:00.000Z",
+                "Amount": 351.99,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "bLbajkwMmIFuuPEhsiAir",
+                "ExpenseDate": "2024-08-04T18:30:00.000Z",
+                "Amount": 203.46,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "dJbUIldJgelMxEY5FZiXl",
+                "ExpenseDate": "2024-08-25T18:30:00.000Z",
+                "Amount": 109.35,
+                "Comment": "Utility bill"
+              }
+            ]
+          },
+          {
+            "Id": "FaNAPC8-LREvjPlM7kP_j",
+            "Category": "Transportation",
+            "Amount": 1370.97,
+            "Expenses": [
+              {
+                "Id": "-KtccxfZAnltiRudOny8M",
+                "ExpenseDate": "2024-08-16T18:30:00.000Z",
+                "Amount": 225.66,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "yuZk6zI2vmmgjZgCf-mrG",
+                "ExpenseDate": "2024-08-21T18:30:00.000Z",
+                "Amount": 413.02,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "gjN_tHjzLWYOEDMmSg6UU",
+                "ExpenseDate": "2024-08-07T18:30:00.000Z",
+                "Amount": 353.78,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "o64g-f5gDP0WSoUea7N2c",
+                "ExpenseDate": "2024-08-03T18:30:00.000Z",
+                "Amount": 104.17,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "H6_B67PiagdlZRUN1KJO_",
+                "ExpenseDate": "2024-08-02T18:30:00.000Z",
+                "Amount": 189.07,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "uVb2jaOMzelkBpyFGN3X1",
+                "ExpenseDate": "2024-08-12T18:30:00.000Z",
+                "Amount": 85.27,
+                "Comment": "Utility bill"
+              }
+            ]
+          },
+          {
+            "Id": "FFKG9ER9WuAewi2YyAA3G",
+            "Category": "Entertainment",
+            "Amount": 1073.07,
+            "Expenses": [
+              {
+                "Id": "-3Bau6Hb9axRJQLlZrxx2",
+                "ExpenseDate": "2024-08-11T18:30:00.000Z",
+                "Amount": 370.62,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "mK4OkMrzHh1Lo6R6h-wz8",
+                "ExpenseDate": "2024-08-12T18:30:00.000Z",
+                "Amount": 440.15,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "L1AVVYStLGwLCgpr2N3R_",
+                "ExpenseDate": "2024-08-27T18:30:00.000Z",
+                "Amount": 262.3,
+                "Comment": "Utility bill"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "Pula_JqrVlZCsqjNmFhGN",
+        "StartDate": "2024-09-01T18:30:00.000Z",
+        "EndDate": "2024-09-30T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "6iWnaqrZX4j-luad4O3Xl",
+            "IncomeDate": "2024-09-01T18:30:00.000Z",
+            "Source": "Bonus",
+            "Amount": 3445.3
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "-1iQ_lv1-sQA67yEpkyBg",
+            "Category": "Rent",
+            "Amount": 1312.94,
+            "Expenses": [
+              {
+                "Id": "zngG7ByNJyiJk2gBC28wV",
+                "ExpenseDate": "2024-09-01T18:30:00.000Z",
+                "Amount": 153.9,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "hh-egmZXofawfGaH_Gujx",
+                "ExpenseDate": "2024-09-19T18:30:00.000Z",
+                "Amount": 402.16,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "sJhOvx8Q7QjvK-c7brgmG",
+                "ExpenseDate": "2024-09-28T18:30:00.000Z",
+                "Amount": 31.51,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "pZbQ93Dw5AzBCVEufCPts",
+                "ExpenseDate": "2024-09-19T18:30:00.000Z",
+                "Amount": 316.33,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "Xv2iaLLzyKg4NiF5diub8",
+                "ExpenseDate": "2024-09-22T18:30:00.000Z",
+                "Amount": 409.04,
+                "Comment": "Utility bill"
+              }
+            ]
+          },
+          {
+            "Id": "JK8xUGb0XaK6Jy0nRFaxb",
+            "Category": "Utilities",
+            "Amount": 1419.35,
+            "Expenses": [
+              {
+                "Id": "USzCp6M-WYQxwA0R7MXZz",
+                "ExpenseDate": "2024-09-19T18:30:00.000Z",
+                "Amount": 145.36,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "jlxgaKjtQpkb37luJtUih",
+                "ExpenseDate": "2024-09-14T18:30:00.000Z",
+                "Amount": 346.13,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "IqdVEwkXqz-DrOzVSRaM2",
+                "ExpenseDate": "2024-09-04T18:30:00.000Z",
+                "Amount": 389.14,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "zwYOwK8raa1qHXjqEyFFM",
+                "ExpenseDate": "2024-09-03T18:30:00.000Z",
+                "Amount": 348.41,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "_a56QVe6E1K-D8Gb9w4nj",
+                "ExpenseDate": "2024-09-25T18:30:00.000Z",
+                "Amount": 190.31,
+                "Comment": "Doctor visit"
+              }
+            ]
+          },
+          {
+            "Id": "B_qm4fOiovM2geguXqQkc",
+            "Category": "Groceries",
+            "Amount": 1431.8,
+            "Expenses": [
+              {
+                "Id": "a9yaTx5KE83s6VN5obt-U",
+                "ExpenseDate": "2024-09-23T18:30:00.000Z",
+                "Amount": 482.85,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "Zz498ty_qXmNcPm_06YnE",
+                "ExpenseDate": "2024-09-24T18:30:00.000Z",
+                "Amount": 80.71,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "sxDXKYz7i-rQ6FakTe9fn",
+                "ExpenseDate": "2024-09-18T18:30:00.000Z",
+                "Amount": 49.42,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "xumQ5ojkCTW74GuUXSkVW",
+                "ExpenseDate": "2024-09-15T18:30:00.000Z",
+                "Amount": 187.8,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "y6LHVSsr4z-ATGn4TJp6R",
+                "ExpenseDate": "2024-09-07T18:30:00.000Z",
+                "Amount": 336.69,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "vnrYlpD4BAb_rKfR-ngg2",
+                "ExpenseDate": "2024-09-22T18:30:00.000Z",
+                "Amount": 294.33,
+                "Comment": "Transport cost"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "lu2bfgegZ5NokBCXn4OD5",
+        "StartDate": "2024-10-01T18:30:00.000Z",
+        "EndDate": "2024-10-31T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "PKoV9m8vGUnRlYzTsGjUv",
+            "IncomeDate": "2024-10-01T18:30:00.000Z",
+            "Source": "Bonus",
+            "Amount": 2741.52
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "LsO-7H4KYaX6ETuPXYxrq",
+            "Category": "Groceries",
+            "Amount": 200.96,
+            "Expenses": [
+              {
+                "Id": "1KuzA3F3nsf0ZVFAXQJAJ",
+                "ExpenseDate": "2024-10-24T18:30:00.000Z",
+                "Amount": 30.43,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "CslMj8J92ofO04M-WE0HJ",
+                "ExpenseDate": "2024-10-08T18:30:00.000Z",
+                "Amount": 19.05,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "vdpEwFlKv_917djAN6DtZ",
+                "ExpenseDate": "2024-10-09T18:30:00.000Z",
+                "Amount": 151.48,
+                "Comment": "Grocery shopping"
+              }
+            ]
+          },
+          {
+            "Id": "JJjVT84SLYvewDEjKMvSM",
+            "Category": "Groceries",
+            "Amount": 2116.36,
+            "Expenses": [
+              {
+                "Id": "9Vvzb8Dta_vTAfgT2mq4h",
+                "ExpenseDate": "2024-10-12T18:30:00.000Z",
+                "Amount": 384.59,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "LQJ2IdXk8uxiBX8eENWhI",
+                "ExpenseDate": "2024-10-02T18:30:00.000Z",
+                "Amount": 226.52,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "t2MWTABq8YsVCy3wgG6Fg",
+                "ExpenseDate": "2024-10-03T18:30:00.000Z",
+                "Amount": 438.03,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "EP8K65whwzSZynwr2lBQ8",
+                "ExpenseDate": "2024-10-13T18:30:00.000Z",
+                "Amount": 417.52,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "r96_OvLiGJYg_rWXxkC59",
+                "ExpenseDate": "2024-10-11T18:30:00.000Z",
+                "Amount": 412.04,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "QOYX2Okvyh9ESggZSJL9d",
+                "ExpenseDate": "2024-10-20T18:30:00.000Z",
+                "Amount": 237.66,
+                "Comment": "Movie night"
+              }
+            ]
+          },
+          {
+            "Id": "DcmUIAwIOatNtzXIBM2l6",
+            "Category": "Utilities",
+            "Amount": 764.94,
+            "Expenses": [
+              {
+                "Id": "D9ZCxKl9FaHF_OhIblF_B",
+                "ExpenseDate": "2024-10-02T18:30:00.000Z",
+                "Amount": 259.74,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "2pAsgj0IjeDuNypEl8Vpk",
+                "ExpenseDate": "2024-10-05T18:30:00.000Z",
+                "Amount": 244.62,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "B_ouobeJiK14YmosMxJxy",
+                "ExpenseDate": "2024-10-05T18:30:00.000Z",
+                "Amount": 244.75,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "y_hRSPTu3wDmZnnAmxrh1",
+                "ExpenseDate": "2024-10-28T18:30:00.000Z",
+                "Amount": 15.83,
+                "Comment": "Utility bill"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "gmWXWtw9hz6AzBFAiV2a3",
+        "StartDate": "2024-11-01T18:30:00.000Z",
+        "EndDate": "2024-11-30T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "YXlboM2ThvvPvRgfyxKF0",
+            "IncomeDate": "2024-11-01T18:30:00.000Z",
+            "Source": "Gift",
+            "Amount": 3715.93
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "xHMxVBcceecaXYCBC_MrT",
+            "Category": "Healthcare",
+            "Amount": 1025.09,
+            "Expenses": [
+              {
+                "Id": "3G0FQDLBMfXeXrsPsX0TB",
+                "ExpenseDate": "2024-11-11T18:30:00.000Z",
+                "Amount": 281.05,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "EZkAX-uQYw2q9z807uDoP",
+                "ExpenseDate": "2024-11-07T18:30:00.000Z",
+                "Amount": 415.56,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "TTkIhlUhjEjs_aGo3tseg",
+                "ExpenseDate": "2024-11-15T18:30:00.000Z",
+                "Amount": 328.48,
+                "Comment": "Doctor visit"
+              }
+            ]
+          },
+          {
+            "Id": "0u1thqd-tWWzWx9D1bBjM",
+            "Category": "Entertainment",
+            "Amount": 1403.39,
+            "Expenses": [
+              {
+                "Id": "XGTDCX9G9lcSBxI4Idpp-",
+                "ExpenseDate": "2024-11-12T18:30:00.000Z",
+                "Amount": 434.43,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "TQ8EiAgcVqzjGjrCCtjHJ",
+                "ExpenseDate": "2024-11-22T18:30:00.000Z",
+                "Amount": 204.88,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "D37eRj6gUU0pDCcyR8Xxa",
+                "ExpenseDate": "2024-11-14T18:30:00.000Z",
+                "Amount": 413.36,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "ZQ8ZtKF74OPyJmhEgrkFq",
+                "ExpenseDate": "2024-11-23T18:30:00.000Z",
+                "Amount": 287.91,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "QCPQFTMRw7EAPLK-5UHUW",
+                "ExpenseDate": "2024-11-03T18:30:00.000Z",
+                "Amount": 62.81,
+                "Comment": "Doctor visit"
+              }
+            ]
+          },
+          {
+            "Id": "yWJpl2NLA5IgeqdNr5RiL",
+            "Category": "Transportation",
+            "Amount": 1039.15,
+            "Expenses": [
+              {
+                "Id": "wSUiKPUbEhfbY3QbvbzwB",
+                "ExpenseDate": "2024-11-25T18:30:00.000Z",
+                "Amount": 86.31,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "Jn1iHCWxOKSDaI-lchj1A",
+                "ExpenseDate": "2024-11-22T18:30:00.000Z",
+                "Amount": 175.88,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "8ro0CwyaTZGdPq_AfQAmE",
+                "ExpenseDate": "2024-11-06T18:30:00.000Z",
+                "Amount": 375.91,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "21VfOMXFFtfSQaJDdx2YU",
+                "ExpenseDate": "2024-11-22T18:30:00.000Z",
+                "Amount": 76.91,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "EGrrNkPNxNq0E8MC2ayUN",
+                "ExpenseDate": "2024-11-04T18:30:00.000Z",
+                "Amount": 324.14,
+                "Comment": "Transport cost"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "wPiOMdyEtdBGbVC70UQ18",
+        "StartDate": "2024-12-01T18:30:00.000Z",
+        "EndDate": "2024-12-31T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "l0DasmE633HqRdcgMRwkT",
+            "IncomeDate": "2024-12-01T18:30:00.000Z",
+            "Source": "Investment",
+            "Amount": 5270.78
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "YogNE2j6qqBdpLnYr8ml6",
+            "Category": "Transportation",
+            "Amount": 1369.69,
+            "Expenses": [
+              {
+                "Id": "2BoxFARbuRRF8RLmtk3LN",
+                "ExpenseDate": "2024-12-02T18:30:00.000Z",
+                "Amount": 214.13,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "bNeMGk3NYmde2Pbt-Ts2F",
+                "ExpenseDate": "2024-12-27T18:30:00.000Z",
+                "Amount": 63.88,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "9-CSvaLrpimLCP6tR78Zi",
+                "ExpenseDate": "2024-12-26T18:30:00.000Z",
+                "Amount": 166.85,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "IajK4p5x8PRsLXC7pLWom",
+                "ExpenseDate": "2024-12-08T18:30:00.000Z",
+                "Amount": 280.1,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "6OBWsVuHU9KUlVgcFSbRu",
+                "ExpenseDate": "2024-12-19T18:30:00.000Z",
+                "Amount": 198.16,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "vKQ7ASr_bBDtFKznEeELz",
+                "ExpenseDate": "2024-12-05T18:30:00.000Z",
+                "Amount": 446.57,
+                "Comment": "Grocery shopping"
+              }
+            ]
+          },
+          {
+            "Id": "Z9NqaFMC6SRYnqGhj4HQb",
+            "Category": "Groceries",
+            "Amount": 1093.38,
+            "Expenses": [
+              {
+                "Id": "3Tdmrf-PxXcp0sRixi9gc",
+                "ExpenseDate": "2024-12-18T18:30:00.000Z",
+                "Amount": 435.38,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "vL2w5wvAl7ym90AaKRPNH",
+                "ExpenseDate": "2024-12-16T18:30:00.000Z",
+                "Amount": 230.0,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "uXymX8hiyaMlZpiF1TUdW",
+                "ExpenseDate": "2024-12-27T18:30:00.000Z",
+                "Amount": 228.86,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "kuT-aqjR8Qz3ko0CnSwXF",
+                "ExpenseDate": "2024-12-11T18:30:00.000Z",
+                "Amount": 199.14,
+                "Comment": "Grocery shopping"
+              }
+            ]
+          },
+          {
+            "Id": "pLsZTZuM4YaeHhxtq8Wr-",
+            "Category": "Groceries",
+            "Amount": 607.77,
+            "Expenses": [
+              {
+                "Id": "dszfhKn79yoEIVAWaKAuz",
+                "ExpenseDate": "2024-12-12T18:30:00.000Z",
+                "Amount": 120.71,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "rDfx53BiHU0LKlYBv0fsQ",
+                "ExpenseDate": "2024-12-03T18:30:00.000Z",
+                "Amount": 118.27,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "0emlUwULRbNOFfFA8OQ6v",
+                "ExpenseDate": "2024-12-05T18:30:00.000Z",
+                "Amount": 368.79,
+                "Comment": "Grocery shopping"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "bcaFe69r5opoljWCWQ9-C",
+        "StartDate": "2025-01-01T18:30:00.000Z",
+        "EndDate": "2025-01-31T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "D1o8e6GFIg8PjYr7-qCSH",
+            "IncomeDate": "2025-01-01T18:30:00.000Z",
+            "Source": "Salary",
+            "Amount": 3169.5
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "vlFJNFYRJqHgvjIcCEJrV",
+            "Category": "Rent",
+            "Amount": 1254.04,
+            "Expenses": [
+              {
+                "Id": "JddtdXZ1WVjyPf-frfpGy",
+                "ExpenseDate": "2025-01-18T18:30:00.000Z",
+                "Amount": 38.16,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "wY2doHMbZemn5SWepXLfS",
+                "ExpenseDate": "2025-01-07T18:30:00.000Z",
+                "Amount": 119.97,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "OcMsHzaVj8YCSrVqgZclW",
+                "ExpenseDate": "2025-01-15T18:30:00.000Z",
+                "Amount": 308.61,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "gkLetAlBloUW4N2ilq14B",
+                "ExpenseDate": "2025-01-02T18:30:00.000Z",
+                "Amount": 413.0,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "4XKSDHa7k9U5APivy-6ab",
+                "ExpenseDate": "2025-01-19T18:30:00.000Z",
+                "Amount": 197.93,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "vbILr9_WXiiY6rxVMX7-l",
+                "ExpenseDate": "2025-01-14T18:30:00.000Z",
+                "Amount": 176.37,
+                "Comment": "Movie night"
+              }
+            ]
+          },
+          {
+            "Id": "DESPvW8sU3yQ7i7vEqDKa",
+            "Category": "Groceries",
+            "Amount": 1171.12,
+            "Expenses": [
+              {
+                "Id": "NYeT11L8Ic8OR3FiHK2Wo",
+                "ExpenseDate": "2025-01-10T18:30:00.000Z",
+                "Amount": 14.55,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "rmiS5AEc7Yyf_TpmxfiFo",
+                "ExpenseDate": "2025-01-27T18:30:00.000Z",
+                "Amount": 324.55,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "plg8JuX3JCbkWWQhPbvWk",
+                "ExpenseDate": "2025-01-07T18:30:00.000Z",
+                "Amount": 103.94,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "YfU6WGBw838uvhFO1IXQ3",
+                "ExpenseDate": "2025-01-10T18:30:00.000Z",
+                "Amount": 399.61,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "-xuxnXmclQFP7V9P09XDa",
+                "ExpenseDate": "2025-01-10T18:30:00.000Z",
+                "Amount": 167.5,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "HESo7quBoGTmBS8ONEU54",
+                "ExpenseDate": "2025-01-26T18:30:00.000Z",
+                "Amount": 160.97,
+                "Comment": "Utility bill"
+              }
+            ]
+          },
+          {
+            "Id": "VHwIWqfNP2RsvqHCxu-tt",
+            "Category": "Utilities",
+            "Amount": 1708.76,
+            "Expenses": [
+              {
+                "Id": "uVEkzQ5YsMLeSDhOWMTtU",
+                "ExpenseDate": "2025-01-13T18:30:00.000Z",
+                "Amount": 322.88,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "05VwbrwtHu343F7N62QEc",
+                "ExpenseDate": "2025-01-17T18:30:00.000Z",
+                "Amount": 366.34,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "S2f0_jzIVHIXLIWGLDWnO",
+                "ExpenseDate": "2025-01-01T18:30:00.000Z",
+                "Amount": 295.96,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "GXp2s2wZxrEF8eEnyuhLm",
+                "ExpenseDate": "2025-01-02T18:30:00.000Z",
+                "Amount": 323.58,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "WYaS1MGep7026VT_siV3l",
+                "ExpenseDate": "2025-01-14T18:30:00.000Z",
+                "Amount": 313.01,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "jAeVX0jXH4xi0fn9Yprkh",
+                "ExpenseDate": "2025-01-15T18:30:00.000Z",
+                "Amount": 86.99,
+                "Comment": "Transport cost"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "Sf-Wvh-QRhNaryqQN6fVs",
+        "StartDate": "2025-02-01T18:30:00.000Z",
+        "EndDate": "2025-02-28T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "ATW88WZLY3VpbKThEQ-iD",
+            "IncomeDate": "2025-02-01T18:30:00.000Z",
+            "Source": "Gift",
+            "Amount": 5271.48
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "d616F3MIdiMwQVdJLMEkQ",
+            "Category": "Rent",
+            "Amount": 566.7,
+            "Expenses": [
+              {
+                "Id": "Spj31rE2j7cITrH7SAVuA",
+                "ExpenseDate": "2025-02-20T18:30:00.000Z",
+                "Amount": 27.82,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "biHMcTXhTWLFIXjD8tyHf",
+                "ExpenseDate": "2025-02-20T18:30:00.000Z",
+                "Amount": 106.65,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "G8JrTmF-IaZLLYZyoqVHr",
+                "ExpenseDate": "2025-02-22T18:30:00.000Z",
+                "Amount": 432.23,
+                "Comment": "Doctor visit"
+              }
+            ]
+          },
+          {
+            "Id": "_T6vyhuZdsJlO21J5nhC4",
+            "Category": "Entertainment",
+            "Amount": 1785.66,
+            "Expenses": [
+              {
+                "Id": "-4px1jqWyiCQW4QrFDHcY",
+                "ExpenseDate": "2025-02-04T18:30:00.000Z",
+                "Amount": 391.49,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "yA12O4fWfkBNEOgiSPA2S",
+                "ExpenseDate": "2025-02-27T18:30:00.000Z",
+                "Amount": 386.89,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "1q2XtVrzPmq1WMUjeiUsM",
+                "ExpenseDate": "2025-02-20T18:30:00.000Z",
+                "Amount": 454.46,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "PyGWyfYJMCJ6Nlec43Z-X",
+                "ExpenseDate": "2025-02-07T18:30:00.000Z",
+                "Amount": 179.43,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "gQlgSpz_ry0uw9wjvpX5u",
+                "ExpenseDate": "2025-02-12T18:30:00.000Z",
+                "Amount": 373.39,
+                "Comment": "Grocery shopping"
+              }
+            ]
+          },
+          {
+            "Id": "lClbrDNrknWcJ0HTolgTJ",
+            "Category": "Healthcare",
+            "Amount": 529.32,
+            "Expenses": [
+              {
+                "Id": "vIp2iVGdR5p_6rKTXaL6Q",
+                "ExpenseDate": "2025-02-10T18:30:00.000Z",
+                "Amount": 221.34,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "fqMLR38Sjy-xuNsheJV0Y",
+                "ExpenseDate": "2025-02-18T18:30:00.000Z",
+                "Amount": 245.51,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "Qonxu5-dpGfkPQEH_jfbs",
+                "ExpenseDate": "2025-02-09T18:30:00.000Z",
+                "Amount": 62.47,
+                "Comment": "Doctor visit"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "8Bgm-IBddq7weDQHBl-k3",
+        "StartDate": "2025-03-01T18:30:00.000Z",
+        "EndDate": "2025-03-31T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "dX4D-vNux3wfjCjFlBtfO",
+            "IncomeDate": "2025-03-01T18:30:00.000Z",
+            "Source": "Investment",
+            "Amount": 2550.96
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "q9zO6ah8Mdv7MeUmzwhWx",
+            "Category": "Healthcare",
+            "Amount": 1089.78,
+            "Expenses": [
+              {
+                "Id": "CBrfzFa1hn2fM85xrLhnH",
+                "ExpenseDate": "2025-03-11T18:30:00.000Z",
+                "Amount": 58.28,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "bdO7jSb0zPtBSGKtMJZCa",
+                "ExpenseDate": "2025-03-12T18:30:00.000Z",
+                "Amount": 208.82,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "anKGd14qSzIMG7owqhMJe",
+                "ExpenseDate": "2025-03-24T18:30:00.000Z",
+                "Amount": 481.38,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "aLy7T0ylo6jExlyhd0mSR",
+                "ExpenseDate": "2025-03-13T18:30:00.000Z",
+                "Amount": 78.77,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "L7CyZMdEJLwDctaEiosQh",
+                "ExpenseDate": "2025-03-04T18:30:00.000Z",
+                "Amount": 235.53,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "u1z0zUoJi7mYi86YcRPag",
+                "ExpenseDate": "2025-03-26T18:30:00.000Z",
+                "Amount": 27.0,
+                "Comment": "Movie night"
+              }
+            ]
+          },
+          {
+            "Id": "OxBzZ9HIknzNB7N1mqDeF",
+            "Category": "Rent",
+            "Amount": 791.25,
+            "Expenses": [
+              {
+                "Id": "thkD6YAtzJzQLurF7ySf_",
+                "ExpenseDate": "2025-03-09T18:30:00.000Z",
+                "Amount": 71.21,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "IUntrd3zfXBIvlkncspZK",
+                "ExpenseDate": "2025-03-17T18:30:00.000Z",
+                "Amount": 307.52,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "lNUPGIlMg7et550phPIvn",
+                "ExpenseDate": "2025-03-22T18:30:00.000Z",
+                "Amount": 124.22,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "o0ZLPoXWsmRDipDMZtS4M",
+                "ExpenseDate": "2025-03-04T18:30:00.000Z",
+                "Amount": 156.47,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "46Sq3vaR1QmDVug85qHrK",
+                "ExpenseDate": "2025-03-20T18:30:00.000Z",
+                "Amount": 131.83,
+                "Comment": "Transport cost"
+              }
+            ]
+          },
+          {
+            "Id": "-2Qa-qEjDTn1Q92Wur0GQ",
+            "Category": "Entertainment",
+            "Amount": 875.99,
+            "Expenses": [
+              {
+                "Id": "lcg-Xhco3rsRSUC2v-9ZB",
+                "ExpenseDate": "2025-03-13T18:30:00.000Z",
+                "Amount": 209.97,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "zoo-uA9H9Yuo7ajyC58NE",
+                "ExpenseDate": "2025-03-13T18:30:00.000Z",
+                "Amount": 157.49,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "WOIIl8TEl3mn74q4EhkpE",
+                "ExpenseDate": "2025-03-02T18:30:00.000Z",
+                "Amount": 163.54,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "nCj58A9W6nb_f8Pb37qr0",
+                "ExpenseDate": "2025-03-11T18:30:00.000Z",
+                "Amount": 32.59,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "aIMLjmDRchqER3Ju1wC2W",
+                "ExpenseDate": "2025-03-08T18:30:00.000Z",
+                "Amount": 243.02,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "2OOZk0MaZ8n_KYbVlcVZR",
+                "ExpenseDate": "2025-03-20T18:30:00.000Z",
+                "Amount": 69.38,
+                "Comment": "Utility bill"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Id": "1_PPP5fkQ9z9ZKQ0pE3JP",
+        "StartDate": "2025-04-01T18:30:00.000Z",
+        "EndDate": "2025-04-30T18:30:00.000Z",
+        "Incomes": [
+          {
+            "Id": "mSjGttIEP9vNO79KY9bMb",
+            "IncomeDate": "2025-04-01T18:30:00.000Z",
+            "Source": "Investment",
+            "Amount": 6483.14
+          }
+        ],
+        "Expenses": [
+          {
+            "Id": "VMN796pyxTxpvaGmzXJEM",
+            "Category": "Utilities",
+            "Amount": 1189.27,
+            "Expenses": [
+              {
+                "Id": "mkg3wnF2gbgeJPG4P7njA",
+                "ExpenseDate": "2025-04-12T18:30:00.000Z",
+                "Amount": 345.88,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "CNl68waphhiVzcdYFzJGJ",
+                "ExpenseDate": "2025-04-15T18:30:00.000Z",
+                "Amount": 489.2,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "R3PMs8sUqZR2WE4rOMpNe",
+                "ExpenseDate": "2025-04-02T18:30:00.000Z",
+                "Amount": 109.28,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "RWi6Z4KaYkPm-RWHHAmiU",
+                "ExpenseDate": "2025-04-23T18:30:00.000Z",
+                "Amount": 233.43,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "miHxAjqcBGPkjlGzoQZWg",
+                "ExpenseDate": "2025-04-11T18:30:00.000Z",
+                "Amount": 11.48,
+                "Comment": "Transport cost"
+              }
+            ]
+          },
+          {
+            "Id": "KvWgKPLDEzec9y9sp_2Wz",
+            "Category": "Groceries",
+            "Amount": 1480.43,
+            "Expenses": [
+              {
+                "Id": "IhBQxNd6O-yorED6LI8Uw",
+                "ExpenseDate": "2025-04-21T18:30:00.000Z",
+                "Amount": 312.82,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "8UmGyaxYbykCIWCxZHXs9",
+                "ExpenseDate": "2025-04-16T18:30:00.000Z",
+                "Amount": 279.58,
+                "Comment": "Doctor visit"
+              },
+              {
+                "Id": "wU_iUMZ_xmGJ9SJpCosLD",
+                "ExpenseDate": "2025-04-01T18:30:00.000Z",
+                "Amount": 159.47,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "LVbMZ7Tauw5vtXzuzaTG9",
+                "ExpenseDate": "2025-04-21T18:30:00.000Z",
+                "Amount": 166.36,
+                "Comment": "Movie night"
+              },
+              {
+                "Id": "cpKK50uxAgOfm-iiNMyQ_",
+                "ExpenseDate": "2025-04-05T18:30:00.000Z",
+                "Amount": 451.2,
+                "Comment": "Transport cost"
+              },
+              {
+                "Id": "UfL9TsX8yYhB0JVsYcZHX",
+                "ExpenseDate": "2025-04-22T18:30:00.000Z",
+                "Amount": 111.0,
+                "Comment": "Transport cost"
+              }
+            ]
+          },
+          {
+            "Id": "HG_G57WcGLp5sy6io2n0J",
+            "Category": "Transportation",
+            "Amount": 358.02,
+            "Expenses": [
+              {
+                "Id": "-Dtp4jzxrYvvK1VwkglSf",
+                "ExpenseDate": "2025-04-19T18:30:00.000Z",
+                "Amount": 225.95,
+                "Comment": "Grocery shopping"
+              },
+              {
+                "Id": "6GFZO1_3dLysIxsCwmAzp",
+                "ExpenseDate": "2025-04-26T18:30:00.000Z",
+                "Amount": 59.19,
+                "Comment": "Utility bill"
+              },
+              {
+                "Id": "R5ke1ZlQtG2tabteQnXjU",
+                "ExpenseDate": "2025-04-12T18:30:00.000Z",
+                "Amount": 72.88,
+                "Comment": "Grocery shopping"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "setting": {
+    "currency": "USD",
+    "theme": "dark"
+  }
+}

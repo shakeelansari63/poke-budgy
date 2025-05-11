@@ -48,7 +48,7 @@ const BarGraph = ({ data, width, height, showLine }: BarGraphProp) => {
                 showLine={showLine ?? true}
                 hideRules
                 height={height ?? 120}
-                {...(width && { width: width })}
+                {...(width && { parentWidth: width })}
                 maxValue={maxValWithBufferSpace}
                 xAxisTextNumberOfLines={2}
                 formatYLabel={formatY}
