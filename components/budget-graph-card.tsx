@@ -1,13 +1,16 @@
 import { View } from "react-native";
 import { Card, Text, Icon, ProgressBar, useTheme } from "react-native-paper";
 import React from "react";
-import { useSelector } from "react-redux";
-import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
 import colors from "../constants/colors";
 import { dateOption } from "../constants/app-constants";
 import DateChip from "./date-chip";
 import { useCurrencySymbol } from "../hooks/use-settings";
+
+interface BudgetGraphProps {
+    currentBudget: Budget | null;
+    isActive: boolean;
+}
 
 interface HorizontalBarProps {
     label: string;
@@ -50,10 +53,9 @@ const HorizontalBar = ({ label, value, barColor, visible }: HorizontalBarProps) 
     );
 };
 
-const BudgetGraph = () => {
+const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
     const theme = useTheme();
     const currencySymbol = useCurrencySymbol();
-    const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
     const totalIncome = currentBudget?.Incomes.reduce((acc, inc) => acc + inc.Amount, 0) ?? 0;
     const totalBudgeted = currentBudget?.Expenses.reduce((acc, exp) => acc + exp.Amount, 0) ?? 0;
     const totalSpent =

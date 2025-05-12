@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import React from "react";
-import { Card, IconButton, useTheme } from "react-native-paper";
+import { Card, useTheme } from "react-native-paper";
 import { ExpenseCategory, Expense } from "../model/expense";
 import { useDispatch } from "react-redux";
 import { deleteExpense } from "../storage/slices/budget-slice";
@@ -11,9 +11,10 @@ import SwipeQuickActions, { SwipeQuickActionData } from "./swipe-quick-actions";
 
 interface BudgetSpendSectionProps {
     expenseCategory: ExpenseCategory;
+    isEditable: boolean;
 }
 
-const BudgetSpendSection = ({ expenseCategory }: BudgetSpendSectionProps) => {
+const BudgetSpendSection = ({ expenseCategory, isEditable }: BudgetSpendSectionProps) => {
     const [expenseToDelete, setExpenseToDelete] = React.useState<Expense | null>(null);
     const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
     const theme = useTheme();
@@ -49,6 +50,7 @@ const BudgetSpendSection = ({ expenseCategory }: BudgetSpendSectionProps) => {
                                         expense={item}
                                         categoryId={expenseCategory.Id}
                                         isLast={index === expenseCategory.Expenses.length - 1}
+                                        isEditable={isEditable}
                                     />
                                 )}
                                 enableOpenMultipleRows={false}
@@ -60,7 +62,7 @@ const BudgetSpendSection = ({ expenseCategory }: BudgetSpendSectionProps) => {
                                             backgroundColor: theme.colors.errorContainer,
                                         },
                                     ];
-                                    return <SwipeQuickActions data={data} />;
+                                    return isEditable && <SwipeQuickActions data={data} />;
                                 }}
                             />
                         </Card.Content>

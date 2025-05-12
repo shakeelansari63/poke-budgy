@@ -88,7 +88,7 @@ const EditBudgetSpendDialog = ({ expense, categoryId, sheetRef }: EditBudgetSpen
                             keyboardType="numeric"
                             defaultValue={expenseAmount === 0 ? "" : expenseAmount.toString()}
                             onChangeText={(text) => {
-                                const number = text.replace(/[^0-9]/g, "");
+                                const number = text.replace(/[^0-9\.]/g, "");
                                 const updateVal = number === "" ? 0 : parseFloat(number);
                                 setDirty(true);
                                 setExpenseAmount(updateVal);

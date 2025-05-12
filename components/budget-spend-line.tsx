@@ -8,16 +8,17 @@ import { useCurrencySymbol } from "../hooks/use-settings";
 interface BudgetSpendLineProp {
     expense: Expense;
     categoryId: string;
+    isEditable: boolean;
     isLast?: boolean;
 }
 
-const BudgetSpendLine = ({ expense, categoryId, isLast }: BudgetSpendLineProp) => {
+const BudgetSpendLine = ({ expense, categoryId, isLast, isEditable }: BudgetSpendLineProp) => {
     const sheetRef = React.useRef<BottomSheetModal>(null);
     const currencySymbol = useCurrencySymbol();
 
     return (
         <>
-            <EditBudgetSpendDialog expense={expense} categoryId={categoryId} sheetRef={sheetRef} />
+            {isEditable && <EditBudgetSpendDialog expense={expense} categoryId={categoryId} sheetRef={sheetRef} />}
             <List.Item
                 title={expense.Comment}
                 left={() => (
@@ -26,7 +27,7 @@ const BudgetSpendLine = ({ expense, categoryId, isLast }: BudgetSpendLineProp) =
                     </Chip>
                 )}
                 onPress={() => {
-                    sheetRef.current?.present();
+                    isEditable && sheetRef.current?.present();
                 }}
             />
             {!isLast && <Divider />}

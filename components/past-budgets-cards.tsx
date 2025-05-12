@@ -10,6 +10,7 @@ import NewBudgetDialog from "./new-budget-dialog";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useCurrencySymbol } from "../hooks/use-settings";
 import ConfirmationDialog from "./confirmation-dialog";
+import { useRouter } from "expo-router";
 
 interface PastBudgetCardProp {
     budget: Budget;
@@ -21,6 +22,7 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
     const dispatch = useDispatch();
     const sheetRef = React.useRef<BottomSheetModal | null>(null);
     const [deleteModalVisible, setDeleteModalVisible] = React.useState<boolean>(false);
+    const router = useRouter();
 
     const startDate: string =
         typeof budget.StartDate == "string"
@@ -41,7 +43,10 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
 
     return (
         <>
-            <Card style={{ margin: 10 }}>
+            <Card
+                style={{ margin: 10 }}
+                onPress={() => router.navigate({ pathname: "/past-budget-view", params: { budgetId: budget.Id } })}
+            >
                 <Card.Content>
                     <ScrollView>
                         <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 20 }}>

@@ -1,7 +1,5 @@
 import React from "react";
 import { Text, Card, IconButton, Avatar, useTheme } from "react-native-paper";
-import { useSelector } from "react-redux";
-import { StoreState } from "../model/store";
 import { Budget } from "../model/budget";
 import IncomeLine from "./income-line";
 import EditIncomeDialog from "./edit-income-dialog";
@@ -14,9 +12,13 @@ import ConfirmationDialog from "./confirmation-dialog";
 import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
 import SwipeQuickActions, { SwipeQuickActionData } from "./swipe-quick-actions";
 
-const IncomeSection = () => {
+interface IncomeSectionProps {
+    currentBudget: Budget | null;
+    isActive: boolean;
+}
+
+const IncomeSection = ({ currentBudget, isActive }: IncomeSectionProps) => {
     const currencySymbol = useCurrencySymbol();
-    const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
     const totalIncome = currentBudget?.Incomes.reduce((acc, income) => acc + income.Amount, 0);
     const sheetRef = React.useRef<BottomSheetModal>(null);
     const [incomeToDelete, setIncomeToDelete] = React.useState<Income | null>(null);
@@ -46,7 +48,8 @@ const IncomeSection = () => {
                     left={() => <Avatar.Icon icon="cash" size={40} />}
                     right={() => {
                         return (
-                            currentBudget !== null && (
+                            currentBudget !== null &&
+                            isActive && (
                                 <IconButton
                                     icon="plus"
                                     onPress={() => {
@@ -72,6 +75,7 @@ const IncomeSection = () => {
                                     key={item.Id}
                                     income={item}
                                     isLast={index === currentBudget.Incomes.length - 1}
+                                    isEditable={isActive}
                                 />
                             )}
                             enableOpenMultipleRows={false}
@@ -83,7 +87,7 @@ const IncomeSection = () => {
                                         backgroundColor: theme.colors.errorContainer,
                                     },
                                 ];
-                                return <SwipeQuickActions data={data} />;
+                                return isActive && <SwipeQuickActions data={data} />;
                             }}
                         />
                     )}

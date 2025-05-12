@@ -14,9 +14,13 @@ import ConfirmationDialog from "./confirmation-dialog";
 import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
 import SwipeQuickActions, { SwipeQuickActionData } from "./swipe-quick-actions";
 
-const ExpenseSection = () => {
+interface ExpenseSectionProps {
+    currentBudget: Budget | null;
+    isActive: boolean;
+}
+
+const ExpenseSection = ({ currentBudget, isActive }: ExpenseSectionProps) => {
     const currencySymbol = useCurrencySymbol();
-    const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
     const totalBudgeted = currentBudget?.Expenses.reduce((acc, category) => acc + category.Amount, 0);
     const sheetRef = React.useRef<BottomSheetModal>(null);
     const [expenseCategoryToDelete, setExpenseCategoryToDelete] = React.useState<ExpenseCategory | null>(null);
@@ -46,7 +50,8 @@ const ExpenseSection = () => {
                     left={() => <Avatar.Icon icon="basket" size={40} />}
                     right={() => {
                         return (
-                            currentBudget !== null && (
+                            currentBudget !== null &&
+                            isActive && (
                                 <IconButton
                                     icon="plus"
                                     onPress={() => {
@@ -69,8 +74,10 @@ const ExpenseSection = () => {
                             keyExtractor={(expense: ExpenseCategory) => expense.Id}
                             renderItem={({ item, index }: { item: ExpenseCategory; index: number }) => (
                                 <ExpenseCategoryLine
-                                    budget={item}
+                                    expenseCategory={item}
+                                    budgetId={currentBudget.Id}
                                     isLast={index === currentBudget.Expenses.length - 1}
+                                    isEditable={isActive}
                                 />
                             )}
                             enableOpenMultipleRows={false}
@@ -82,7 +89,7 @@ const ExpenseSection = () => {
                                         backgroundColor: theme.colors.errorContainer,
                                     },
                                 ];
-                                return <SwipeQuickActions data={data} />;
+                                return isActive && <SwipeQuickActions data={data} />;
                             }}
                         />
                     )}

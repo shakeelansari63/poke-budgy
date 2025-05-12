@@ -8,16 +8,17 @@ import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface IncomeProps {
     income: Income;
+    isEditable: boolean;
     isLast?: boolean;
 }
 
-const IncomeLine = ({ income, isLast }: IncomeProps) => {
+const IncomeLine = ({ income, isLast, isEditable }: IncomeProps) => {
     const sheetRef = useRef<BottomSheetModal>(null);
     const currencySymbol = useCurrencySymbol();
 
     return (
         <>
-            <EditIncomeDialog income={income} sheetRef={sheetRef} />
+            {isEditable && <EditIncomeDialog income={income} sheetRef={sheetRef} />}
             <List.Item
                 title={income.Source}
                 left={() => (
@@ -25,7 +26,7 @@ const IncomeLine = ({ income, isLast }: IncomeProps) => {
                         {currencySymbol} {income.Amount.toFixed(2)}
                     </Chip>
                 )}
-                onPress={() => sheetRef.current?.present()}
+                onPress={() => isEditable && sheetRef.current?.present()}
             />
             <View style={{ padding: 5 }} />
             {!isLast && (

@@ -1,11 +1,11 @@
 import { useColorScheme } from "react-native";
 import { ThemeProvider } from "@react-navigation/native";
-import { PaperProvider, Portal } from "react-native-paper";
+import { PaperProvider, Portal, useTheme } from "react-native-paper";
 import { PaperDark, PaperLight } from "../constants/theme";
 import { Provider, useDispatch } from "react-redux";
 import store from "../storage/store";
 import { StatusBar, StatusBarStyle } from "expo-status-bar";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as SplashScreen from "expo-splash-screen";
@@ -67,16 +67,7 @@ const AppMain = () => {
                     <Portal.Host>
                         <GestureHandlerRootView>
                             <BottomSheetModalProvider>
-                                <Stack
-                                    screenOptions={{
-                                        headerTitleAlign: "center",
-                                    }}
-                                >
-                                    <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                                    <Stack.Screen name="settings" />
-                                    <Stack.Screen name="budget-expense" />
-                                    <Stack.Screen name="+not-found" />
-                                </Stack>
+                                <AppRouterStack />
                             </BottomSheetModalProvider>
                         </GestureHandlerRootView>
                     </Portal.Host>
@@ -84,5 +75,21 @@ const AppMain = () => {
                 <StatusBar style={statusBarStyle} />
             </ThemeProvider>
         </PaperProvider>
+    );
+};
+
+const AppRouterStack = () => {
+    return (
+        <Stack
+            screenOptions={{
+                headerTitleAlign: "center",
+            }}
+        >
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="settings" />
+            <Stack.Screen name="budget-expense" />
+            <Stack.Screen name="past-budget-view" />
+            <Stack.Screen name="+not-found" />
+        </Stack>
     );
 };
