@@ -10,7 +10,7 @@ export default function History() {
     const sortedBudgets = [...pastBudgets].sort((a, b) => {
         const aDate = new Date(a.StartDate);
         const bDate = new Date(b.StartDate);
-        return aDate.getTime() - bDate.getTime();
+        return bDate.getTime() - aDate.getTime();
     });
 
     return (

@@ -17,7 +17,7 @@ export default function TabLayout() {
                     <Avatar.Image
                         size={48}
                         source={require("../../assets/images/icon-circle.png")}
-                        style={{ marginLeft: 10 }}
+                        style={{ backgroundColor: "transparent", marginLeft: 10 }}
                     />
                 ),
                 tabBarStyle: Platform.select({

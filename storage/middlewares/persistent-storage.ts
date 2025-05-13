@@ -43,6 +43,7 @@ export const persistStore = (store: any) => (next: any) => (action: any) => {
 
         case "setting/setCurrency":
         case "setting/setTheme":
+        case "setting/setColor":
             const settings: Settings = (store.getState() as StoreState).setting;
             DataStore.setSettings(settings);
             break;

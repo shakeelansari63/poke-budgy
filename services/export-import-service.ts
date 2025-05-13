@@ -5,6 +5,7 @@ import { appName, backupMimeType } from "../constants/app-constants";
 import { DataStore } from "../storage/persistent-store";
 import { Platform } from "react-native";
 import { StoreState } from "../model/store";
+import { ThemeColors } from "@/constants/colors";
 
 export const exportData = async (): Promise<boolean> => {
     const currentTs = new Date().toISOString().substring(0, 19).replaceAll(":", "-").replaceAll("T", "-");
@@ -50,7 +51,7 @@ const getCurrentState = (): string => {
             activeBudget: DataStore.getActiveBudget(),
             pastBudgets: DataStore.getInactiveBudgets(),
         },
-        setting: DataStore.getSettings() ?? { currency: "USD", theme: "device" },
+        setting: DataStore.getSettings() ?? { currency: "USD", theme: "device", color: ThemeColors[0].base },
     };
 
     return JSON.stringify(currentState);

@@ -1,5 +1,5 @@
-import { ScrollView } from "react-native";
-import { Card, Button, useTheme } from "react-native-paper";
+import { ScrollView, View } from "react-native";
+import { Card, Button, useTheme, IconButton } from "react-native-paper";
 import React from "react";
 import { useLayoutEffect } from "react";
 import { useNavigation } from "expo-router";
@@ -9,18 +9,21 @@ import { StoreState } from "../model/store";
 import { Dropdown } from "react-native-paper-dropdown";
 import { Currencies } from "../constants/currencies";
 import { useDispatch } from "react-redux";
-import { setCurrency, setTheme } from "../storage/slices/settings-slice";
+import { setCurrency, setTheme, setColor } from "../storage/slices/settings-slice";
 import { resetStore, loadBudgetFromStore } from "../storage/slices/budget-slice";
 import { loadSettingsFromStore } from "../storage/slices/settings-slice";
 import SettingMenuLine from "../components/setting-menu-line";
 import ConfirmationDialog from "../components/confirmation-dialog";
 import { exportData, importData } from "../services/export-import-service";
 import AlertViewer, { AlertType } from "../components/alert-viewer";
+import { ThemeColors } from "@/constants/colors";
+import { useCurrentColor } from "@/hooks/use-settings";
 
 const SettingsScreen = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     const theme = useTheme();
+    const currColor = useCurrentColor().toUpperCase();
 
     const [resetDataVisible, setResetDataVisible] = React.useState<boolean>(false);
     const [alertVisible, setAlertVisible] = React.useState<boolean>(false);
@@ -113,7 +116,6 @@ const SettingsScreen = () => {
                         <SettingMenuLine
                             icon="brightness-6"
                             settingName="Theme"
-                            noDivider={true}
                             settingNode={
                                 <Dropdown
                                     label="Theme"
@@ -124,6 +126,30 @@ const SettingsScreen = () => {
                                     mode="outlined"
                                     hideMenuHeader={true}
                                 />
+                            }
+                        />
+                        <SettingMenuLine
+                            icon="format-color-fill"
+                            settingName="Colors"
+                            noDivider={true}
+                            settingNode={<View />}
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                                    {ThemeColors.map((col) => (
+                                        <IconButton
+                                            containerColor={col.base}
+                                            iconColor={currColor === col.base.toUpperCase() ? "white" : col.base}
+                                            icon="check"
+                                            size={20}
+                                            mode="contained"
+                                            key={col.base}
+                                            onPress={() => dispatch(setColor(col.base))}
+                                        />
+                                    ))}
+                                </View>
                             }
                         />
                     </Card.Content>

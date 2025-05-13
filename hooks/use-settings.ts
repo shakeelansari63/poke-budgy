@@ -22,3 +22,9 @@ export const useCurrentTheme = () => {
 
     return settings.theme;
 };
+
+export const useCurrentColor = () => {
+    const settings = useSelector<StoreState, Settings>((state) => state.setting);
+
+    return settings.color;
+};
