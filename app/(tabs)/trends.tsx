@@ -1,5 +1,5 @@
 import { SectionList, Dimensions, View } from "react-native";
-import { Card, Text } from "react-native-paper";
+import { Card } from "react-native-paper";
 import { Dropdown } from "react-native-paper-dropdown";
 import React from "react";
 import { Period } from "../../constants/enums";
@@ -15,6 +15,7 @@ import { BudgetState, StoreState } from "../../model/store";
 import { Budget } from "../../model/budget";
 import BarGraph from "../../components/bar-graph";
 import PieGraph from "../../components/pie-graph";
+import SafeView from "@/components/safe-area-view";
 
 const Trends = () => {
     const trendOptions = [
@@ -190,12 +191,14 @@ const Trends = () => {
     }
 
     return (
-        <SectionList
-            sections={sections}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => item.node}
-            showsVerticalScrollIndicator={false}
-        />
+        <SafeView except={["bottom"]}>
+            <SectionList
+                sections={sections}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => item.node}
+                showsVerticalScrollIndicator={false}
+            />
+        </SafeView>
     );
 };
 

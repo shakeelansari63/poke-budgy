@@ -110,7 +110,6 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
                     </Button>
                 </Card.Actions>
             </Card>
-            <Divider style={{ marginVertical: 5 }} />
             <NewBudgetDialog cloneId={budget.Id} sheetRef={sheetRef} />
             <ConfirmationDialog
                 visible={deleteModalVisible}

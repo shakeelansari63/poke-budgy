@@ -1,8 +1,6 @@
-import { useNavigation, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { SectionList, View } from "react-native";
-import { IconButton } from "react-native-paper";
 import React from "react";
-import { useLayoutEffect } from "react";
 import { ExpenseCategory } from "../model/expense";
 
 import FabBudgetPage from "../components/fab-budget-page";
@@ -14,10 +12,13 @@ import { Budget } from "../model/budget";
 import EditExpenseCategoryDialog from "../components/edit-expense-category-dialog";
 import BudgetSpendSummarySection from "@/components/budget-spend-summary-section";
 import BudgetSpendSection from "@/components/budget-spend-section";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import TopAppBar from "@/components/top-app-bar";
+import { useRouter } from "expo-router";
 
 const BudgetExpenses = () => {
-    const navigation = useNavigation();
     const { budgetId, categoryId } = useLocalSearchParams() as { budgetId: string; categoryId: string };
+    const router = useRouter();
 
     const sheetRef = React.useRef<BottomSheetModal>(null);
     const allBudgets = useSelector<StoreState, BudgetState>((state) => state.budget);
@@ -39,15 +40,6 @@ const BudgetExpenses = () => {
         Expenses: [],
     };
 
-    const AddButton = <IconButton icon="pencil" size={24} onPress={() => sheetRef.current?.present()} />;
-
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            title: expenseCategory.Category,
-            headerRight: () => isEditable && AddButton,
-        });
-    }, [navigation]);
-
     const sections = [
         {
             data: [{ id: 0, node: <BudgetSpendSummarySection expenseCategory={expenseCategory} /> }],
@@ -55,10 +47,19 @@ const BudgetExpenses = () => {
         {
             data: [{ id: 1, node: <BudgetSpendSection expenseCategory={expenseCategory} isEditable={isEditable} /> }],
         },
+        {
+            data: [{ id: 2, node: <View style={{ paddingBottom: useSafeAreaInsets().bottom }} /> }],
+        },
     ];
 
     return (
         <>
+            <TopAppBar
+                backAction={router.back}
+                rightIcon="pencil"
+                rightAction={() => sheetRef.current?.present()}
+                title={expenseCategory.Category}
+            />
             {isEditable && <EditExpenseCategoryDialog sheetRef={sheetRef} expenseCat={expenseCategory} />}
             <SectionList
                 sections={sections}

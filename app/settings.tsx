@@ -18,9 +18,13 @@ import { exportData, importData } from "../services/export-import-service";
 import AlertViewer, { AlertType } from "../components/alert-viewer";
 import { ThemeColors } from "@/constants/colors";
 import { useCurrentColor } from "@/hooks/use-settings";
+import SafeView from "@/components/safe-area-view";
+import TopAppBar from "@/components/top-app-bar";
+import { useRouter } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SettingsScreen = () => {
-    const navigation = useNavigation();
+    const router = useRouter();
     const dispatch = useDispatch();
     const theme = useTheme();
     const currColor = useCurrentColor().toUpperCase();
@@ -31,10 +35,6 @@ const SettingsScreen = () => {
     const [alertType, setAlertType] = React.useState<AlertType>("info");
 
     const settings: Settings = useSelector<StoreState, Settings>((state) => state.setting);
-
-    useLayoutEffect(() => {
-        navigation.setOptions({ headerTitle: "Settings" });
-    }, []);
 
     const currencies = Currencies.map((currency) => {
         return {
@@ -94,7 +94,8 @@ const SettingsScreen = () => {
 
     return (
         <>
-            <ScrollView>
+            <TopAppBar backAction={router.back} title="Settings" />
+            <ScrollView style={{ paddingBottom: useSafeAreaInsets().bottom }}>
                 <Card style={{ margin: 10 }}>
                     <Card.Title title="App Settings" titleVariant="titleLarge" />
                     <Card.Content>
@@ -184,6 +185,267 @@ const SettingsScreen = () => {
                             }
                         />
 
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        {/* THis is for testing */}
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
+                        <SettingMenuLine
+                            noDivider={true}
+                            settingNode={
+                                <Button
+                                    icon="delete-forever"
+                                    onPress={() => setResetDataVisible(true)}
+                                    buttonColor={theme.colors.errorContainer}
+                                    textColor={theme.colors.onErrorContainer}
+                                >
+                                    Reset all Data
+                                </Button>
+                            }
+                        />
                         <SettingMenuLine
                             noDivider={true}
                             settingNode={

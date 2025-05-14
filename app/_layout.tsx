@@ -86,10 +86,10 @@ const AppRouterStack = () => {
     return (
         <Stack
             screenOptions={{
-                headerTitleAlign: "center",
+                headerShown: false,
             }}
         >
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="(tabs)" />
             <Stack.Screen name="settings" />
             <Stack.Screen name="budget-expense" />
             <Stack.Screen name="past-budget-view" />

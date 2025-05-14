@@ -4,47 +4,51 @@ import IncomeSection from "../../components/income-section";
 import ExpenseSection from "../../components/expense-section";
 import FabMainPage from "../../components/fab-main-page";
 import SettingsMenu from "../../components/settings-menu";
-import { useNavigation } from "expo-router";
-import { useLayoutEffect, useState } from "react";
-import { IconButton } from "react-native-paper";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { StoreState } from "../../model/store";
 import { Budget } from "../../model/budget";
+import TopAppBar from "@/components/top-app-bar";
+import { Avatar } from "react-native-paper";
 
-const EmptySpace = () => <View style={{ padding: 50 }}></View>;
+const EmptySpace = () => <View style={{ padding: 5 }}></View>;
 
 export default function Home() {
-    const navigation = useNavigation();
     const [menuVisible, setMenuVisible] = useState<boolean>(false);
-    const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
-
     const toggelMenuVisible = () => setMenuVisible(!menuVisible);
 
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            headerRight: () => <IconButton icon="dots-vertical" size={24} onPress={toggelMenuVisible} />,
-        });
-    }, [navigation]);
+    const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
 
     const sections = [
         {
-            data: [{ id: 0, node: <BudgetGraph currentBudget={currentBudget} isActive={true} /> }],
+            data: [{ id: 1, node: <BudgetGraph currentBudget={currentBudget} isActive={true} /> }],
         },
         {
-            data: [{ id: 1, node: <IncomeSection currentBudget={currentBudget} isActive={true} /> }],
+            data: [{ id: 2, node: <IncomeSection currentBudget={currentBudget} isActive={true} /> }],
         },
         {
-            data: [{ id: 2, node: <ExpenseSection currentBudget={currentBudget} isActive={true} /> }],
+            data: [{ id: 3, node: <ExpenseSection currentBudget={currentBudget} isActive={true} /> }],
         },
 
         {
-            data: [{ id: 3, node: <EmptySpace /> }],
+            data: [{ id: 4, node: <EmptySpace /> }],
         },
     ];
 
     return (
         <>
             <SettingsMenu visible={menuVisible} setVisible={setMenuVisible} />
+            <TopAppBar
+                rightIcon="dots-vertical"
+                rightAction={toggelMenuVisible}
+                leftComponent={
+                    <Avatar.Image
+                        size={48}
+                        source={require("../../assets/images/icon-circle.png")}
+                        style={{ backgroundColor: "transparent" }}
+                    />
+                }
+            />
             <SectionList
                 sections={sections}
                 keyExtractor={(item) => item.id.toString()}

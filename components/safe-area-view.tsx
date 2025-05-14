@@ -4,15 +4,16 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface SafeViewProps {
     children: React.ReactNode | React.ReactNode[];
+    except?: ("left" | "right" | "top" | "bottom")[];
 }
 
-const SafeView = ({ children }: SafeViewProps) => {
+const SafeView = ({ children, except }: SafeViewProps) => {
     const insets = useSafeAreaInsets();
 
-    const top = typeof insets.top === "number" ? insets.top : 0;
-    const bottom = typeof insets.bottom === "number" ? insets.bottom : 0;
-    const left = typeof insets.left === "number" ? insets.left : 0;
-    const right = typeof insets.right === "number" ? insets.right : 0;
+    const top = !except?.includes("top") ? insets.top : 0;
+    const bottom = !except?.includes("bottom") ? insets.bottom : 0;
+    const left = !except?.includes("left") ? insets.left : 0;
+    const right = !except?.includes("right") ? insets.right : 0;
 
     return (
         <View
