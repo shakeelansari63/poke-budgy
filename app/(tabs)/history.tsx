@@ -1,5 +1,5 @@
 import { SectionList, View } from "react-native";
-import { Card, Divider, Text, Icon, ProgressBar } from "react-native-paper";
+import { Card, Divider, Text, Icon, useTheme } from "react-native-paper";
 import { useSelector } from "react-redux";
 import { StoreState } from "../../model/store";
 import { Budget } from "../../model/budget";
@@ -7,8 +7,17 @@ import PastBudgetCard from "../../components/past-budgets-cards";
 import SafeView from "@/components/safe-area-view";
 
 const SectionHeader = ({ label }: { label: string }) => {
+    const theme = useTheme();
     return (
-        <View style={{ margin: 10, flexDirection: "row", alignItems: "center" }}>
+        <View
+            style={{
+                paddingHorizontal: 10,
+                paddingVertical: 15,
+                flexDirection: "row",
+                alignItems: "center",
+                backgroundColor: theme.colors.background,
+            }}
+        >
             <Icon source="chevron-double-down" size={30} />
             <Text variant="titleLarge">{label}</Text>
         </View>

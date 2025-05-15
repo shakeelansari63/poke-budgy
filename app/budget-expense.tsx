@@ -56,8 +56,8 @@ const BudgetExpenses = () => {
         <>
             <TopAppBar
                 backAction={router.back}
-                rightIcon="pencil"
-                rightAction={() => sheetRef.current?.present()}
+                rightIcon={isEditable ? "pencil" : undefined}
+                rightAction={isEditable ? () => sheetRef.current?.present() : undefined}
                 title={expenseCategory.Category}
             />
             {isEditable && <EditExpenseCategoryDialog sheetRef={sheetRef} expenseCat={expenseCategory} />}

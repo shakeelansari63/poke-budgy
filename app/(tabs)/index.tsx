@@ -9,7 +9,8 @@ import { useSelector } from "react-redux";
 import { StoreState } from "../../model/store";
 import { Budget } from "../../model/budget";
 import TopAppBar from "@/components/top-app-bar";
-import { Avatar } from "react-native-paper";
+import { Avatar, Text } from "react-native-paper";
+import { appName } from "@/constants/app-constants";
 
 const EmptySpace = () => <View style={{ padding: 5 }}></View>;
 
@@ -42,11 +43,15 @@ export default function Home() {
                 rightIcon="dots-vertical"
                 rightAction={toggelMenuVisible}
                 leftComponent={
-                    <Avatar.Image
-                        size={48}
-                        source={require("../../assets/images/icon-circle.png")}
-                        style={{ backgroundColor: "transparent" }}
-                    />
+                    <View style={{ flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
+                        <Avatar.Image
+                            size={48}
+                            source={require("../../assets/images/icon-circle.png")}
+                            style={{ backgroundColor: "transparent", marginRight: 5 }}
+                        />
+
+                        <Text variant="titleLarge">{appName}</Text>
+                    </View>
                 }
             />
             <SectionList
