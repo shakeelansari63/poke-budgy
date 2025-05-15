@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from typing import List
 from nanoid import generate
 import random
 import json
@@ -7,10 +6,12 @@ import json
 
 # Helper functions
 def random_income_source():
-    return random.choice(["Salary", "Freelance", "Investment", "Gift", "Bonus"])
+    return random.choice(
+        ["Salary", "Freelance", "Investment", "Gift", "Bonus", "Stocks"]
+    )
 
 
-def random_expense_category():
+def random_expense_category() -> str:
     return random.choice(
         [
             "Rent",
@@ -19,6 +20,9 @@ def random_expense_category():
             "Entertainment",
             "Transportation",
             "Healthcare",
+            "Insurance",
+            "Gift",
+            "Maid",
         ]
     )
 
@@ -46,6 +50,10 @@ def generate_expense(expense_date):
                 "Utility bill",
                 "Transport cost",
                 "Doctor visit",
+                "Gifted",
+                "Insurance Premium",
+                "School Fees",
+                "Mortgage",
             ]
         ),
     }
