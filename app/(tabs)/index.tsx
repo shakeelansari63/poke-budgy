@@ -12,7 +12,7 @@ import TopAppBar from "@/components/top-app-bar";
 import { Avatar, Text } from "react-native-paper";
 import { appName } from "@/constants/app-constants";
 
-const EmptySpace = () => <View style={{ padding: 5 }}></View>;
+const EmptySpace = () => <View style={{ padding: 25 }}></View>;
 
 export default function Home() {
     const [menuVisible, setMenuVisible] = useState<boolean>(false);

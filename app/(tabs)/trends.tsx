@@ -1,5 +1,5 @@
-import { SectionList, Dimensions, View } from "react-native";
-import { Card } from "react-native-paper";
+import { SectionList, Dimensions } from "react-native";
+import { Card, Text } from "react-native-paper";
 import { Dropdown } from "react-native-paper-dropdown";
 import React from "react";
 import { Period } from "../../constants/enums";
@@ -66,28 +66,11 @@ const Trends = () => {
 
     const sections: { data: { id: number; node: React.ReactElement }[] }[] = [];
 
-    if (periodBudgets.length <= 0 || (!incomeAvailable && !expenseCatAvailable && !spentData && !top5BudgetsAvailable))
+    if (allBudgets.pastBudgets.length > 0)
         sections.push({
             data: [
                 {
-                    id: 0,
-                    node: (
-                        <Card style={{ margin: 10 }}>
-                            <Card.Title
-                                title="No Data available"
-                                titleVariant="titleLarge"
-                                subtitle="Create new budgets to see trends here"
-                            />
-                        </Card>
-                    ),
-                },
-            ],
-        });
-    else {
-        sections.push({
-            data: [
-                {
-                    id: 0,
+                    id: sections.length,
                     node: (
                         <Card style={{ margin: 10 }}>
                             <Card.Content>
@@ -105,6 +88,23 @@ const Trends = () => {
             ],
         });
 
+    if (periodBudgets.length <= 0 || (!incomeAvailable && !expenseCatAvailable && !spentData && !top5BudgetsAvailable))
+        sections.push({
+            data: [
+                {
+                    id: sections.length,
+                    node: (
+                        <Card style={{ margin: 10 }}>
+                            <Card.Title title="No Data available" titleVariant="titleLarge" />
+                            <Card.Content>
+                                <Text>Create new budgets or change period to see trends here</Text>
+                            </Card.Content>
+                        </Card>
+                    ),
+                },
+            ],
+        });
+    else {
         // Show Top 5 Budgets Graph
         if (top5BudgetsAvailable)
             sections.push({

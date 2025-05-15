@@ -112,7 +112,7 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
                         <DateChip>From: {startDate ?? ""}</DateChip>
                         <DateChip>To: {endDate ?? ""}</DateChip>
                     </View>
-                    <Text variant="headlineSmall">Monthly Saving</Text>
+                    <Text variant="headlineSmall">Savings</Text>
                     <Text variant="displaySmall">
                         {currencySymbol} {totalSaving.toFixed(2)}
                     </Text>
