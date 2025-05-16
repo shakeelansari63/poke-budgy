@@ -1,3 +1,9 @@
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "nanoid",
+# ]
+# ///
 from datetime import datetime, timedelta
 from nanoid import generate
 import random
@@ -113,7 +119,7 @@ budgets = generate_monthly_budgets(1, 2024, 5, 2025)
 
 store_state = {
     "budget": {"activeBudget": budgets[-1], "pastBudgets": budgets[:-1]},
-    "setting": {"currency": "USD", "theme": "dark"},
+    "setting": {"currency": "USD", "theme": "dark", "color": "#4f378b"},
 }
 
 # Print or save the result
