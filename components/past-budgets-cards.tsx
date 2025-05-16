@@ -44,7 +44,7 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
     return (
         <>
             <Card
-                style={{ margin: 10 }}
+                style={{ marginVertical: 10, marginHorizontal: 20 }}
                 onPress={() => router.navigate({ pathname: "/past-budget-view", params: { budgetId: budget.Id } })}
             >
                 <Card.Content>

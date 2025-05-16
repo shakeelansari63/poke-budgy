@@ -34,7 +34,7 @@ const BudgetSpendSection = ({ expenseCategory, isEditable }: BudgetSpendSectionP
 
     return (
         <>
-            <Card style={{ margin: 10 }}>
+            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
                 {expenseCategory.Expenses.length > 0 ? (
                     <View>
                         <Card.Title title="Expenditure" titleVariant="titleLarge" />

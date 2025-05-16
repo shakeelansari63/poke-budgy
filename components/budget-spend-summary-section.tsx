@@ -14,7 +14,7 @@ const BudgetSpendSummarySection = ({ expenseCategory }: BudgetSpendSummarySectio
     const currencySymbol = useCurrencySymbol();
 
     return (
-        <Card style={{ margin: 10 }}>
+        <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
             <Card.Content>
                 <View style={{ flexDirection: "row", marginBottom: 10 }}>
                     <View style={{ flex: 0.5 }}>

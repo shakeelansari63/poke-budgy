@@ -96,7 +96,7 @@ const SettingsScreen = () => {
         <>
             <TopAppBar backAction={router.back} title="Settings" />
             <ScrollView style={{ paddingBottom: useSafeAreaInsets().bottom }}>
-                <Card style={{ margin: 10 }}>
+                <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
                     <Card.Title title="App Settings" titleVariant="titleLarge" />
                     <Card.Content>
                         <SettingMenuLine
@@ -155,7 +155,7 @@ const SettingsScreen = () => {
                         />
                     </Card.Content>
                 </Card>
-                <Card style={{ margin: 10 }}>
+                <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
                     <Card.Title title="Data Settings" titleVariant="titleLarge" />
                     <Card.Content>
                         <SettingMenuLine

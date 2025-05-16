@@ -36,7 +36,7 @@ const NewBudgetDialog = ({ cloneId, sheetRef }: NewBudgetDialogProps) => {
 
     return (
         <Dialog sheetRef={sheetRef}>
-            <Surface mode="flat">
+            <Surface mode="flat" style={{ marginVertical: 10, marginHorizontal: 20 }}>
                 <Card.Title
                     title={cloneId === null ? "Create new budget" : "Clone to new budget"}
                     titleVariant="titleLarge"

@@ -40,7 +40,7 @@ const IncomeSection = ({ currentBudget, isActive }: IncomeSectionProps) => {
     return (
         <>
             <EditIncomeDialog sheetRef={sheetRef} />
-            <Card mode="elevated" style={{ margin: 10 }}>
+            <Card mode="elevated" style={{ marginVertical: 10, marginHorizontal: 20 }}>
                 <Card.Title
                     title="Incomes"
                     titleVariant="titleLarge"

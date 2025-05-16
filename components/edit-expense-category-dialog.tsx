@@ -60,9 +60,9 @@ const EditExpenseCategoryDialog = ({ expenseCat, sheetRef }: EditExpenseCategory
 
     return (
         <Dialog sheetRef={sheetRef}>
-            <Surface mode="flat">
+            <Surface mode="flat" style={{ marginVertical: 10, marginHorizontal: 20 }}>
                 <Card.Title
-                    title="Add Budget"
+                    title={expenseCat ? "Edit Budget" : "Add Budget"}
                     titleVariant="titleLarge"
                     right={() => <IconButton icon="close" onPress={() => sheetRef?.current?.dismiss()} />}
                 />

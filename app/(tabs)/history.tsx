@@ -11,7 +11,7 @@ const SectionHeader = ({ label }: { label: string }) => {
     return (
         <View
             style={{
-                paddingHorizontal: 10,
+                paddingHorizontal: 20,
                 paddingVertical: 15,
                 flexDirection: "row",
                 alignItems: "center",
@@ -52,7 +52,7 @@ export default function History() {
                 ItemSeparatorComponent={() => <Divider style={{ margin: 5 }} />}
                 ListEmptyComponent={() => (
                     <View>
-                        <Card style={{ margin: 10, padding: 10 }}>
+                        <Card style={{ marginVertical: 10, marginHorizontal: 20, padding: 10 }}>
                             <Card.Title title="No past budgets !" />
                         </Card>
                     </View>

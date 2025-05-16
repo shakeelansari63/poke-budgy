@@ -105,7 +105,10 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
     ];
 
     return (
-        <Card mode="elevated" style={{ margin: 10, backgroundColor: theme.colors.primaryContainer }}>
+        <Card
+            mode="elevated"
+            style={{ marginVertical: 10, marginHorizontal: 20, backgroundColor: theme.colors.primaryContainer }}
+        >
             {currentBudget !== null ? (
                 <Card.Content>
                     <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 20 }}>

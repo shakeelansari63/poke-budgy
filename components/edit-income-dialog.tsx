@@ -61,7 +61,7 @@ const EditIncomeDialog = ({ income, sheetRef }: EditIncomeDialogProps) => {
 
     return (
         <Dialog sheetRef={sheetRef}>
-            <Surface mode="flat">
+            <Surface mode="flat" style={{ marginVertical: 10, marginHorizontal: 20 }}>
                 <Card.Title
                     title={income == undefined ? "Add Income" : "Edit Income"}
                     titleVariant="titleLarge"

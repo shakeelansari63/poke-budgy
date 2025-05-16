@@ -62,7 +62,7 @@ const Trends = () => {
     const top5BudgetsAvailable = top5Budgets.reduce((acc, inc) => acc + inc.value, 0) > 0;
 
     const screenWidth = Dimensions.get("screen");
-    const graphWidthWithPadding = screenWidth.width - 20 - 60;
+    const graphWidthWithPadding = screenWidth.width - 40 - 60;
 
     const sections: { data: { id: number; node: React.ReactElement }[] }[] = [];
 
@@ -72,7 +72,7 @@ const Trends = () => {
                 {
                     id: sections.length,
                     node: (
-                        <Card style={{ margin: 10 }}>
+                        <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
                             <Card.Content>
                                 <Dropdown
                                     options={trendOptions}
@@ -94,7 +94,7 @@ const Trends = () => {
                 {
                     id: sections.length,
                     node: (
-                        <Card style={{ margin: 10 }}>
+                        <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
                             <Card.Title title="No Data available" titleVariant="titleLarge" />
                             <Card.Content>
                                 <Text>Create new budgets or change period to see trends here</Text>
@@ -112,7 +112,7 @@ const Trends = () => {
                     {
                         id: sections.length,
                         node: (
-                            <Card style={{ margin: 10 }}>
+                            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
                                 <Card.Title title="Top 5 Budgets" titleVariant="titleLarge" />
                                 <Card.Content>
                                     <PieGraph
@@ -132,7 +132,7 @@ const Trends = () => {
                     {
                         id: sections.length,
                         node: (
-                            <Card style={{ margin: 10 }}>
+                            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
                                 <Card.Title title="Income Trend" titleVariant="titleLarge" />
                                 <Card.Content>
                                     {/* <Text>Hello</Text> */}
@@ -154,7 +154,7 @@ const Trends = () => {
                     {
                         id: sections.length,
                         node: (
-                            <Card style={{ margin: 10 }}>
+                            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
                                 <Card.Title title="Budget Trend" titleVariant="titleLarge" />
                                 <Card.Content>
                                     <BarGraph
@@ -175,7 +175,7 @@ const Trends = () => {
                     {
                         id: sections.length,
                         node: (
-                            <Card style={{ margin: 10 }}>
+                            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
                                 <Card.Title title="Spend Trend" titleVariant="titleLarge" />
                                 <Card.Content>
                                     <BarGraph

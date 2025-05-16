@@ -42,7 +42,7 @@ const ExpenseSection = ({ currentBudget, isActive }: ExpenseSectionProps) => {
     return (
         <>
             <EditExpenseCategoryDialog sheetRef={sheetRef} />
-            <Card mode="elevated" style={{ margin: 10 }}>
+            <Card mode="elevated" style={{ marginVertical: 10, marginHorizontal: 20 }}>
                 <Card.Title
                     title="Budgets"
                     titleVariant="titleLarge"
