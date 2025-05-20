@@ -15,7 +15,38 @@ import { BudgetState, StoreState } from "../../model/store";
 import { Budget } from "../../model/budget";
 import BarGraph from "../../components/bar-graph";
 import PieGraph from "../../components/pie-graph";
-import SafeView from "@/components/safe-area-view";
+import SafeView from "../../components/safe-area-view";
+import CompareBarGraph from "../../components/compare-bar-graph";
+import { GroupWiseValues } from "../../model/shared";
+import { ComparisionBarPoints } from "../../model/shared";
+
+const mergePointsByLabels = (data1: GroupWiseValues[], data2: GroupWiseValues[]): ComparisionBarPoints[] => {
+    const merged: ComparisionBarPoints[] = [];
+
+    // Add all points from data1 in merged
+    data1.forEach((point) => {
+        merged.push({
+            label: point.key,
+            value1: point.value,
+            value2: 0,
+        });
+    });
+
+    // Loop over data point 2 and add them to merged list
+    data2.forEach((point) => {
+        const barPt = merged.find((barPoint) => barPoint.label === point.key);
+        if (barPt) barPt.value2 = point.value;
+        else
+            merged.push({
+                label: point.key,
+                value1: 0,
+                value2: point.value,
+            });
+    });
+
+    // Return merged list
+    return merged;
+};
 
 const Trends = () => {
     const trendOptions = [
@@ -125,6 +156,52 @@ const Trends = () => {
                 ],
             });
 
+        // Show comparision graph between Income and Expesne Category
+        if (incomeAvailable || expenseCatAvailable)
+            sections.push({
+                data: [
+                    {
+                        id: sections.length,
+                        node: (
+                            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
+                                <Card.Title title="Income vs Budgets" titleVariant="titleLarge" />
+                                <Card.Content>
+                                    {/* <Text>Hello</Text> */}
+                                    <CompareBarGraph
+                                        data={mergePointsByLabels(incomeData, expenseCatData)}
+                                        legend={["Income", "Budget"]}
+                                        width={graphWidthWithPadding}
+                                    />
+                                </Card.Content>
+                            </Card>
+                        ),
+                    },
+                ],
+            });
+
+        // Show comparision graph between Budget and extenditure
+        if (spendAvailable || expenseCatAvailable)
+            sections.push({
+                data: [
+                    {
+                        id: sections.length,
+                        node: (
+                            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
+                                <Card.Title title="Budget vs Expenditure" titleVariant="titleLarge" />
+                                <Card.Content>
+                                    {/* <Text>Hello</Text> */}
+                                    <CompareBarGraph
+                                        data={mergePointsByLabels(expenseCatData, spentData)}
+                                        legend={["Budget", "Expenditure"]}
+                                        width={graphWidthWithPadding}
+                                    />
+                                </Card.Content>
+                            </Card>
+                        ),
+                    },
+                ],
+            });
+
         // Show graph for Income per month
         if (incomeAvailable)
             sections.push({
@@ -133,53 +210,11 @@ const Trends = () => {
                         id: sections.length,
                         node: (
                             <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
-                                <Card.Title title="Income Trend" titleVariant="titleLarge" />
+                                <Card.Title title="Monthly Income Trend" titleVariant="titleLarge" />
                                 <Card.Content>
                                     {/* <Text>Hello</Text> */}
                                     <BarGraph
                                         data={incomeData.map((data) => ({ label: data.key, value: data.value }))}
-                                        width={graphWidthWithPadding}
-                                    />
-                                </Card.Content>
-                            </Card>
-                        ),
-                    },
-                ],
-            });
-
-        // Show graph for Expense Categories per month
-        if (expenseCatAvailable)
-            sections.push({
-                data: [
-                    {
-                        id: sections.length,
-                        node: (
-                            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
-                                <Card.Title title="Budget Trend" titleVariant="titleLarge" />
-                                <Card.Content>
-                                    <BarGraph
-                                        data={expenseCatData.map((data) => ({ label: data.key, value: data.value }))}
-                                        width={graphWidthWithPadding}
-                                    />
-                                </Card.Content>
-                            </Card>
-                        ),
-                    },
-                ],
-            });
-
-        // Show graph for Expense per month
-        if (spendAvailable)
-            sections.push({
-                data: [
-                    {
-                        id: sections.length,
-                        node: (
-                            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
-                                <Card.Title title="Spend Trend" titleVariant="titleLarge" />
-                                <Card.Content>
-                                    <BarGraph
-                                        data={spentData.map((data) => ({ label: data.key, value: data.value }))}
                                         width={graphWidthWithPadding}
                                     />
                                 </Card.Content>

@@ -14,15 +14,23 @@ interface BarGraphProp {
     data: Point[];
 }
 
+interface PieDataPoint {
+    text: string;
+    color: string;
+    value: number;
+}
+
 interface LegendProps {
-    data: { text: string; color: string }[];
+    data: PieDataPoint[];
 }
 const RenderLegend = ({ data }: LegendProps) => {
     const theme = useTheme();
+    const currencySymbol = useCurrencySymbol();
+
     // Considering 2 legend item per row
     const legendItemPerRow = 2;
     const rows = Math.ceil(data.length / legendItemPerRow);
-    const dataInRows: { text: string; color: string }[][] = [];
+    const dataInRows: PieDataPoint[][] = [];
 
     for (let i = 0; i < rows; i++) {
         const startIdx = i * legendItemPerRow;
@@ -37,9 +45,9 @@ const RenderLegend = ({ data }: LegendProps) => {
     return (
         <View style={{ marginTop: 8 }}>
             {dataInRows.map((dataRow, indx) => (
-                <View key={indx} style={{ flexDirection: "row", justifyContent: "space-around", marginBottom: 8 }}>
+                <View key={indx} style={{ flexDirection: "row", justifyContent: "space-evenly", marginBottom: 8 }}>
                     {dataRow.map((legend, idx) => (
-                        <View key={idx} style={{ flexDirection: "row", marginBottom: 12 }}>
+                        <View key={idx} style={{ flexDirection: "row", marginBottom: 12, alignItems: "center" }}>
                             <View
                                 style={{
                                     height: 12,
@@ -49,7 +57,10 @@ const RenderLegend = ({ data }: LegendProps) => {
                                     backgroundColor: legend.color || theme.colors.onBackground,
                                 }}
                             />
-                            <Text style={{ fontSize: 12 }}>{legend.text || ""}</Text>
+                            <View>
+                                <Text style={{ fontSize: 12 }}>{legend.text || ""}</Text>
+                                <Text style={{ fontSize: 12 }}>{`${currencySymbol} ${legend.value || ""}`}</Text>
+                            </View>
                         </View>
                     ))}
                 </View>
@@ -65,8 +76,6 @@ const PieGraph = ({ data }: BarGraphProp) => {
     }));
 
     const theme = useTheme();
-
-    const currencySymbol = useCurrencySymbol();
 
     return (
         <View>
@@ -93,7 +102,8 @@ const PieGraph = ({ data }: BarGraphProp) => {
             </View>
             <RenderLegend
                 data={data.map((point, idx) => ({
-                    text: `${point.label}: ${currencySymbol} ${point.value.toFixed(2)}`,
+                    text: point.label,
+                    value: point.value,
                     color: PieChartColors[idx],
                 }))}
             />

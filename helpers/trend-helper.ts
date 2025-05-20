@@ -9,16 +9,11 @@ import {
     getEndOfPastYearDate,
 } from "./date-manipulation";
 import { monthFromDateOption } from "../constants/app-constants";
+import { GroupWiseValues } from "../model/shared";
 
 interface ReturnType {
     startPeriod: Date;
     endPeriod: Date;
-}
-
-interface GroupWiseValues {
-    sortId: number;
-    key: string;
-    value: number;
 }
 
 export const getStartAndEndDateForPeriod = (period: Period): ReturnType => {
