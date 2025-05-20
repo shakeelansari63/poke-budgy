@@ -12,3 +12,7 @@ export const monthFromDateOption: Intl.DateTimeFormatOptions = {
 };
 
 export const backupMimeType = "application/json";
+
+export const githubUrl = "https://github.com/shakeelansari63/poke-budgy";
+
+export const donationUrl = "https://ko-fi.com/shakeelansari63";
