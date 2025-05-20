@@ -1,5 +1,5 @@
-import { SectionList, Dimensions } from "react-native";
-import { Card, Text } from "react-native-paper";
+import { SectionList, Dimensions, View } from "react-native";
+import { Card, Text, useTheme } from "react-native-paper";
 import { Dropdown } from "react-native-paper-dropdown";
 import React from "react";
 import { Period } from "../../constants/enums";
@@ -57,6 +57,8 @@ const Trends = () => {
         { label: "Last Year", value: Period.Last_Year },
     ];
 
+    const theme = useTheme();
+
     const [currentTrend, setCurrentTrend] = React.useState<Period>(Period.Last_3_Months);
 
     const setSelectedTrendPeriod = (value: string | undefined) => {
@@ -95,15 +97,104 @@ const Trends = () => {
     const screenWidth = Dimensions.get("screen");
     const graphWidthWithPadding = screenWidth.width - 40 - 60;
 
-    const sections: { data: { id: number; node: React.ReactElement }[] }[] = [];
+    const trendData: { id: number; node: React.ReactElement }[] = [];
 
-    if (allBudgets.pastBudgets.length > 0)
-        sections.push({
-            data: [
-                {
-                    id: sections.length,
-                    node: (
-                        <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
+    // Show Top 5 Budgets Graph
+    if (top5BudgetsAvailable) {
+        trendData.push({
+            id: trendData.length,
+            node: (
+                <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
+                    <Card.Title title="Top 5 Budgets" titleVariant="titleLarge" />
+                    <Card.Content>
+                        <PieGraph data={top5Budgets.map((data) => ({ label: data.key, value: data.value }))} />
+                    </Card.Content>
+                </Card>
+            ),
+        });
+    }
+
+    // Show comparision graph between Income and Expesne Category
+    if (incomeAvailable || expenseCatAvailable) {
+        trendData.push({
+            id: trendData.length,
+            node: (
+                <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
+                    <Card.Title title="Income vs Budgets" titleVariant="titleLarge" />
+                    <Card.Content>
+                        {/* <Text>Hello</Text> */}
+                        <CompareBarGraph
+                            data={mergePointsByLabels(incomeData, expenseCatData)}
+                            legend={["Income", "Budget"]}
+                            width={graphWidthWithPadding}
+                        />
+                    </Card.Content>
+                </Card>
+            ),
+        });
+    }
+
+    // Show comparision graph between Budget and extenditure
+    if (spendAvailable || expenseCatAvailable) {
+        trendData.push({
+            id: trendData.length,
+            node: (
+                <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
+                    <Card.Title title="Budget vs Expenditure" titleVariant="titleLarge" />
+                    <Card.Content>
+                        {/* <Text>Hello</Text> */}
+                        <CompareBarGraph
+                            data={mergePointsByLabels(expenseCatData, spentData)}
+                            legend={["Budget", "Expenditure"]}
+                            width={graphWidthWithPadding}
+                        />
+                    </Card.Content>
+                </Card>
+            ),
+        });
+    }
+
+    // Show graph for Income per month
+    if (incomeAvailable) {
+        trendData.push({
+            id: trendData.length,
+            node: (
+                <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
+                    <Card.Title title="Monthly Income Trend" titleVariant="titleLarge" />
+                    <Card.Content>
+                        {/* <Text>Hello</Text> */}
+                        <BarGraph
+                            data={incomeData.map((data) => ({ label: data.key, value: data.value }))}
+                            width={graphWidthWithPadding}
+                        />
+                    </Card.Content>
+                </Card>
+            ),
+        });
+    }
+
+    const sections: { data: { id: number; node: React.ReactElement }[] }[] =
+        allBudgets.pastBudgets.length === 0 && allBudgets.activeBudget === null ? [] : [{ data: trendData }];
+
+    return (
+        <SafeView except={["bottom"]}>
+            <SectionList
+                sections={sections}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => item.node}
+                showsVerticalScrollIndicator={false}
+                ListEmptyComponent={() => (
+                    <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
+                        <Card.Title title="No Data available" titleVariant="titleLarge" />
+                        <Card.Content>
+                            <Text>Create new budgets or change period to see trends here</Text>
+                        </Card.Content>
+                    </Card>
+                )}
+                stickySectionHeadersEnabled={true}
+                renderSectionHeader={() => (
+                    <View style={{ backgroundColor: theme.colors.surface, paddingTop: 10, paddingHorizontal: 20 }}>
+                        <Card>
                             <Card.Content>
                                 <Dropdown
                                     options={trendOptions}
@@ -114,124 +205,8 @@ const Trends = () => {
                                 />
                             </Card.Content>
                         </Card>
-                    ),
-                },
-            ],
-        });
-
-    if (periodBudgets.length <= 0 || (!incomeAvailable && !expenseCatAvailable && !spentData && !top5BudgetsAvailable))
-        sections.push({
-            data: [
-                {
-                    id: sections.length,
-                    node: (
-                        <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
-                            <Card.Title title="No Data available" titleVariant="titleLarge" />
-                            <Card.Content>
-                                <Text>Create new budgets or change period to see trends here</Text>
-                            </Card.Content>
-                        </Card>
-                    ),
-                },
-            ],
-        });
-    else {
-        // Show Top 5 Budgets Graph
-        if (top5BudgetsAvailable)
-            sections.push({
-                data: [
-                    {
-                        id: sections.length,
-                        node: (
-                            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
-                                <Card.Title title="Top 5 Budgets" titleVariant="titleLarge" />
-                                <Card.Content>
-                                    <PieGraph
-                                        data={top5Budgets.map((data) => ({ label: data.key, value: data.value }))}
-                                    />
-                                </Card.Content>
-                            </Card>
-                        ),
-                    },
-                ],
-            });
-
-        // Show comparision graph between Income and Expesne Category
-        if (incomeAvailable || expenseCatAvailable)
-            sections.push({
-                data: [
-                    {
-                        id: sections.length,
-                        node: (
-                            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
-                                <Card.Title title="Income vs Budgets" titleVariant="titleLarge" />
-                                <Card.Content>
-                                    {/* <Text>Hello</Text> */}
-                                    <CompareBarGraph
-                                        data={mergePointsByLabels(incomeData, expenseCatData)}
-                                        legend={["Income", "Budget"]}
-                                        width={graphWidthWithPadding}
-                                    />
-                                </Card.Content>
-                            </Card>
-                        ),
-                    },
-                ],
-            });
-
-        // Show comparision graph between Budget and extenditure
-        if (spendAvailable || expenseCatAvailable)
-            sections.push({
-                data: [
-                    {
-                        id: sections.length,
-                        node: (
-                            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
-                                <Card.Title title="Budget vs Expenditure" titleVariant="titleLarge" />
-                                <Card.Content>
-                                    {/* <Text>Hello</Text> */}
-                                    <CompareBarGraph
-                                        data={mergePointsByLabels(expenseCatData, spentData)}
-                                        legend={["Budget", "Expenditure"]}
-                                        width={graphWidthWithPadding}
-                                    />
-                                </Card.Content>
-                            </Card>
-                        ),
-                    },
-                ],
-            });
-
-        // Show graph for Income per month
-        if (incomeAvailable)
-            sections.push({
-                data: [
-                    {
-                        id: sections.length,
-                        node: (
-                            <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
-                                <Card.Title title="Monthly Income Trend" titleVariant="titleLarge" />
-                                <Card.Content>
-                                    {/* <Text>Hello</Text> */}
-                                    <BarGraph
-                                        data={incomeData.map((data) => ({ label: data.key, value: data.value }))}
-                                        width={graphWidthWithPadding}
-                                    />
-                                </Card.Content>
-                            </Card>
-                        ),
-                    },
-                ],
-            });
-    }
-
-    return (
-        <SafeView except={["bottom"]}>
-            <SectionList
-                sections={sections}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => item.node}
-                showsVerticalScrollIndicator={false}
+                    </View>
+                )}
             />
         </SafeView>
     );
