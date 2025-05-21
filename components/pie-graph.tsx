@@ -27,8 +27,8 @@ const RenderLegend = ({ data }: LegendProps) => {
     const theme = useTheme();
     const currencySymbol = useCurrencySymbol();
 
-    // Considering 2 legend item per row
-    const legendItemPerRow = 2;
+    // Considering 3 legend item per row
+    const legendItemPerRow = 3;
     const rows = Math.ceil(data.length / legendItemPerRow);
     const dataInRows: PieDataPoint[][] = [];
 
