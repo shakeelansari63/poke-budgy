@@ -3,7 +3,6 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 import { Budget } from "../../model/budget";
 import { Income } from "../../model/income";
 import { ExpenseCategory, Expense } from "../../model/expense";
-import { PersistentStoreModel } from "@/model/persistent";
 import { DataStore } from "../persistent-store";
 
 const initialState: BudgetState = {

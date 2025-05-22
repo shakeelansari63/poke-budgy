@@ -10,6 +10,7 @@ export default function TabLayout() {
 
     return (
         <Tabs
+            detachInactiveScreens={true}
             tabBar={({ navigation, state, descriptors, insets }) => (
                 <BottomNavigation.Bar
                     navigationState={state}
@@ -52,6 +53,7 @@ export default function TabLayout() {
                 />
             )}
             screenOptions={{
+                animation: "shift",
                 headerShown: false,
                 tabBarButton: HapticTab,
                 tabBarStyle: Platform.select({

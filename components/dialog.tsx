@@ -32,6 +32,9 @@ const Dialog = ({ children, sheetRef }: DialogProps) => {
             maxDynamicContentSize={height * 0.8}
             backdropComponent={backDrop}
             handleIndicatorStyle={{ backgroundColor: theme.colors.onBackground }}
+            keyboardBehavior="interactive"
+            keyboardBlurBehavior="restore"
+            android_keyboardInputMode="adjustPan"
         >
             <BottomSheetScrollView>
                 {children}

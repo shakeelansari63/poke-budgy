@@ -19,13 +19,16 @@ import { useCurrentTheme, useCurrentColor } from "../hooks/use-settings";
 // Register Englist Translation of Dates
 registerTranslation("en", en);
 
-export default function RootLayout() {
-    // Set Splash Screen Options
-    SplashScreen.setOptions({
-        duration: 1500,
-        fade: true,
-    });
+// Keep Screen Visible when App loads
+SplashScreen.preventAutoHideAsync();
 
+// Set Splash Screen transition option
+SplashScreen.setOptions({
+    duration: 800,
+    fade: true,
+});
+
+export default function RootLayout() {
     return (
         <Provider store={store}>
             <AppMain />
@@ -62,6 +65,11 @@ const AppMain = () => {
         // Dispatch all load actions
         dispatch(loadBudgetFromStore({}));
         dispatch(loadSettingsFromStore({}));
+
+        // Hide Splash Screen in half a second
+        setTimeout(() => {
+            SplashScreen.hideAsync();
+        }, 800);
     }, []);
 
     return (

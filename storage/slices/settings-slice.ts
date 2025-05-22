@@ -1,4 +1,3 @@
-import { PersistentStoreModel } from "@/model/persistent";
 import { Settings } from "../../model/settings";
 import { createSlice } from "@reduxjs/toolkit";
 import { DataStore } from "../persistent-store";
