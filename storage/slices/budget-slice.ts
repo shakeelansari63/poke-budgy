@@ -68,6 +68,7 @@ const budgetSlice = createSlice({
 
                     // Change dates for Incomes
                     copyBudget.Incomes.forEach((income) => {
+                        income.Id = nanoid();
                         income.IncomeDate = startDate;
                     });
 
