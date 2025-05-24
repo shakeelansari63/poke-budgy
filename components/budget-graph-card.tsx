@@ -1,11 +1,12 @@
 import { View } from "react-native";
-import { Card, Text, Icon, ProgressBar, useTheme } from "react-native-paper";
+import { Card, Text, Icon, ProgressBar } from "react-native-paper";
 import React from "react";
 import { Budget } from "../model/budget";
 import colors from "../constants/colors";
 import { dateOption } from "../constants/app-constants";
 import DateChip from "./date-chip";
 import { useCurrencySymbol } from "../hooks/use-settings";
+import { useAppTheme } from "../hooks/use-app-theme";
 
 interface BudgetGraphProps {
     currentBudget: Budget | null;
@@ -20,7 +21,7 @@ interface HorizontalBarProps {
 }
 
 const HorizontalBar = ({ label, value, barColor, visible }: HorizontalBarProps) => {
-    const theme = useTheme();
+    const theme = useAppTheme();
 
     return (
         visible && (
@@ -54,7 +55,7 @@ const HorizontalBar = ({ label, value, barColor, visible }: HorizontalBarProps) 
 };
 
 const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
-    const theme = useTheme();
+    const theme = useAppTheme();
     const currencySymbol = useCurrencySymbol();
     const totalIncome = currentBudget?.Incomes.reduce((acc, inc) => acc + inc.Amount, 0) ?? 0;
     const totalBudgeted = currentBudget?.Expenses.reduce((acc, exp) => acc + exp.Amount, 0) ?? 0;
@@ -64,6 +65,7 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
             0
         ) ?? 0;
     const totalSaving = totalIncome - totalBudgeted;
+    const totalSpendRemain = totalBudgeted - totalSpent;
 
     const startDate: string | undefined =
         typeof currentBudget?.StartDate == "string"
@@ -128,7 +130,7 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
                                     Income
                                 </Text>
                             </View>
-                            <Text variant="headlineMedium" style={{ color: theme.colors.onPrimaryContainer }}>
+                            <Text variant="headlineSmall" style={{ color: theme.colors.onPrimaryContainer }}>
                                 {currencySymbol} {totalIncome.toFixed(2)}
                             </Text>
                         </View>
@@ -142,12 +144,43 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
                                     Budget
                                 </Text>
                             </View>
-                            <Text variant="headlineMedium" style={{ alignSelf: "flex-end", color: theme.colors.error }}>
+                            <Text variant="headlineSmall" style={{ alignSelf: "flex-end", color: theme.colors.error }}>
                                 {currencySymbol} {totalBudgeted.toFixed(2)}
                             </Text>
                         </View>
                     </View>
-                    {baselineCost !== 0 &&
+                    <View style={{ padding: 5 }}></View>
+                    <View style={{ flexDirection: "row", marginBottom: 20 }}>
+                        <View style={{ flex: 0.5, justifyContent: "flex-start" }}>
+                            <View style={{ flexDirection: "row" }}>
+                                <Icon source="menu-up" color={theme.colors.onPrimaryContainer} size={24} />
+                                <Text variant="titleMedium" style={{ color: theme.colors.onPrimaryContainer }}>
+                                    Spent
+                                </Text>
+                            </View>
+                            <Text variant="headlineSmall" style={{ color: theme.colors.onPrimaryContainer }}>
+                                {currencySymbol} {totalSpent.toFixed(2)}
+                            </Text>
+                        </View>
+                        <View style={{ flex: 0.5, justifyContent: "flex-end" }}>
+                            <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+                                <Icon source="menu-down" color={theme.colors.onTertiaryContainer} size={24} />
+                                <Text
+                                    variant="titleMedium"
+                                    style={{ alignSelf: "flex-end", color: theme.colors.onTertiaryContainer }}
+                                >
+                                    Expense Left
+                                </Text>
+                            </View>
+                            <Text
+                                variant="headlineSmall"
+                                style={{ alignSelf: "flex-end", color: theme.colors.onTertiaryContainer }}
+                            >
+                                {currencySymbol} {totalSpendRemain.toFixed(2)}
+                            </Text>
+                        </View>
+                    </View>
+                    {/* {baselineCost !== 0 &&
                         graphData.map((bar, idx) => (
                             <HorizontalBar
                                 label={bar.label}
@@ -156,7 +189,7 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
                                 key={idx}
                                 visible={bar.visible}
                             />
-                        ))}
+                        ))} */}
                 </Card.Content>
             ) : (
                 <Card.Title

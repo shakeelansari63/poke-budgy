@@ -45,7 +45,7 @@ const IncomeSection = ({ currentBudget, isActive }: IncomeSectionProps) => {
                     title="Incomes"
                     titleVariant="titleLarge"
                     subtitle={currentBudget !== null && `Total: ${currencySymbol} ${totalIncome?.toFixed(2)}`}
-                    left={() => <Avatar.Icon icon="cash" size={40} />}
+                    left={() => <Avatar.Icon icon="wallet" size={40} />}
                     right={() => {
                         return (
                             currentBudget !== null &&
@@ -84,7 +84,7 @@ const IncomeSection = ({ currentBudget, isActive }: IncomeSectionProps) => {
                                     {
                                         icon: "trash-can-outline",
                                         action: () => deletePressHandler(item),
-                                        backgroundColor: theme.colors.errorContainer,
+                                        iconColor: theme.colors.error,
                                     },
                                 ];
                                 return isActive && <SwipeQuickActions data={data} />;

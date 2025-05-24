@@ -22,7 +22,7 @@ const ActionButton = ({ icon, action, size, iconColor, backgroundColor }: SwipeQ
     if (size) extraIconProps["size"] = size;
 
     // Add Icon Color Prop
-    if (iconColor) extraIconProps["color"] = iconColor;
+    if (iconColor) extraIconProps["iconColor"] = iconColor;
 
     // Add Background Color Prop
     if (backgroundColor) extraViewProps["style"] = { backgroundColor: backgroundColor };

@@ -22,6 +22,8 @@ export const PieChartColors: string[] = ["#EC6B56", "#FFC154", "#47B39C", "#003F
 
 export const BarComparisionColors: [string, string] = ["#177AD5", "#ED6665"];
 
+export const SuccessColor: { light: string; dark: string } = { light: "#307743", dark: "#d2ffda" };
+
 export const ThemeColors = [
     {
         base: "#4f378b",

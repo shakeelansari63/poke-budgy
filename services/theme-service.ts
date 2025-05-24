@@ -1,7 +1,18 @@
 import { MD3DarkTheme, MD3LightTheme, adaptNavigationTheme } from "react-native-paper";
 import { DarkTheme as NavigationDarkTheme, DefaultTheme as NavigationDefaultTheme } from "@react-navigation/native";
 import merge from "deepmerge";
-import { ThemeColors } from "@/constants/colors";
+import colors, { ThemeColors } from "@/constants/colors";
+import { SuccessColor } from "@/constants/colors";
+
+const themeProp = {
+    ...MD3DarkTheme,
+    colors: {
+        ...ThemeColors[0].darkColors.colors,
+        success: SuccessColor.dark,
+    },
+};
+
+export type AppTheme = typeof themeProp;
 
 export const buildTheme = (primaryColor?: string) => {
     // Find Colors Object
@@ -11,13 +22,13 @@ export const buildTheme = (primaryColor?: string) => {
     // Change Material Dark Theme Primary Color
     const MaterialDarkTheme = {
         ...MD3DarkTheme,
-        colors: themeColors.darkColors.colors,
+        colors: { ...themeColors.darkColors.colors, success: SuccessColor.dark },
     };
 
     // Change Material Light Theme Primary Color
     const MaterialLightTheme = {
         ...MD3LightTheme,
-        colors: themeColors.lightColors.colors,
+        colors: { ...themeColors.lightColors.colors, success: SuccessColor.light },
     };
 
     // Generate Light and Dark themes from Expo Router Navigation

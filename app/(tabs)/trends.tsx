@@ -91,6 +91,21 @@ const Trends = () => {
     const expenseCatAvailable = expenseCatData.reduce((acc, inc) => acc + inc.value, 0) > 0;
     const spentData = getMonthWiseExpenses(periodBudgets);
     const spendAvailable = spentData.reduce((acc, inc) => acc + inc.value, 0) > 0;
+    const incomeAndSavingDataPoints = mergePointsByLabels(incomeData, expenseCatData);
+    // Calculate saving as income - budget
+    incomeAndSavingDataPoints.forEach((point) => {
+        point.value2 = point.value2 > point.value1 ? 0 : point.value1 - point.value2;
+    });
+
+    // Extract Monthly Savings data only
+    const savingsData: GroupWiseValues[] = incomeAndSavingDataPoints.map((point) => {
+        return {
+            sortId: 0,
+            key: point.label,
+            value: point.value2,
+        };
+    });
+    const savingAvailable = savingsData.reduce((acc, sav) => acc + sav.value, 0) > 0;
     const top5Budgets = getTop5Budgets(periodBudgets);
     const top5BudgetsAvailable = top5Budgets.reduce((acc, inc) => acc + inc.value, 0) > 0;
 
@@ -122,10 +137,28 @@ const Trends = () => {
                 <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
                     <Card.Title title="Income vs Budgets" titleVariant="titleLarge" />
                     <Card.Content>
-                        {/* <Text>Hello</Text> */}
                         <CompareBarGraph
                             data={mergePointsByLabels(incomeData, expenseCatData)}
                             legend={["Income", "Budget"]}
+                            width={graphWidthWithPadding}
+                        />
+                    </Card.Content>
+                </Card>
+            ),
+        });
+    }
+
+    // Show comparision graph between Income and Saving each month
+    if (incomeAvailable || expenseCatAvailable) {
+        trendData.push({
+            id: trendData.length,
+            node: (
+                <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
+                    <Card.Title title="Income vs Savings" titleVariant="titleLarge" />
+                    <Card.Content>
+                        <CompareBarGraph
+                            data={incomeAndSavingDataPoints}
+                            legend={["Income", "Savings"]}
                             width={graphWidthWithPadding}
                         />
                     </Card.Content>
@@ -142,7 +175,6 @@ const Trends = () => {
                 <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
                     <Card.Title title="Budget vs Expenditure" titleVariant="titleLarge" />
                     <Card.Content>
-                        {/* <Text>Hello</Text> */}
                         <CompareBarGraph
                             data={mergePointsByLabels(expenseCatData, spentData)}
                             legend={["Budget", "Expenditure"]}
@@ -162,9 +194,26 @@ const Trends = () => {
                 <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
                     <Card.Title title="Monthly Income Trend" titleVariant="titleLarge" />
                     <Card.Content>
-                        {/* <Text>Hello</Text> */}
                         <BarGraph
                             data={incomeData.map((data) => ({ label: data.key, value: data.value }))}
+                            width={graphWidthWithPadding}
+                        />
+                    </Card.Content>
+                </Card>
+            ),
+        });
+    }
+
+    // Show graph for Savings per month
+    if (savingAvailable) {
+        trendData.push({
+            id: trendData.length,
+            node: (
+                <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
+                    <Card.Title title="Monthly Savings Trend" titleVariant="titleLarge" />
+                    <Card.Content>
+                        <BarGraph
+                            data={savingsData.map((data) => ({ label: data.key, value: data.value }))}
                             width={graphWidthWithPadding}
                         />
                     </Card.Content>

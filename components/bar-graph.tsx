@@ -2,6 +2,7 @@ import { View } from "react-native";
 import { Badge, useTheme } from "react-native-paper";
 import React from "react";
 import { BarChart } from "react-native-gifted-charts";
+import { BarComparisionColors } from "../constants/colors";
 
 interface Point {
     label: string;
@@ -37,7 +38,7 @@ const BarGraph = ({ data, width, height, showLine }: BarGraphProp) => {
                 isAnimated
                 noOfSections={nSteps}
                 barBorderRadius={4}
-                frontColor={theme.colors.onPrimaryContainer}
+                frontColor={BarComparisionColors[0]}
                 data={data}
                 yAxisThickness={0}
                 xAxisThickness={0}
@@ -57,7 +58,7 @@ const BarGraph = ({ data, width, height, showLine }: BarGraphProp) => {
                 lineConfig={{
                     curved: true,
                     thickness: 3,
-                    color: theme.colors.onErrorContainer,
+                    color: BarComparisionColors[1],
                     shiftY: 10,
                     hideDataPoints: true,
                     isAnimated: true,

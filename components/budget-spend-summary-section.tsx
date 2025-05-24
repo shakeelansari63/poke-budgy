@@ -11,6 +11,7 @@ interface BudgetSpendSummarySectionProps {
 
 const BudgetSpendSummarySection = ({ expenseCategory }: BudgetSpendSummarySectionProps) => {
     const totalSpend = expenseCategory.Expenses.reduce((acc, exp) => acc + exp.Amount, 0);
+    const totalRemain = expenseCategory.Amount - totalSpend;
     const currencySymbol = useCurrencySymbol();
 
     return (
@@ -33,6 +34,16 @@ const BudgetSpendSummarySection = ({ expenseCategory }: BudgetSpendSummarySectio
                     <View style={{ flex: 0.5, alignSelf: "center" }}>
                         <Text variant="titleLarge">
                             {currencySymbol} {totalSpend.toFixed(2)}
+                        </Text>
+                    </View>
+                </View>
+                <View style={{ flexDirection: "row", marginBottom: 10 }}>
+                    <View style={{ flex: 0.5 }}>
+                        <Text variant="titleLarge">Remaining</Text>
+                    </View>
+                    <View style={{ flex: 0.5, alignSelf: "center" }}>
+                        <Text variant="titleLarge">
+                            {currencySymbol} {totalRemain.toFixed(2)}
                         </Text>
                     </View>
                 </View>

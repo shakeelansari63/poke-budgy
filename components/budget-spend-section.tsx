@@ -59,7 +59,7 @@ const BudgetSpendSection = ({ expenseCategory, isEditable }: BudgetSpendSectionP
                                         {
                                             icon: "trash-can-outline",
                                             action: () => deletePressHandler(item),
-                                            backgroundColor: theme.colors.errorContainer,
+                                            iconColor: theme.colors.error,
                                         },
                                     ];
                                     return isEditable && <SwipeQuickActions data={data} />;

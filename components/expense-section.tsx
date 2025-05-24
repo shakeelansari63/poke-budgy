@@ -86,7 +86,7 @@ const ExpenseSection = ({ currentBudget, isActive }: ExpenseSectionProps) => {
                                     {
                                         icon: "trash-can-outline",
                                         action: () => deletePressHandler(item),
-                                        backgroundColor: theme.colors.errorContainer,
+                                        iconColor: theme.colors.error,
                                     },
                                 ];
                                 return isActive && <SwipeQuickActions data={data} />;
