@@ -2,7 +2,7 @@
     "expo": {
         "name": "Poke Budgy",
         "slug": "poke-budgy",
-        "version": "0.0.9",
+        "version": "0.0.10",
         "orientation": "portrait",
         "icon": "./assets/images/icon.png",
         "scheme": "pokebudgy",
@@ -37,7 +37,7 @@
                 "expo-splash-screen",
                 {
                     "image": "./assets/images/icon-splash.png",
-                    "imageWidth": 200,
+                    "imageWidth": 400,
                     "resizeMode": "contain",
                     "backgroundColor": "#ffffff",
                     "dark": {
