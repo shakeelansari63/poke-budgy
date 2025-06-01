@@ -13,13 +13,16 @@ class SettingsState extends ChangeNotifier {
 
   void setCurrency(String currency) {
     this.currency = currency;
+    notifyListeners();
   }
 
   void setThemey(String theme) {
     this.theme = theme;
+    notifyListeners();
   }
 
   void setBaseColor(Color baseColor) {
     this.baseColor = baseColor;
+    notifyListeners();
   }
 }
