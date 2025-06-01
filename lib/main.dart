@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:poke_budgy/pages/home.dart';
+import 'package:poke_budgy/states/state.dart';
+import 'package:poke_budgy/theme/theme.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
+  const MyApp({super.key});
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: Text("Demo")),
-        body: Center(child: Text("Hello World")),
+      theme: generateTheme(
+        theme: ref.watch(appState).settings.theme,
+        color: ref.watch(appState).settings.baseColor,
       ),
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
     );
   }
 }
