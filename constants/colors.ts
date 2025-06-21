@@ -20,6 +20,8 @@ const colors: ColorPalete = {
 
 export const PieChartColors: string[] = ["#EC6B56", "#FFC154", "#47B39C", "#003F5C", "#58508D"];
 
+export const UsageIconColors: [string, string, string, string] = ["#47B39C", "#FFC154", "#EC6B56", "#BE2525"];
+
 export const BarComparisionColors: [string, string] = ["#177AD5", "#ED6665"];
 
 export const SuccessColor: { light: string; dark: string } = { light: "#307743", dark: "#d2ffda" };
