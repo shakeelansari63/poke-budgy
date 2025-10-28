@@ -3,7 +3,7 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start:wsl": "REACT_NATIVE_PACKAGER_HOSTNAME=$(netsh.exe interface ip show address \"Wi-Fi\" | grep -a \"Address\" | awk '{print $3}') expo start -c",
+    "start:wsl": "sudo.exe netsh.exe interface portproxy add v4tov4 listenport=8081 listenaddress=0.0.0.0 connectport=8081 connectaddress=$(ip a | grep $(ip route | grep default | awk '{print $5}') | grep inet | awk '{print $2}' | cut -d'/' -f1) && REACT_NATIVE_PACKAGER_HOSTNAME=$(netsh.exe interface ip show address \"Wi-Fi\" | grep -a \"Address\" | awk '{print $3}') expo start -c",
     "start": "expo start -c",
     "android": "expo run:android",
     "ios": "expo run:ios",
@@ -17,7 +17,7 @@
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
     "@reduxjs/toolkit": "^2.7.0",
-    "expo": "^54.0.18",
+    "expo": "54.0.20",
     "expo-blur": "~15.0.7",
     "expo-constants": "~18.0.10",
     "expo-document-picker": "~14.0.7",

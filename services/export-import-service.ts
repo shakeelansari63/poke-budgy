@@ -1,6 +1,6 @@
 import * as DocumentPicker from "expo-document-picker";
 import * as Sharing from "expo-sharing";
-import * as FileSystem from "expo-file-system";
+import { Directory, File, Paths } from "expo-file-system";
 import { appName, backupMimeType } from "../constants/app-constants";
 import { DataStore } from "../storage/persistent-store";
 import { Platform } from "react-native";
@@ -8,20 +8,26 @@ import { StoreState } from "../model/store";
 import { ThemeColors } from "@/constants/colors";
 
 export const exportData = async (): Promise<boolean> => {
-    const currentTs = new Date().toISOString().substring(0, 19).replaceAll(":", "-").replaceAll("T", "-");
+    const currentTs = new Date()
+        .toISOString()
+        .substring(0, 19)
+        .replaceAll(":", "-")
+        .replaceAll("T", "-");
     const fileName = `${appName.replaceAll(" ", "-")}-${currentTs}.json`;
-    const fileWithPath = `${FileSystem.documentDirectory}${fileName}`;
 
     // Generate file
-    await FileSystem.writeAsStringAsync(fileWithPath, getCurrentState(), { encoding: FileSystem.EncodingType.UTF8 });
+    const dir = await Directory.pickDirectoryAsync(Paths.document.uri);
+    console.log(dir);
+    const file = new File(`${dir.uri}${fileName}`);
+    file.write(getCurrentState());
 
     // Share / Save File
-    const saveStatus = await saveFile(fileWithPath, fileName, backupMimeType);
+    // const saveStatus = await saveFile(file, fileName, backupMimeType);
 
-    // Delete file at end
-    await FileSystem.deleteAsync(fileWithPath);
+    // // Delete file at end
+    // await FileSystem.deleteAsync(fileWithPath);
 
-    return saveStatus;
+    return true;
 };
 
 export const importData = async (): Promise<boolean> => {
@@ -35,9 +41,9 @@ export const importData = async (): Promise<boolean> => {
         const asset = document.assets[0];
         if (asset.mimeType === backupMimeType) {
             // Read File
-            const fileContent = await FileSystem.readAsStringAsync(asset.uri, {
-                encoding: FileSystem.EncodingType.UTF8,
-            });
+            console.log(asset.uri);
+            const file = new File(asset.uri);
+            const fileContent = await file.text();
 
             // Save Current State
             return setNewState(fileContent);
@@ -51,7 +57,11 @@ const getCurrentState = (): string => {
             activeBudget: DataStore.getActiveBudget(),
             pastBudgets: DataStore.getInactiveBudgets(),
         },
-        setting: DataStore.getSettings() ?? { currency: "USD", theme: "device", color: ThemeColors[0].base },
+        setting: DataStore.getSettings() ?? {
+            currency: "USD",
+            theme: "device",
+            color: ThemeColors[0].base,
+        },
     };
 
     return JSON.stringify(currentState);
@@ -81,36 +91,48 @@ const setNewState = (state: string): boolean => {
     }
 };
 
-const saveFile = async (uri: string, fileName: string, mimeType: string): Promise<boolean> => {
-    if (Platform.OS === "android") {
-        const permission = await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync();
+// const saveFile = async (
+//     file: File,
+//     fileName: string,
+//     mimeType: string,
+// ): Promise<boolean> => {
+//     if (Platform.OS === "android") {
+//         const permission = await Directory.pickDirectoryAsync();
+//         await FileSystem.StorageAccessFramework.requestDirectoryPermissionsAsync();
 
-        // Permission Granted, save the file now
-        if (permission.granted) {
-            const fileContent = await FileSystem.readAsStringAsync(uri, { encoding: FileSystem.EncodingType.UTF8 });
+//         // Permission Granted, save the file now
+//         if (permission.granted) {
+//             const fileContent = await FileSystem.readAsStringAsync(uri, {
+//                 encoding: FileSystem.EncodingType.UTF8,
+//             });
 
-            // Create empty file
-            const targetFile = await FileSystem.StorageAccessFramework.createFileAsync(
-                permission.directoryUri,
-                fileName,
-                mimeType
-            );
+//             // Create empty file
+//             const targetFile =
+//                 await FileSystem.StorageAccessFramework.createFileAsync(
+//                     permission.directoryUri,
+//                     fileName,
+//                     mimeType,
+//                 );
 
-            // Write file content
-            await FileSystem.writeAsStringAsync(targetFile, fileContent, {
-                encoding: FileSystem.EncodingType.UTF8,
-            });
+//             // Write file content
+//             await FileSystem.writeAsStringAsync(targetFile, fileContent, {
+//                 encoding: FileSystem.EncodingType.UTF8,
+//             });
 
-            return true;
-        } else {
-            return await shareFile(uri, mimeType);
-        }
-    } else {
-        return await shareFile(uri, mimeType);
-    }
-};
+//             return true;
+//         } else {
+//             return await shareFile(uri, mimeType);
+//         }
+//     } else {
+//         return await shareFile(uri, mimeType);
+//     }
+// };
 
-const shareFile = async (uri: string, mimeType: string): Promise<boolean> => {
-    await Sharing.shareAsync(uri, { dialogTitle: "Save/Share file", UTI: mimeType, mimeType: mimeType });
-    return true;
-};
+// const shareFile = async (uri: string, mimeType: string): Promise<boolean> => {
+//     await Sharing.shareAsync(uri, {
+//         dialogTitle: "Save/Share file",
+//         UTI: mimeType,
+//         mimeType: mimeType,
+//     });
+//     return true;
+// };
