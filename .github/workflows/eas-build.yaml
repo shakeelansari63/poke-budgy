@@ -2,10 +2,10 @@ name: Build App Bundle
 
 on:
   push:
-    branches: 
-      - 'main'
-    paths: 
-      - 'app.json'
+    branches:
+      - "main"
+    paths:
+      - "app.json"
 
 jobs:
   build:
@@ -30,6 +30,6 @@ jobs:
 
       - name: EAS Build
         id: eas-build
-        run: eas build -p android --profile preview --non-interactive
+        run: eas build -p android --profile production --non-interactive
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
