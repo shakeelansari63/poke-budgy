@@ -1,14 +1,19 @@
 export const appName = "Poke Budgy";
 
 export const dateOption: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC",
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  timeZone: "UTC",
+};
+
+export const numberOption: Intl.NumberFormatOptions = {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
 };
 
 export const monthFromDateOption: Intl.DateTimeFormatOptions = {
-    month: "short",
+  month: "short",
 };
 
 export const backupMimeType = "application/json";

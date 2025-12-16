@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { Card, Text, Icon } from "react-native-paper";
 import React from "react";
 import { Budget } from "../model/budget";
-import { dateOption } from "../constants/app-constants";
+import { dateOption, numberOption } from "../constants/app-constants";
 import DateChip from "./date-chip";
 import { useCurrencySymbol } from "../hooks/use-settings";
 import { useAppTheme } from "../hooks/use-app-theme";
@@ -63,7 +63,7 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
           </View>
           <Text variant="headlineSmall">Savings</Text>
           <Text variant="displaySmall">
-            {currencySymbol} {totalSaving.toFixed(2)}
+            {currencySymbol} {totalSaving.toLocaleString("en-US", numberOption)}
           </Text>
           <View style={{ padding: 10 }}></View>
           <View style={{ flexDirection: "row", marginBottom: 20 }}>
@@ -82,10 +82,11 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
                 </Text>
               </View>
               <Text
-                variant="headlineSmall"
+                variant="titleMedium"
                 style={{ color: theme.colors.onPrimaryContainer }}
               >
-                {currencySymbol} {totalIncome.toFixed(2)}
+                {currencySymbol}{" "}
+                {totalIncome.toLocaleString("en-US", numberOption)}
               </Text>
             </View>
             <View style={{ flex: 0.5, justifyContent: "flex-end" }}>
@@ -101,10 +102,11 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
                 </Text>
               </View>
               <Text
-                variant="headlineSmall"
+                variant="titleMedium"
                 style={{ alignSelf: "flex-end", color: theme.colors.error }}
               >
-                {currencySymbol} {totalBudgeted.toFixed(2)}
+                {currencySymbol}{" "}
+                {totalBudgeted.toLocaleString("en-US", numberOption)}
               </Text>
             </View>
           </View>
@@ -125,10 +127,11 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
                 </Text>
               </View>
               <Text
-                variant="headlineSmall"
+                variant="titleMedium"
                 style={{ color: theme.colors.onPrimaryContainer }}
               >
-                {currencySymbol} {totalSpent.toFixed(2)}
+                {currencySymbol}{" "}
+                {totalSpent.toLocaleString("en-US", numberOption)}
               </Text>
             </View>
             <View style={{ flex: 0.5, justifyContent: "flex-end" }}>
@@ -151,13 +154,14 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
                 </Text>
               </View>
               <Text
-                variant="headlineSmall"
+                variant="titleMedium"
                 style={{
                   alignSelf: "flex-end",
                   color: theme.colors.onTertiaryContainer,
                 }}
               >
-                {currencySymbol} {totalSpendRemain.toFixed(2)}
+                {currencySymbol}{" "}
+                {totalSpendRemain.toLocaleString("en-US", numberOption)}
               </Text>
             </View>
           </View>

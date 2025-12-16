@@ -4,62 +4,76 @@ import colors from "../constants/colors";
 import { Card, Text, ProgressBar } from "react-native-paper";
 import { ExpenseCategory } from "@/model/expense";
 import { useCurrencySymbol } from "../hooks/use-settings";
+import { numberOption } from "@/constants/app-constants";
 
 interface BudgetSpendSummarySectionProps {
-    expenseCategory: ExpenseCategory;
+  expenseCategory: ExpenseCategory;
 }
 
-const BudgetSpendSummarySection = ({ expenseCategory }: BudgetSpendSummarySectionProps) => {
-    const totalSpend = expenseCategory.Expenses.reduce((acc, exp) => acc + exp.Amount, 0);
-    const totalRemain = expenseCategory.Amount - totalSpend;
-    const currencySymbol = useCurrencySymbol();
+const BudgetSpendSummarySection = ({
+  expenseCategory,
+}: BudgetSpendSummarySectionProps) => {
+  const totalSpend = expenseCategory.Expenses.reduce(
+    (acc, exp) => acc + exp.Amount,
+    0,
+  );
+  const totalRemain = expenseCategory.Amount - totalSpend;
+  const currencySymbol = useCurrencySymbol();
 
-    return (
-        <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
-            <Card.Content>
-                <View style={{ flexDirection: "row", marginBottom: 10 }}>
-                    <View style={{ flex: 0.5 }}>
-                        <Text variant="titleLarge">Budget Limit</Text>
-                    </View>
-                    <View style={{ flex: 0.5, alignSelf: "center" }}>
-                        <Text variant="titleLarge">
-                            {currencySymbol} {expenseCategory.Amount.toFixed(2)}
-                        </Text>
-                    </View>
-                </View>
-                <View style={{ flexDirection: "row", marginBottom: 10 }}>
-                    <View style={{ flex: 0.5 }}>
-                        <Text variant="titleLarge">Spend</Text>
-                    </View>
-                    <View style={{ flex: 0.5, alignSelf: "center" }}>
-                        <Text variant="titleLarge">
-                            {currencySymbol} {totalSpend.toFixed(2)}
-                        </Text>
-                    </View>
-                </View>
-                <View style={{ flexDirection: "row", marginBottom: 10 }}>
-                    <View style={{ flex: 0.5 }}>
-                        <Text variant="titleLarge">Remaining</Text>
-                    </View>
-                    <View style={{ flex: 0.5, alignSelf: "center" }}>
-                        <Text variant="titleLarge">
-                            {currencySymbol} {totalRemain.toFixed(2)}
-                        </Text>
-                    </View>
-                </View>
-                <View style={{ marginBottom: 10 }}>
-                    <ProgressBar
-                        progress={
-                            totalSpend > expenseCategory.Amount
-                                ? 1
-                                : totalSpend / (expenseCategory.Amount === 0 ? 1 : expenseCategory.Amount)
-                        }
-                        color={totalSpend > expenseCategory.Amount ? colors.SpentAboveLimit : colors.SpentInLimit}
-                    />
-                </View>
-            </Card.Content>
-        </Card>
-    );
+  return (
+    <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
+      <Card.Content>
+        <View style={{ flexDirection: "row", marginBottom: 10 }}>
+          <View style={{ flex: 0.5 }}>
+            <Text variant="titleLarge">Budget Limit</Text>
+          </View>
+          <View style={{ flex: 0.5, alignSelf: "center" }}>
+            <Text variant="titleLarge">
+              {currencySymbol}{" "}
+              {expenseCategory.Amount.toLocaleString("en-US", numberOption)}
+            </Text>
+          </View>
+        </View>
+        <View style={{ flexDirection: "row", marginBottom: 10 }}>
+          <View style={{ flex: 0.5 }}>
+            <Text variant="titleLarge">Spend</Text>
+          </View>
+          <View style={{ flex: 0.5, alignSelf: "center" }}>
+            <Text variant="titleLarge">
+              {currencySymbol}{" "}
+              {totalSpend.toLocaleString("en-US", numberOption)}
+            </Text>
+          </View>
+        </View>
+        <View style={{ flexDirection: "row", marginBottom: 10 }}>
+          <View style={{ flex: 0.5 }}>
+            <Text variant="titleLarge">Remaining</Text>
+          </View>
+          <View style={{ flex: 0.5, alignSelf: "center" }}>
+            <Text variant="titleLarge">
+              {currencySymbol}{" "}
+              {totalRemain.toLocaleString("en-US", numberOption)}
+            </Text>
+          </View>
+        </View>
+        <View style={{ marginBottom: 10 }}>
+          <ProgressBar
+            progress={
+              totalSpend > expenseCategory.Amount
+                ? 1
+                : totalSpend /
+                  (expenseCategory.Amount === 0 ? 1 : expenseCategory.Amount)
+            }
+            color={
+              totalSpend > expenseCategory.Amount
+                ? colors.SpentAboveLimit
+                : colors.SpentInLimit
+            }
+          />
+        </View>
+      </Card.Content>
+    </Card>
+  );
 };
 
 export default BudgetSpendSummarySection;

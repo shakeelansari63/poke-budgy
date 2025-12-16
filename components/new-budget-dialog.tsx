@@ -20,14 +20,18 @@ interface NewBudgetDialogProps {
 
 const NewBudgetDialog = ({ cloneId, sheetRef }: NewBudgetDialogProps) => {
   const theme = useTheme();
-  const [startDate, setStartDate] = useState<Date>(new Date());
-  const [endDate, setEndDate] = useState<Date>(new Date());
-  const [dirty, setDirty] = useState<boolean>(false);
+  const today = new Date();
+  const tomorrow = new Date();
+  today.setHours(12, 0, 0, 1);
+  tomorrow.setDate(today.getDate() + 1);
+  tomorrow.setHours(12, 0, 0, 1);
+  const [startDate, setStartDate] = useState<Date>(today);
+  const [endDate, setEndDate] = useState<Date>(tomorrow);
 
   const dispatch = useDispatch();
 
   const saveNewBudget = () => {
-    if (endDate <= startDate || !dirty) return;
+    if (endDate < startDate) return;
 
     dispatch(
       createNewBudget({
@@ -66,7 +70,7 @@ const NewBudgetDialog = ({ cloneId, sheetRef }: NewBudgetDialogProps) => {
               value={startDate}
               onChange={(d) => {
                 if (d !== undefined) {
-                  setDirty(true);
+                  d.setHours(12, 0, 0, 1);
                   setStartDate(d);
                 }
               }}
@@ -82,7 +86,7 @@ const NewBudgetDialog = ({ cloneId, sheetRef }: NewBudgetDialogProps) => {
               value={endDate}
               onChange={(d) => {
                 if (d !== undefined) {
-                  setDirty(true);
+                  d.setHours(12, 0, 0, 1);
                   setEndDate(d);
                 }
               }}

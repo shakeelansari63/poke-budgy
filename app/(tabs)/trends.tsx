@@ -19,6 +19,7 @@ import SafeView from "../../components/safe-area-view";
 import CompareBarGraph from "../../components/compare-bar-graph";
 import { GroupWiseValues } from "../../model/shared";
 import { ComparisionBarPoints } from "../../model/shared";
+import TopAppBar from "@/components/top-app-bar";
 
 const mergePointsByLabels = (
   data1: GroupWiseValues[],
@@ -261,7 +262,30 @@ const Trends = () => {
       : [{ data: trendData }];
 
   return (
-    <SafeView except={["bottom"]}>
+    <>
+      <TopAppBar
+        leftComponent={
+          <View
+            style={{
+              backgroundColor: theme.colors.surface,
+              paddingTop: 10,
+              paddingLeft: 5,
+              paddingRight: 15,
+              paddingBottom: 10,
+              zIndex: 99999,
+            }}
+          >
+            <Dropdown
+              options={trendOptions}
+              onSelect={setSelectedTrendPeriod}
+              mode="outlined"
+              value={currentTrend}
+              hideMenuHeader={true}
+              disabled={sections.length === 0}
+            />
+          </View>
+        }
+      />
       <SectionList
         sections={sections}
         keyExtractor={(item) => item.id.toString()}
@@ -277,31 +301,8 @@ const Trends = () => {
             </Card.Content>
           </Card>
         )}
-        stickySectionHeadersEnabled={true}
-        renderSectionHeader={() => (
-          <View
-            style={{
-              backgroundColor: theme.colors.surface,
-              paddingTop: 10,
-              paddingHorizontal: 20,
-              zIndex: 99999,
-            }}
-          >
-            <Card>
-              <Card.Content>
-                <Dropdown
-                  options={trendOptions}
-                  onSelect={setSelectedTrendPeriod}
-                  mode="outlined"
-                  value={currentTrend}
-                  hideMenuHeader={true}
-                />
-              </Card.Content>
-            </Card>
-          </View>
-        )}
       />
-    </SafeView>
+    </>
   );
 };
 
