@@ -90,11 +90,16 @@ const CompareBarGraph = ({
   const formatY = (label: string): string => {
     const labelVal = parseInt(label);
 
-    if (maxValWithBufferSpace > 1000000)
-      return `${Math.floor(labelVal / 1000000).toString()}M`;
+    if (maxValWithBufferSpace > 1000000000000)
+      return `${(labelVal / 1000000000000).toFixed(1)}T`;
 
-    if (maxValWithBufferSpace > 1000)
-      return `${Math.floor(labelVal / 1000).toString()}K`;
+    if (maxValWithBufferSpace > 1000000000)
+      return `${(labelVal / 1000000000).toFixed(1)}B`;
+
+    if (maxValWithBufferSpace > 1000000)
+      return `${(labelVal / 1000000).toFixed(1)}M`;
+
+    if (maxValWithBufferSpace > 1000) return `${(labelVal / 1000).toFixed(1)}K`;
 
     return label;
   };

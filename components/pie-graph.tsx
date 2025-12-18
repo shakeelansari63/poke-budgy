@@ -43,6 +43,22 @@ const RenderLegend = ({ data }: LegendProps) => {
     dataInRows.push(dataSlice);
   }
 
+  const formatNumberLabel = (label: number): string => {
+    if (label > 1000000000000)
+      return `${(label / 1000000000000).toLocaleString("en-US", numberOption)}T`;
+
+    if (label > 1000000000)
+      return `${(label / 1000000000).toLocaleString("en-US", numberOption)}B`;
+
+    if (label > 1000000)
+      return `${(label / 1000000).toLocaleString("en-US", numberOption)}M`;
+
+    if (label > 1000)
+      return `${(label / 1000).toLocaleString("en-US", numberOption)}K`;
+
+    return label.toLocaleString("en-US", numberOption);
+  };
+
   return (
     <View style={{ marginTop: 8 }}>
       {dataInRows.map((dataRow, indx) => (
@@ -76,7 +92,7 @@ const RenderLegend = ({ data }: LegendProps) => {
                 <Text style={{ fontSize: 12 }}>{legend.text || ""}</Text>
                 <Text
                   style={{ fontSize: 12 }}
-                >{`${currencySymbol} ${legend.value.toLocaleString("en-US", numberOption) || ""}`}</Text>
+                >{`${currencySymbol} ${formatNumberLabel(legend.value) || ""}`}</Text>
               </View>
             </View>
           ))}

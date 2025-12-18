@@ -69,17 +69,17 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
           <View style={{ flexDirection: "row", marginBottom: 20 }}>
             <View style={{ flex: 0.5, justifyContent: "flex-start" }}>
               <View style={{ flexDirection: "row" }}>
-                <Icon
-                  source="menu-up"
-                  color={theme.colors.onPrimaryContainer}
-                  size={24}
-                />
                 <Text
                   variant="titleMedium"
                   style={{ color: theme.colors.onPrimaryContainer }}
                 >
                   Income
                 </Text>
+                <Icon
+                  source="menu-up"
+                  color={theme.colors.onPrimaryContainer}
+                  size={24}
+                />
               </View>
               <Text
                 variant="titleMedium"
@@ -114,17 +114,17 @@ const BudgetGraph = ({ currentBudget, isActive }: BudgetGraphProps) => {
           <View style={{ flexDirection: "row", marginBottom: 20 }}>
             <View style={{ flex: 0.5, justifyContent: "flex-start" }}>
               <View style={{ flexDirection: "row" }}>
-                <Icon
-                  source="menu-up"
-                  color={theme.colors.onPrimaryContainer}
-                  size={24}
-                />
                 <Text
                   variant="titleMedium"
                   style={{ color: theme.colors.onPrimaryContainer }}
                 >
                   Spent
                 </Text>
+                <Icon
+                  source="menu-up"
+                  color={theme.colors.onPrimaryContainer}
+                  size={24}
+                />
               </View>
               <Text
                 variant="titleMedium"
