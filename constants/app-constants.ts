@@ -1,4 +1,4 @@
-export const appName = "Poke Budgy";
+export const appName = "Pokè Budgy";
 
 export const dateOption: Intl.DateTimeFormatOptions = {
   year: "numeric",

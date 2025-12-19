@@ -1,4 +1,4 @@
-## Poke Budgy
+## Pokè Budgy
 
 Budget planner in your pocket.
 
