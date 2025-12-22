@@ -15,11 +15,10 @@ import { BudgetState, StoreState } from "../../model/store";
 import { Budget } from "../../model/budget";
 import BarGraph from "../../components/bar-graph";
 import PieGraph from "../../components/pie-graph";
-import SafeView from "../../components/safe-area-view";
 import CompareBarGraph from "../../components/compare-bar-graph";
-import { GroupWiseValues } from "../../model/shared";
-import { ComparisionBarPoints } from "../../model/shared";
+import { GroupWiseValues, ComparisionBarPoints } from "../../model/shared";
 import TopAppBar from "@/components/top-app-bar";
+import EmptyOtherTabs from "@/components/empty-other-tabs";
 
 const mergePointsByLabels = (
   data1: GroupWiseValues[],
@@ -286,22 +285,16 @@ const Trends = () => {
           </View>
         }
       />
-      <SectionList
-        sections={sections}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => item.node}
-        showsVerticalScrollIndicator={false}
-        ListEmptyComponent={() => (
-          <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
-            <Card.Title title="No Data available" titleVariant="titleLarge" />
-            <Card.Content>
-              <Text>
-                Create new budgets or change period to see trends here
-              </Text>
-            </Card.Content>
-          </Card>
-        )}
-      />
+      {sections.length === 0 || trendData.length === 0 ? (
+        <EmptyOtherTabs />
+      ) : (
+        <SectionList
+          sections={sections}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => item.node}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </>
   );
 };

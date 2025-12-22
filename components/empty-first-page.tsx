@@ -5,7 +5,7 @@ import { Image } from "expo-image";
 import NewBudgetDialog from "./new-budget-dialog";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
-const EmptyFirstPag = () => {
+const EmptyFirstPage = () => {
   const newBudgetRef = useRef<BottomSheetModal>(null);
 
   return (
@@ -38,4 +38,4 @@ const EmptyFirstPag = () => {
   );
 };
 
-export default EmptyFirstPag;
+export default EmptyFirstPage;

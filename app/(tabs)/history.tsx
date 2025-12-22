@@ -1,10 +1,11 @@
 import { SectionList, View } from "react-native";
-import { Card, Divider, Text, Icon, useTheme } from "react-native-paper";
+import { Divider, Text, Icon, useTheme } from "react-native-paper";
 import { useSelector } from "react-redux";
 import { StoreState } from "../../model/store";
 import { Budget } from "../../model/budget";
 import PastBudgetCard from "../../components/past-budgets-cards";
 import SafeView from "@/components/safe-area-view";
+import EmptyOtherTabs from "@/components/empty-other-tabs";
 
 const SectionHeader = ({ label }: { label: string }) => {
   const theme = useTheme();
@@ -47,7 +48,7 @@ export default function History() {
       data: [...sortedBudgets.slice(1)],
     });
 
-  return (
+  return pastBudgets.length > 0 ? (
     <SafeView except={["bottom"]}>
       <SectionList
         showsVerticalScrollIndicator={false}
@@ -61,16 +62,9 @@ export default function History() {
         )}
         stickySectionHeadersEnabled={true}
         ItemSeparatorComponent={() => <Divider style={{ margin: 5 }} />}
-        ListEmptyComponent={() => (
-          <View>
-            <Card
-              style={{ marginVertical: 10, marginHorizontal: 20, padding: 10 }}
-            >
-              <Card.Title title="No History !!" />
-            </Card>
-          </View>
-        )}
       />
     </SafeView>
+  ) : (
+    <EmptyOtherTabs />
   );
 }
