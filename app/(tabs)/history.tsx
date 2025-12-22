@@ -6,6 +6,7 @@ import { Budget } from "../../model/budget";
 import PastBudgetCard from "../../components/past-budgets-cards";
 import SafeView from "@/components/safe-area-view";
 import EmptyOtherTabs from "@/components/empty-other-tabs";
+import TopAppBar from "@/components/top-app-bar";
 
 const SectionHeader = ({ label }: { label: string }) => {
   const theme = useTheme();
@@ -65,6 +66,10 @@ export default function History() {
       />
     </SafeView>
   ) : (
-    <EmptyOtherTabs />
+    <>
+      {/* Top bar only to allocade dummy space so it does not look out of oder in tab change */}
+      <TopAppBar />
+      <EmptyOtherTabs />
+    </>
   );
 }

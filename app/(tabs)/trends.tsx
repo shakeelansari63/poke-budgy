@@ -1,5 +1,5 @@
 import { SectionList, Dimensions, View } from "react-native";
-import { Card, Text, useTheme } from "react-native-paper";
+import { Card, useTheme } from "react-native-paper";
 import { Dropdown } from "react-native-paper-dropdown";
 import React from "react";
 import { Period } from "../../constants/enums";

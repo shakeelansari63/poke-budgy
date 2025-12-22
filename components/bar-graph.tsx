@@ -29,15 +29,16 @@ const BarGraph = ({ data, width, height, showLine }: BarGraphProp) => {
     const labelVal = parseInt(label);
 
     if (maxValWithBufferSpace > 1000000000000)
-      return `${(labelVal / 1000000000000).toFixed(1)}T`;
+      return `${(labelVal / 1000000000000).toFixed(1)} T`;
 
     if (maxValWithBufferSpace > 1000000000)
-      return `${(labelVal / 1000000000).toFixed(1)}B`;
+      return `${(labelVal / 1000000000).toFixed(1)} B`;
 
     if (maxValWithBufferSpace > 1000000)
-      return `${(labelVal / 1000000).toFixed(1)}M`;
+      return `${(labelVal / 1000000).toFixed(1)} M`;
 
-    if (maxValWithBufferSpace > 1000) return `${(labelVal / 1000).toFixed(1)}K`;
+    if (maxValWithBufferSpace > 1000)
+      return `${(labelVal / 1000).toFixed(1)} K`;
 
     return label;
   };

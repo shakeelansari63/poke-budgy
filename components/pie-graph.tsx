@@ -4,7 +4,7 @@ import React from "react";
 import { PieChart } from "react-native-gifted-charts";
 import { PieChartColors } from "../constants/colors";
 import { useCurrencySymbol } from "@/hooks/use-settings";
-import { numberOption } from "@/constants/app-constants";
+import { formatNumberLabel } from "@/helpers/number-helper";
 
 interface Point {
   label: string;
@@ -42,22 +42,6 @@ const RenderLegend = ({ data }: LegendProps) => {
     const dataSlice = data.slice(startIdx, endIdx);
     dataInRows.push(dataSlice);
   }
-
-  const formatNumberLabel = (label: number): string => {
-    if (label > 1000000000000)
-      return `${(label / 1000000000000).toLocaleString("en-US", numberOption)}T`;
-
-    if (label > 1000000000)
-      return `${(label / 1000000000).toLocaleString("en-US", numberOption)}B`;
-
-    if (label > 1000000)
-      return `${(label / 1000000).toLocaleString("en-US", numberOption)}M`;
-
-    if (label > 1000)
-      return `${(label / 1000).toLocaleString("en-US", numberOption)}K`;
-
-    return label.toLocaleString("en-US", numberOption);
-  };
 
   return (
     <View style={{ marginTop: 8 }}>

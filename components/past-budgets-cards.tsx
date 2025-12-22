@@ -4,13 +4,14 @@ import React from "react";
 import { Budget } from "../model/budget";
 import { useDispatch } from "react-redux";
 import { deletePastBudget } from "../storage/slices/budget-slice";
-import { dateOption, numberOption } from "../constants/app-constants";
+import { dateOption } from "../constants/app-constants";
 import DateChip from "./date-chip";
 import NewBudgetDialog from "./new-budget-dialog";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useCurrencySymbol } from "../hooks/use-settings";
 import ConfirmationDialog from "./confirmation-dialog";
 import { useRouter } from "expo-router";
+import { formatNumberLabel } from "@/helpers/number-helper";
 
 interface PastBudgetCardProp {
   budget: Budget;
@@ -38,6 +39,7 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
     budget?.Incomes.reduce((acc, inc) => acc + inc.Amount, 0) ?? 0;
   const totalBudgeted =
     budget?.Expenses.reduce((acc, exp) => acc + exp.Amount, 0) ?? 0;
+  const totalSaving = totalIncome - totalBudgeted;
 
   const delPastBudget = () => {
     dispatch(deletePastBudget(budget.Id));
@@ -67,12 +69,26 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
               <DateChip>From: {startDate}</DateChip>
               <DateChip>To: {endDate}</DateChip>
             </View>
+            <View>
+              <Text
+                variant="titleLarge"
+                style={{
+                  color:
+                    totalSaving > 0
+                      ? theme.colors.onPrimaryContainer
+                      : theme.colors.error,
+                  marginBottom: 20,
+                }}
+              >
+                Savings: {currencySymbol} {formatNumberLabel(totalSaving)}
+              </Text>
+            </View>
             <View style={{ flexDirection: "row", marginBottom: 10 }}>
               <View style={{ flex: 0.5, justifyContent: "flex-start" }}>
                 <View style={{ flexDirection: "row" }}>
                   <View style={{ marginRight: 5 }}>
                     <Icon
-                      source="bank-plus"
+                      source="cash-plus"
                       color={theme.colors.onPrimaryContainer}
                       size={24}
                     />
@@ -88,8 +104,7 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
                   variant="titleMedium"
                   style={{ color: theme.colors.onPrimaryContainer }}
                 >
-                  {currencySymbol}{" "}
-                  {totalIncome.toLocaleString("en-US", numberOption)}
+                  {currencySymbol} {formatNumberLabel(totalIncome)}
                 </Text>
               </View>
               <View style={{ flex: 0.5, justifyContent: "flex-end" }}>
@@ -114,8 +129,7 @@ const PastBudgetCard = ({ budget }: PastBudgetCardProp) => {
                   variant="titleMedium"
                   style={{ alignSelf: "flex-end", color: theme.colors.error }}
                 >
-                  {currencySymbol}{" "}
-                  {totalBudgeted.toLocaleString("en-US", numberOption)}
+                  {currencySymbol} {formatNumberLabel(totalBudgeted)}
                 </Text>
               </View>
             </View>

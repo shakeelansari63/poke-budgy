@@ -24,84 +24,85 @@ SplashScreen.preventAutoHideAsync();
 
 // Set Splash Screen transition option
 SplashScreen.setOptions({
-    duration: 800,
-    fade: true,
+  duration: 800,
+  fade: true,
 });
 
 export default function RootLayout() {
-    return (
-        <Provider store={store}>
-            <AppMain />
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <AppMain />
+    </Provider>
+  );
 }
 
 const AppMain = () => {
-    // Get system Color Scheme
-    const colorScheme = useColorScheme();
+  // Get system Color Scheme
+  const colorScheme = useColorScheme();
 
-    // Get Settings from Redux
-    const appTheme = useCurrentTheme();
-    const color = useCurrentColor();
+  // Get Settings from Redux
+  const appTheme = useCurrentTheme();
+  const color = useCurrentColor();
 
-    // Build Color Theme
-    const { lightTheme, darkTheme } = buildTheme(color);
+  // Build Color Theme
+  const { lightTheme, darkTheme } = buildTheme(color);
 
-    // Use Theme based on User theme setting and System Color scheme
-    const paperTheme =
-        appTheme === "device" && colorScheme === "dark"
-            ? darkTheme
-            : appTheme === "device" && colorScheme === "light"
-            ? lightTheme
-            : appTheme === "dark"
-            ? darkTheme
-            : lightTheme;
+  // Use Theme based on User theme setting and System Color scheme
+  const paperTheme =
+    appTheme === "device" && colorScheme === "dark"
+      ? darkTheme
+      : appTheme === "device" && colorScheme === "light"
+        ? lightTheme
+        : appTheme === "dark"
+          ? darkTheme
+          : lightTheme;
 
-    const statusBarStyle: StatusBarStyle = appTheme === "device" ? "auto" : appTheme === "dark" ? "light" : "dark";
+  const statusBarStyle: StatusBarStyle =
+    appTheme === "device" ? "auto" : appTheme === "dark" ? "light" : "dark";
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    React.useEffect(() => {
-        // Dispatch all load actions
-        dispatch(loadBudgetFromStore({}));
-        dispatch(loadSettingsFromStore({}));
+  React.useEffect(() => {
+    // Dispatch all load actions
+    dispatch(loadBudgetFromStore({}));
+    dispatch(loadSettingsFromStore({}));
 
-        // Hide Splash Screen in half a second
-        setTimeout(() => {
-            SplashScreen.hideAsync();
-        }, 800);
-    }, []);
+    // Hide Splash Screen in half a second
+    setTimeout(() => {
+      SplashScreen.hideAsync();
+    }, 800);
+  }, [dispatch]);
 
-    return (
-        <PaperProvider theme={paperTheme}>
-            <ThemeProvider value={paperTheme}>
-                <SafeAreaProvider>
-                    <Portal.Host>
-                        <GestureHandlerRootView>
-                            <BottomSheetModalProvider>
-                                <AppRouterStack />
-                            </BottomSheetModalProvider>
-                        </GestureHandlerRootView>
-                    </Portal.Host>
-                </SafeAreaProvider>
-                <StatusBar style={statusBarStyle} />
-            </ThemeProvider>
-        </PaperProvider>
-    );
+  return (
+    <PaperProvider theme={paperTheme}>
+      <ThemeProvider value={paperTheme}>
+        <SafeAreaProvider>
+          <Portal.Host>
+            <GestureHandlerRootView>
+              <BottomSheetModalProvider>
+                <AppRouterStack />
+              </BottomSheetModalProvider>
+            </GestureHandlerRootView>
+          </Portal.Host>
+        </SafeAreaProvider>
+        <StatusBar style={statusBarStyle} />
+      </ThemeProvider>
+    </PaperProvider>
+  );
 };
 
 const AppRouterStack = () => {
-    return (
-        <Stack
-            screenOptions={{
-                headerShown: false,
-            }}
-        >
-            <Stack.Screen name="(tabs)" />
-            <Stack.Screen name="settings" />
-            <Stack.Screen name="budget-expense" />
-            <Stack.Screen name="past-budget-view" />
-            <Stack.Screen name="+not-found" />
-        </Stack>
-    );
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="settings" />
+      <Stack.Screen name="budget-expense" />
+      <Stack.Screen name="past-budget-view" />
+      <Stack.Screen name="+not-found" />
+    </Stack>
+  );
 };
