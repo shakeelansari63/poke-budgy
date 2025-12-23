@@ -8,6 +8,7 @@ import { numberOption } from "@/constants/app-constants";
 interface Point {
   label: string;
   value: number;
+  frontColor?: string;
 }
 
 interface BarGraphProp {
@@ -15,9 +16,16 @@ interface BarGraphProp {
   width?: number;
   height?: number;
   showLine?: boolean;
+  horizontal?: boolean;
 }
 
-const BarGraph = ({ data, width, height, showLine }: BarGraphProp) => {
+const BarGraph = ({
+  data,
+  width,
+  height,
+  showLine,
+  horizontal,
+}: BarGraphProp) => {
   const maxVal = data.reduce(
     (acc: number, point: Point) => (point.value > acc ? point.value : acc),
     0,
@@ -52,6 +60,7 @@ const BarGraph = ({ data, width, height, showLine }: BarGraphProp) => {
         barBorderRadius={4}
         frontColor={BarComparisionColors[0]}
         data={data}
+        horizontal={horizontal}
         yAxisThickness={0}
         xAxisThickness={0}
         yAxisTextStyle={{ color: theme.colors.onBackground, fontSize: 10 }}

@@ -16,36 +16,38 @@ interface BarPoint {
 
 interface CompareBarGraphProp {
   data: ComparisionBarPoints[];
-  legend: [string, string];
+  legend: string[];
   width?: number;
   height?: number;
 }
 
 const getMaxVal = (points: ComparisionBarPoints, accumulator: number) => {
-  if (points.value1 > points.value2 && points.value1 > accumulator)
-    return points.value1;
-
-  if (points.value2 > accumulator) return points.value2;
-  return accumulator;
+  return Math.max(...points.values, accumulator);
 };
 
 const generateBarPoints = (data: ComparisionBarPoints[]): BarPoint[] => {
   const barPoints: BarPoint[] = [];
   data.forEach((point) => {
-    // Push first Point
-    barPoints.push({
-      value: point.value1,
-      label: point.label,
-      spacing: 5,
-      labelWidth: 45,
-      frontColor: BarComparisionColors[0],
-    });
+    // Loop over values
+    point.values.forEach((value, idx) => {
+      // For First Point
+      if (idx === 0) {
+        barPoints.push({
+          value,
+          label: point.label,
+          spacing: 5,
+          labelWidth: 20 * point.values.length + 5 * (point.values.length - 1),
+          frontColor: BarComparisionColors[idx],
+        });
+      }
 
-    // Push second Point
-    barPoints.push({
-      value: point.value2,
-      frontColor: BarComparisionColors[1],
-      spacing: 20,
+      // For all other Points
+      else
+        barPoints.push({
+          value: value,
+          frontColor: BarComparisionColors[idx],
+          spacing: idx + 1 < point.values.length ? 5 : 20,
+        });
     });
   });
   return barPoints;
@@ -141,8 +143,13 @@ const CompareBarGraph = ({
         )}
       />
       <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
-        <RenderLegend color={BarComparisionColors[0]} text={legend[0]} />
-        <RenderLegend color={BarComparisionColors[1]} text={legend[1]} />
+        {legend.map((item, index) => (
+          <RenderLegend
+            key={index}
+            color={BarComparisionColors[index]}
+            text={item}
+          />
+        ))}
       </View>
     </View>
   );

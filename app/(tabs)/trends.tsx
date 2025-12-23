@@ -19,31 +19,32 @@ import CompareBarGraph from "../../components/compare-bar-graph";
 import { GroupWiseValues, ComparisionBarPoints } from "../../model/shared";
 import TopAppBar from "@/components/top-app-bar";
 import EmptyOtherTabs from "@/components/empty-other-tabs";
+import { BarComparisionColors } from "@/constants/colors";
 
 const mergePointsByLabels = (
-  data1: GroupWiseValues[],
-  data2: GroupWiseValues[],
+  data: GroupWiseValues[][],
 ): ComparisionBarPoints[] => {
   const merged: ComparisionBarPoints[] = [];
 
-  // Add all points from data1 in merged
-  data1.forEach((point) => {
-    merged.push({
-      label: point.key,
-      value1: point.value,
-      value2: 0,
-    });
-  });
-
-  // Loop over data point 2 and add them to merged list
-  data2.forEach((point) => {
-    const barPt = merged.find((barPoint) => barPoint.label === point.key);
-    if (barPt) barPt.value2 = point.value;
+  data.forEach((dataPoint, idx) => {
+    // For First Data Point add simply add it to list
+    if (idx === 0)
+      dataPoint.forEach((point) => {
+        merged.push({
+          label: point.key,
+          values: [point.value],
+        });
+      });
+    // Loop over other data points find appropriate key and add them to merged list
     else
-      merged.push({
-        label: point.key,
-        value1: 0,
-        value2: point.value,
+      dataPoint.forEach((point) => {
+        const barPt = merged.find((barPoint) => barPoint.label === point.key);
+        if (barPt) barPt.values.push(point.value);
+        else
+          merged.push({
+            label: point.key,
+            values: [...Array(idx).fill(0), point.value],
+          });
       });
   });
 
@@ -105,28 +106,56 @@ const Trends = () => {
     expenseCatData.reduce((acc, inc) => acc + inc.value, 0) > 0;
   const spentData = getMonthWiseExpenses(periodBudgets);
   const spendAvailable = spentData.reduce((acc, inc) => acc + inc.value, 0) > 0;
-  const incomeAndSavingDataPoints = mergePointsByLabels(
+  const incomeExpenseCatAndSavedDataPoints = mergePointsByLabels([
     incomeData,
     expenseCatData,
-  );
+  ]);
+
   // Calculate saving as income - budget
-  incomeAndSavingDataPoints.forEach((point) => {
-    point.value2 =
-      point.value2 > point.value1 ? 0 : point.value1 - point.value2;
+  incomeExpenseCatAndSavedDataPoints.forEach((point) => {
+    point.values.push(
+      point.values[1] > point.values[0] ? 0 : point.values[0] - point.values[1],
+    );
   });
 
   // Extract Monthly Savings data only
-  const savingsData: GroupWiseValues[] = incomeAndSavingDataPoints.map(
+  const savingsData: GroupWiseValues[] = incomeExpenseCatAndSavedDataPoints.map(
     (point) => {
       return {
         sortId: 0,
         key: point.label,
-        value: point.value2,
+        value: point.values[2],
       };
     },
   );
   const savingAvailable =
     savingsData.reduce((acc, sav) => acc + sav.value, 0) > 0;
+
+  // Calculate Total Income, Expense Budgets and Savings for the period
+  const totalIncome = incomeData.reduce((acc, inc) => acc + inc.value, 0);
+  const totalExpenseCat = expenseCatData.reduce(
+    (acc, exp) => acc + exp.value,
+    0,
+  );
+  const totalSavings = savingsData.reduce((acc, sav) => acc + sav.value, 0);
+  const totalTrend = [
+    {
+      label: "Income",
+      value: totalIncome,
+      frontColor: BarComparisionColors[0],
+    },
+    {
+      label: "Budget",
+      value: totalExpenseCat,
+      frontColor: BarComparisionColors[1],
+    },
+    {
+      label: "Savings",
+      value: totalSavings,
+      frontColor: BarComparisionColors[2],
+    },
+  ];
+
   const top5Budgets = getTop5Budgets(periodBudgets);
   const top5BudgetsAvailable =
     top5Budgets.reduce((acc, inc) => acc + inc.value, 0) > 0;
@@ -156,18 +185,19 @@ const Trends = () => {
     });
   }
 
-  // Show comparision graph between Income and Expesne Category
+  // Show graph for Income per month
   if (incomeAvailable || expenseCatAvailable) {
     trendData.push({
       id: trendData.length,
       node: (
         <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
-          <Card.Title title="Income vs Budgets" titleVariant="titleLarge" />
+          <Card.Title title="Finances for Period" titleVariant="titleLarge" />
           <Card.Content>
-            <CompareBarGraph
-              data={mergePointsByLabels(incomeData, expenseCatData)}
-              legend={["Income", "Budget"]}
+            <BarGraph
+              data={totalTrend}
               width={graphWidthWithPadding}
+              horizontal={false}
+              showLine={false}
             />
           </Card.Content>
         </Card>
@@ -181,11 +211,14 @@ const Trends = () => {
       id: trendData.length,
       node: (
         <Card style={{ marginVertical: 10, marginHorizontal: 20 }}>
-          <Card.Title title="Income vs Savings" titleVariant="titleLarge" />
+          <Card.Title
+            title="Income, Budgeted, Saved"
+            titleVariant="titleLarge"
+          />
           <Card.Content>
             <CompareBarGraph
-              data={incomeAndSavingDataPoints}
-              legend={["Income", "Savings"]}
+              data={incomeExpenseCatAndSavedDataPoints}
+              legend={["Income", "Budgeted", "Saved"]}
               width={graphWidthWithPadding}
             />
           </Card.Content>
@@ -203,7 +236,7 @@ const Trends = () => {
           <Card.Title title="Budget vs Expenditure" titleVariant="titleLarge" />
           <Card.Content>
             <CompareBarGraph
-              data={mergePointsByLabels(expenseCatData, spentData)}
+              data={mergePointsByLabels([expenseCatData, spentData])}
               legend={["Budget", "Expenditure"]}
               width={graphWidthWithPadding}
             />
