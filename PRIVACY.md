@@ -26,7 +26,7 @@ You do not need to create an account or sign in to use the App. There are no __u
    
 ## 4. Third-Party Access
 
-Because we do not collect your data, we cannot—and will not—sell, trade, or rent your information to third parties. We do not use third-party tracking or analytics tools that send your data to outside servers.
+Because we do not collect your data, we **cannot** and **will not** share, sell, trade, or rent your information to third parties. We do not use third-party tracking or analytics tools that send your data to outside servers.
    
 ## 5. Permissions
 
