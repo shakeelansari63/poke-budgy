@@ -1,15 +1,4 @@
-import {
-  Text,
-  Card,
-  IconButton,
-  Avatar,
-  Portal,
-  Dialog,
-  Button,
-  useTheme,
-} from "react-native-paper";
-import { useSelector } from "react-redux";
-import { StoreState } from "../model/store";
+import { Text, Card, IconButton, Avatar, useTheme } from "react-native-paper";
 import { Budget } from "../model/budget";
 import ExpenseCategoryLine from "./expense-category-line";
 import EditExpenseCategoryDialog from "./edit-expense-category-dialog";

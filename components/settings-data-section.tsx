@@ -5,7 +5,10 @@ import {
   resetStore,
   loadBudgetFromStore,
 } from "../storage/slices/budget-slice";
-import { loadSettingsFromStore } from "../storage/slices/settings-slice";
+import {
+  loadSettingsFromStore,
+  setOnBoarded,
+} from "../storage/slices/settings-slice";
 import SettingMenuLine from "../components/setting-menu-line";
 import ConfirmationDialog from "../components/confirmation-dialog";
 import { exportData, importData } from "../services/export-import-service";
@@ -30,6 +33,7 @@ const DataSettingsSection = ({
 
   const resetBudgetData = () => {
     dispatch(resetStore({}));
+    dispatch(setOnBoarded(false));
     setResetDataVisible(false);
     setAlertText("Data Reset Successful");
     setAlertType("success");
