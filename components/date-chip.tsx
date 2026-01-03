@@ -1,4 +1,4 @@
-import { Text, Chip, Icon, useTheme } from "react-native-paper";
+import { Chip, Icon, useTheme } from "react-native-paper";
 import React from "react";
 
 const DateChip = ({ children }: { children: React.ReactNode }) => {
@@ -6,7 +6,13 @@ const DateChip = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <Chip
-            icon={({ size }) => <Icon source="calendar" color={theme.colors.onBackground} size={size} />}
+            icon={({ size }) => (
+                <Icon
+                    source="calendar"
+                    color={theme.colors.onBackground}
+                    size={size}
+                />
+            )}
             textStyle={{ fontSize: 10 }}
             style={{ backgroundColor: theme.colors.tertiaryContainer }}
         >

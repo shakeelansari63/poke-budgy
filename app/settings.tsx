@@ -27,7 +27,12 @@ const SettingsScreen = () => {
                 />
                 <HelpSettigsSection />
             </ScrollView>
-            <AlertViewer visible={alertVisible} setVisible={setAlertVisible} text={alertText} alertType={alertType} />
+            <AlertViewer
+                visible={alertVisible}
+                setVisible={setAlertVisible}
+                text={alertText}
+                alertType={alertType}
+            />
         </>
     );
 };

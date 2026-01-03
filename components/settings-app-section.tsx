@@ -1,13 +1,16 @@
 import { View } from "react-native";
 import { Card, IconButton } from "react-native-paper";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Settings } from "../model/settings";
 import { StoreState } from "../model/store";
 import { Dropdown } from "react-native-paper-dropdown";
 import { Currencies } from "../constants/currencies";
-import { useDispatch } from "react-redux";
-import { setCurrency, setTheme, setColor } from "../storage/slices/settings-slice";
+import {
+    setCurrency,
+    setTheme,
+    setColor,
+} from "../storage/slices/settings-slice";
 import SettingMenuLine from "../components/setting-menu-line";
 import { ThemeColors } from "@/constants/colors";
 import { useCurrentColor } from "@/hooks/use-settings";
@@ -16,7 +19,9 @@ const AppSettingsSection = () => {
     const dispatch = useDispatch();
     const currColor = useCurrentColor().toUpperCase();
 
-    const settings: Settings = useSelector<StoreState, Settings>((state) => state.setting);
+    const settings: Settings = useSelector<StoreState, Settings>(
+        (state) => state.setting,
+    );
 
     const currencies = Currencies.map((currency) => {
         return {
@@ -82,11 +87,20 @@ const AppSettingsSection = () => {
                 <SettingMenuLine
                     noDivider={true}
                     settingNode={
-                        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                justifyContent: "space-between",
+                            }}
+                        >
                             {ThemeColors.map((col) => (
                                 <IconButton
                                     containerColor={col.base}
-                                    iconColor={currColor === col.base.toUpperCase() ? "white" : col.base}
+                                    iconColor={
+                                        currColor === col.base.toUpperCase()
+                                            ? "white"
+                                            : col.base
+                                    }
                                     icon="check"
                                     size={20}
                                     mode="contained"

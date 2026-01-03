@@ -1,7 +1,6 @@
 import { Dimensions } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Menu, Divider } from "react-native-paper";
-import React from "react";
 import { useRouter } from "expo-router";
 import { useSelector } from "react-redux";
 import { useState, useRef } from "react";
@@ -24,7 +23,9 @@ const SettingsMenu = ({ visible, setVisible }: MenuProps) => {
     const y = insets.top + 60;
 
     const newBudgetRef = useRef<BottomSheetModal>(null);
-    const currentBudget = useSelector<StoreState, Budget | null>((state) => state.budget.activeBudget);
+    const currentBudget = useSelector<StoreState, Budget | null>(
+        (state) => state.budget.activeBudget,
+    );
     const [cloneId, setCloneId] = useState<string | null>(null);
 
     const cloneActiveBudget = () => {
@@ -46,8 +47,17 @@ const SettingsMenu = ({ visible, setVisible }: MenuProps) => {
 
     return (
         <>
-            <Menu visible={visible} onDismiss={() => setVisible(false)} anchor={{ x: x, y: y }} elevation={5}>
-                <Menu.Item onPress={createBlankBudget} title="Create new Empty Plan" leadingIcon="plus" />
+            <Menu
+                visible={visible}
+                onDismiss={() => setVisible(false)}
+                anchor={{ x: x, y: y }}
+                elevation={5}
+            >
+                <Menu.Item
+                    onPress={createBlankBudget}
+                    title="Create new Empty Plan"
+                    leadingIcon="plus"
+                />
                 <Divider />
                 {currentBudget !== null && (
                     <>
@@ -59,7 +69,11 @@ const SettingsMenu = ({ visible, setVisible }: MenuProps) => {
                         <Divider />
                     </>
                 )}
-                <Menu.Item onPress={gotoSettings} title="Settings" leadingIcon="cog" />
+                <Menu.Item
+                    onPress={gotoSettings}
+                    title="Settings"
+                    leadingIcon="cog"
+                />
             </Menu>
             <NewBudgetDialog cloneId={cloneId} sheetRef={newBudgetRef} />
         </>
