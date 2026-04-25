@@ -1,17 +1,16 @@
 import React from "react";
 import { Text, Card, IconButton, Avatar, useTheme } from "react-native-paper";
-import { Budget } from "../model/budget";
-import IncomeLine from "./income-line";
-import EditIncomeDialog from "./edit-income-dialog";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { Income } from "../model/income";
+import { Budget } from "@/model/budget";
+import IncomeLine from "./IncomeLine";
+import EditIncomeDialog from "./EditIncomeDialog";
+import { Income } from "@/model/income";
 import { useDispatch } from "react-redux";
-import { deleteIncome } from "../storage/slices/budget-slice";
-import { useCurrencySymbol } from "../hooks/use-settings";
-import ConfirmationDialog from "./confirmation-dialog";
-import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
-import SwipeQuickActions, { SwipeQuickActionData } from "./swipe-quick-actions";
+import { deleteIncome } from "@/storage/slices/budget-slice";
+import { useCurrencySymbol } from "@/hooks/use-settings";
+import ConfirmationDialog from "@/components/shared/ConfirmationDialog";
+import SwipeQuickActions, { SwipeQuickActionData } from "./SwipeQuickActions";
 import { numberOption } from "@/constants/app-constants";
+import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
 
 interface IncomeSectionProps {
   currentBudget: Budget | null;

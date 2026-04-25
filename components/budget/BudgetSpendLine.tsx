@@ -1,9 +1,8 @@
 import { Chip, Divider, List } from "react-native-paper";
 import React from "react";
-import { Expense } from "../model/expense";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import EditBudgetSpendDialog from "./budget-spend-dialog";
-import { useCurrencySymbol } from "../hooks/use-settings";
+import { Expense } from "@/model/expense";
+import EditBudgetSpendDialog from "./BudgetSpendDialog";
+import { useCurrencySymbol } from "@/hooks/use-settings";
 
 interface BudgetSpendLineProp {
     expense: Expense;

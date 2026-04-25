@@ -1,17 +1,17 @@
-import { Text, Card, IconButton, Avatar, useTheme } from "react-native-paper";
-import { Budget } from "../model/budget";
-import ExpenseCategoryLine from "./expense-category-line";
-import EditExpenseCategoryDialog from "./edit-expense-category-dialog";
 import React from "react";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { ExpenseCategory } from "../model/expense";
+import { Text, Card, IconButton, Avatar, useTheme } from "react-native-paper";
+import { Budget } from "@/model/budget";
+import ExpenseCategoryLine from "./ExpenseCategoryLine";
+import EditExpenseCategoryDialog from "./EditExpenseCategoryDialog";
+import { ExpenseCategory } from "@/model/expense";
 import { useDispatch } from "react-redux";
-import { deleteExpenseCategory } from "../storage/slices/budget-slice";
-import { useCurrencySymbol } from "../hooks/use-settings";
-import ConfirmationDialog from "./confirmation-dialog";
-import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
-import SwipeQuickActions, { SwipeQuickActionData } from "./swipe-quick-actions";
+import { deleteExpenseCategory } from "@/storage/slices/budget-slice";
+import { useCurrencySymbol } from "@/hooks/use-settings";
+import ConfirmationDialog from "@/components/shared/ConfirmationDialog";
+import SwipeQuickActions, { SwipeQuickActionData } from "./SwipeQuickActions";
 import { numberOption } from "@/constants/app-constants";
+import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 interface ExpenseSectionProps {
   currentBudget: Budget | null;

@@ -1,9 +1,9 @@
 import { View } from "react-native";
 import React from "react";
-import colors from "../constants/colors";
+import colors from "../../constants/colors";
 import { Card, Text, ProgressBar } from "react-native-paper";
 import { ExpenseCategory } from "@/model/expense";
-import { useCurrencySymbol } from "../hooks/use-settings";
+import { useCurrencySymbol } from "../../hooks/use-settings";
 import { numberOption } from "@/constants/app-constants";
 
 interface BudgetSpendSummarySectionProps {

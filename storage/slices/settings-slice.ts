@@ -1,4 +1,4 @@
-import { Settings } from "../../model/settings";
+import { Settings } from "@/model/settings";
 import { createSlice } from "@reduxjs/toolkit";
 import { DataStore } from "../persistent-store";
 import { ThemeColors } from "../../constants/colors";

@@ -14,7 +14,7 @@ const EmptyOtherTabs = () => {
       }}
     >
       <Image
-        source={require("../assets/images/no-data-available.png")}
+        source={require("../../assets/images/no-data-available.png")}
         contentFit="cover"
         style={{ width: 200, height: 200 }}
       />

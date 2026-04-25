@@ -1,11 +1,11 @@
 import { View } from "react-native";
 import React from "react";
 import { List, Chip, Icon } from "react-native-paper";
-import { ExpenseCategory } from "../model/expense";
-import { useRouter } from "expo-router";
-import { UsageIconColors } from "../constants/colors";
-import { useCurrencySymbol } from "../hooks/use-settings";
+import { ExpenseCategory } from "@/model/expense";
+import { UsageIconColors } from "@/constants/colors";
+import { useCurrencySymbol } from "@/hooks/use-settings";
 import { numberOption } from "@/constants/app-constants";
+import { useRouter } from "expo-router";
 
 interface ExpenseCategoryLineProps {
   budgetId: string;

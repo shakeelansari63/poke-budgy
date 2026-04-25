@@ -2,16 +2,15 @@ import { View } from "react-native";
 import { Card, IconButton } from "react-native-paper";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Settings } from "../model/settings";
-import { StoreState } from "../model/store";
-import { Dropdown } from "react-native-paper-dropdown";
-import { Currencies } from "../constants/currencies";
+import { Settings } from "@/model/settings";
+import { StoreState } from "@/model/store";
+import { Currencies } from "@/constants/currencies";
 import {
     setCurrency,
     setTheme,
     setColor,
-} from "../storage/slices/settings-slice";
-import SettingMenuLine from "../components/setting-menu-line";
+} from "@/storage/slices/settings-slice";
+import SettingMenuLine from "./SettingMenuLine";
 import { ThemeColors } from "@/constants/colors";
 import { useCurrentColor } from "@/hooks/use-settings";
 

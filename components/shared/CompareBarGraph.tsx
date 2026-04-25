@@ -2,8 +2,8 @@ import { View } from "react-native";
 import { Badge, Text, useTheme } from "react-native-paper";
 import React from "react";
 import { BarChart } from "react-native-gifted-charts";
-import { BarComparisionColors } from "../constants/colors";
-import { ComparisionBarPoints } from "../model/shared";
+import { BarComparisionColors } from "@/constants/colors";
+import { ComparisionBarPoints } from "@/model/shared";
 import { numberOption } from "@/constants/app-constants";
 
 interface BarPoint {

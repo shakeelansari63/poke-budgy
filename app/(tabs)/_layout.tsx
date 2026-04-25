@@ -3,9 +3,9 @@ import React from "react";
 import { Easing, Platform } from "react-native";
 import { Icon, useTheme, Text, BottomNavigation } from "react-native-paper";
 import { CommonActions } from "@react-navigation/native";
-import { HapticTab } from "../../components/haptic-tabs";
+import { HapticTab } from "@/components/navigation/HapticTabs";
 import { useOnboarded } from "@/hooks/use-settings";
-import PokeBudgyOnboarding from "../../components/onboarding-page";
+import PokeBudgyOnboarding from "@/components/onboarding/OnboardingPage";
 
 export default function TabLayout() {
     const theme = useTheme();

@@ -2,7 +2,7 @@ import { SectionList, Dimensions, View } from "react-native";
 import { Card, useTheme } from "react-native-paper";
 import { Dropdown } from "react-native-paper-dropdown";
 import React from "react";
-import { Period } from "../../constants/enums";
+import { Period } from "@/constants/enums";
 import { useSelector } from "react-redux";
 import {
   getMonthWiseExpenseCategory,
@@ -10,15 +10,15 @@ import {
   getMonthWiseIncome,
   getStartAndEndDateForPeriod,
   getTop5Budgets,
-} from "../../helpers/trend-helper";
-import { BudgetState, StoreState } from "../../model/store";
-import { Budget } from "../../model/budget";
-import BarGraph from "../../components/bar-graph";
-import PieGraph from "../../components/pie-graph";
-import CompareBarGraph from "../../components/compare-bar-graph";
-import { GroupWiseValues, ComparisionBarPoints } from "../../model/shared";
-import TopAppBar from "@/components/top-app-bar";
-import EmptyOtherTabs from "@/components/empty-other-tabs";
+} from "@/helpers/trend-helper";
+import { BudgetState, StoreState } from "@/model/store";
+import { Budget } from "@/model/budget";
+import BarGraph from "@/components/shared/BarGraph";
+import PieGraph from "@/components/shared/PieGraph";
+import CompareBarGraph from "@/components/shared/CompareBarGraph";
+import { GroupWiseValues, ComparisionBarPoints } from "@/model/shared";
+import TopAppBar from "@/components/shared/TopAppBar";
+import EmptyOtherTabs from "@/components/shared/EmptyOtherTabs";
 import { BarComparisionColors } from "@/constants/colors";
 
 const mergePointsByLabels = (

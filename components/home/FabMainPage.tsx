@@ -1,11 +1,10 @@
 import { FAB } from "react-native-paper";
 import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { StoreState } from "../model/store";
-import { Budget } from "../model/budget";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import AddBudgetDialog from "./edit-expense-category-dialog";
-import EditIncomeDialog from "./edit-income-dialog";
+import { StoreState } from "@/model/store";
+import { Budget } from "@/model/budget";
+import AddBudgetDialog from "./EditExpenseCategoryDialog";
+import EditIncomeDialog from "./EditIncomeDialog";
 
 const FabMainPage = () => {
     const [fabOpen, setFabOpen] = useState<boolean>(false);

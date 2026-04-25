@@ -4,9 +4,9 @@ import { Menu, Divider } from "react-native-paper";
 import { useRouter } from "expo-router";
 import { useSelector } from "react-redux";
 import { useState, useRef } from "react";
-import NewBudgetDialog from "./new-budget-dialog";
-import { StoreState } from "../model/store";
-import { Budget } from "../model/budget";
+import NewBudgetDialog from "@/components/budget/NewBudgetDialog";
+import { StoreState } from "@/model/store";
+import { Budget } from "@/model/budget";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 interface MenuProps {

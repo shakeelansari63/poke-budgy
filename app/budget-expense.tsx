@@ -1,19 +1,18 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { SectionList, View } from "react-native";
 import React from "react";
-import { ExpenseCategory } from "../model/expense";
+import { ExpenseCategory } from "@/model/expense";
 
-import FabBudgetPage from "../components/fab-budget-page";
+import FabBudgetPage from "@/components/budget/FabBudgetPage";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useSelector } from "react-redux";
-import { BudgetState, StoreState } from "../model/store";
-import { Budget } from "../model/budget";
+import { BudgetState, StoreState } from "@/model/store";
+import { Budget } from "@/model/budget";
 
-import EditExpenseCategoryDialog from "../components/edit-expense-category-dialog";
-import BudgetSpendSummarySection from "@/components/budget-spend-summary-section";
-import BudgetSpendSection from "@/components/budget-spend-section";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import TopAppBar from "@/components/top-app-bar";
+import EditExpenseCategoryDialog from "@/components/home/EditExpenseCategoryDialog";
+import BudgetSpendSummarySection from "@/components/budget/BudgetSpendSummarySection";
+import BudgetSpendSection from "@/components/budget/BudgetSpendSection";
+import TopAppBar from "@/components/shared/TopAppBar";
 
 const BudgetExpenses = () => {
     const { budgetId, categoryId } = useLocalSearchParams() as {

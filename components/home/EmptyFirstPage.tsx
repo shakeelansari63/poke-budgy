@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { View } from "react-native";
 import { Text, Button } from "react-native-paper";
 import { Image } from "expo-image";
-import NewBudgetDialog from "./new-budget-dialog";
+import NewBudgetDialog from "@/components/budget/NewBudgetDialog";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 
 const EmptyFirstPage = () => {
@@ -19,7 +19,7 @@ const EmptyFirstPage = () => {
       }}
     >
       <Image
-        source={require("../assets/images/no-data.png")}
+        source={require("../../assets/images/no-data.png")}
         contentFit="cover"
         style={{ width: 200, height: 200 }}
       />

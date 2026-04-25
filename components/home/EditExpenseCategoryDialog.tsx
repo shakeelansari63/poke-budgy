@@ -2,11 +2,10 @@ import { Button, TextInput, Surface, Card, IconButton, useTheme } from "react-na
 import { useState, RefObject } from "react";
 import { ScrollView } from "react-native";
 import { useDispatch } from "react-redux";
-import { addExpenseCategory, editExpenseCategory } from "../storage/slices/budget-slice";
-import { ExpenseCategory } from "../model/expense";
-import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
-import Dialog from "./dialog";
-import { useCurrencySymbol } from "../hooks/use-settings";
+import { addExpenseCategory, editExpenseCategory } from "../../storage/slices/budget-slice";
+import { ExpenseCategory } from "../../model/expense";
+import Dialog from "../shared/Dialog";
+import { useCurrencySymbol } from "../../hooks/use-settings";
 
 interface EditExpenseCategoryDialogProps {
     expenseCat?: ExpenseCategory;

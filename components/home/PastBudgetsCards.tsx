@@ -1,15 +1,15 @@
 import { ScrollView, View } from "react-native";
 import { Card, Icon, Text, Button, useTheme } from "react-native-paper";
 import React from "react";
-import { Budget } from "../model/budget";
+import { Budget } from "@/model/budget";
 import { useDispatch } from "react-redux";
-import { deletePastBudget } from "../storage/slices/budget-slice";
-import { dateOption } from "../constants/app-constants";
-import DateChip from "./date-chip";
-import NewBudgetDialog from "./new-budget-dialog";
+import { deletePastBudget } from "@/storage/slices/budget-slice";
+import { dateOption } from "@/constants/app-constants";
+import DateChip from "@/components/shared/DateChip";
+import NewBudgetDialog from "@/components/budget/NewBudgetDialog";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { useCurrencySymbol } from "../hooks/use-settings";
-import ConfirmationDialog from "./confirmation-dialog";
+import { useCurrencySymbol } from "@/hooks/use-settings";
+import ConfirmationDialog from "@/components/shared/ConfirmationDialog";
 import { useRouter } from "expo-router";
 import { formatNumberLabel } from "@/helpers/number-helper";
 

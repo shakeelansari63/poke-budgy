@@ -1,13 +1,10 @@
 import { SectionList, View } from "react-native";
 import React from "react";
-import { Budget } from "../model/budget";
-import BudgetGraph from "@/components/budget-graph-card";
-import IncomeSection from "@/components/income-section";
-import ExpenseSection from "@/components/expense-section";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { useSelector } from "react-redux";
-import { StoreState } from "@/model/store";
-import TopAppBar from "@/components/top-app-bar";
+import { Budget } from "@/model/budget";
+import BudgetGraph from "@/components/home/BudgetGraphCard";
+import IncomeSection from "@/components/home/IncomeSection";
+import ExpenseSection from "@/components/home/ExpenseSection";
+import TopAppBar from "@/components/shared/TopAppBar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const PastBudgetView = () => {

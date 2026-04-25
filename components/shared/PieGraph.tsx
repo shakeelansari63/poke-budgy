@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { Badge, Text, useTheme } from "react-native-paper";
 import React from "react";
 import { PieChart } from "react-native-gifted-charts";
-import { PieChartColors } from "../constants/colors";
+import { PieChartColors } from "@/constants/colors";
 import { useCurrencySymbol } from "@/hooks/use-settings";
 import { formatNumberLabel } from "@/helpers/number-helper";
 

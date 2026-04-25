@@ -1,12 +1,10 @@
 import { ScrollView } from "react-native";
 import React from "react";
-import AlertViewer, { AlertType } from "../components/alert-viewer";
-import TopAppBar from "@/components/top-app-bar";
-import { useRouter } from "expo-router";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import AppSettingsSection from "../components/settings-app-section";
-import DataSettingsSection from "../components/settings-data-section";
-import HelpSettigsSection from "../components/settings-help-section";
+import AlertViewer, { AlertType } from "@/components/shared/AlertViewer";
+import TopAppBar from "@/components/shared/TopAppBar";
+import AppSettingsSection from "@/components/settings/SettingsAppSection";
+import DataSettingsSection from "@/components/settings/SettingsDataSection";
+import HelpSettigsSection from "@/components/settings/SettingsHelpSection";
 
 const SettingsScreen = () => {
     const router = useRouter();

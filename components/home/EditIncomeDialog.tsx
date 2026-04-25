@@ -1,13 +1,13 @@
 import { ScrollView } from "react-native";
 import { Button, TextInput, Surface, Card, IconButton, useTheme } from "react-native-paper";
 import { useState, RefObject } from "react";
-import { Income } from "../model/income";
-import { DatePickerInput } from "react-native-paper-dates";
+import { Income } from "@/model/income";
+import { editIncome, addIncome } from "@/storage/slices/budget-slice";
+import Dialog from "@/components/shared/Dialog";
+import { useCurrencySymbol } from "@/hooks/use-settings";
 import { useDispatch } from "react-redux";
-import { editIncome, addIncome } from "../storage/slices/budget-slice";
+import { DatePickerInput } from "react-native-paper-dates";
 import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
-import Dialog from "./dialog";
-import { useCurrencySymbol } from "../hooks/use-settings";
 
 interface EditIncomeDialogProps {
     income?: Income;

@@ -1,12 +1,12 @@
 import { SectionList, View } from "react-native";
 import { Divider, Text, Icon, useTheme } from "react-native-paper";
 import { useSelector } from "react-redux";
-import { StoreState } from "../../model/store";
-import { Budget } from "../../model/budget";
-import PastBudgetCard from "../../components/past-budgets-cards";
-import SafeView from "@/components/safe-area-view";
-import EmptyOtherTabs from "@/components/empty-other-tabs";
-import TopAppBar from "@/components/top-app-bar";
+import { StoreState } from "@/model/store";
+import { Budget } from "@/model/budget";
+import PastBudgetCard from "@/components/home/PastBudgetsCards";
+import SafeView from "@/components/shared/SafeAreaView";
+import EmptyOtherTabs from "@/components/shared/EmptyOtherTabs";
+import TopAppBar from "@/components/shared/TopAppBar";
 
 const SectionHeader = ({ label }: { label: string }) => {
   const theme = useTheme();

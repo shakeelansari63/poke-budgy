@@ -1,11 +1,11 @@
 import { View } from "react-native";
 import { Card, Text, Icon } from "react-native-paper";
 import React from "react";
-import { Budget } from "../model/budget";
-import { dateOption, numberOption } from "../constants/app-constants";
-import DateChip from "./date-chip";
-import { useCurrencySymbol } from "../hooks/use-settings";
-import { useAppTheme } from "../hooks/use-app-theme";
+import { Budget } from "@/model/budget";
+import { dateOption, numberOption } from "@/constants/app-constants";
+import DateChip from "@/components/shared/DateChip";
+import { useCurrencySymbol } from "@/hooks/use-settings";
+import { useAppTheme } from "@/hooks/use-app-theme";
 
 interface BudgetGraphProps {
   currentBudget: Budget | null;

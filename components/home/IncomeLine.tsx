@@ -1,10 +1,9 @@
 import { useRef } from "react";
 import { View } from "react-native";
 import { List, Chip, Divider } from "react-native-paper";
-import { Income } from "../model/income";
-import EditIncomeDialog from "./edit-income-dialog";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { useCurrencySymbol } from "../hooks/use-settings";
+import { Income } from "@/model/income";
+import EditIncomeDialog from "./EditIncomeDialog";
+import { useCurrencySymbol } from "@/hooks/use-settings";
 import { numberOption } from "@/constants/app-constants";
 
 interface IncomeProps {

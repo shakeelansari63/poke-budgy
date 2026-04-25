@@ -1,15 +1,15 @@
 import { SectionList, View } from "react-native";
-import BudgetGraph from "../../components/budget-graph-card";
-import IncomeSection from "../../components/income-section";
-import ExpenseSection from "../../components/expense-section";
-import FabMainPage from "../../components/fab-main-page";
-import SettingsMenu from "../../components/settings-menu";
-import EmptyFirstPage from "../../components/empty-first-page";
+import BudgetGraph from "@/components/home/BudgetGraphCard";
+import IncomeSection from "@/components/home/IncomeSection";
+import ExpenseSection from "@/components/home/ExpenseSection";
+import FabMainPage from "@/components/home/FabMainPage";
+import SettingsMenu from "@/components/settings/SettingsMenu";
+import EmptyFirstPage from "@/components/home/EmptyFirstPage";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { StoreState } from "../../model/store";
-import { Budget } from "../../model/budget";
-import TopAppBar from "@/components/top-app-bar";
+import { StoreState } from "@/model/store";
+import { Budget } from "@/model/budget";
+import TopAppBar from "@/components/shared/TopAppBar";
 import { Avatar, Text } from "react-native-paper";
 import { appName } from "@/constants/app-constants";
 

@@ -8,10 +8,10 @@ import {
 } from "react-native-paper";
 import { useState, RefObject } from "react";
 import { DatePickerInput } from "react-native-paper-dates";
-import { createNewBudget } from "../storage/slices/budget-slice";
+import { createNewBudget } from "../../storage/slices/budget-slice";
 import { useDispatch } from "react-redux";
 import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
-import Dialog from "./dialog";
+import Dialog from "@/components/shared/Dialog";
 
 interface NewBudgetDialogProps {
   cloneId?: string | null;

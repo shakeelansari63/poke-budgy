@@ -4,12 +4,12 @@ import { useDispatch } from "react-redux";
 import {
     resetStore,
     loadBudgetFromStore,
-} from "../storage/slices/budget-slice";
-import { loadSettingsFromStore } from "../storage/slices/settings-slice";
-import SettingMenuLine from "../components/setting-menu-line";
-import ConfirmationDialog from "../components/confirmation-dialog";
-import { exportData, importData } from "../services/export-import-service";
-import { AlertType } from "../components/alert-viewer";
+} from "@/storage/slices/budget-slice";
+import { loadSettingsFromStore } from "@/storage/slices/settings-slice";
+import SettingMenuLine from "./SettingMenuLine";
+import ConfirmationDialog from "@/components/shared/ConfirmationDialog";
+import { exportData, importData } from "@/services/export-import-service";
+import { AlertType } from "@/components/shared/AlertViewer";
 
 interface DataSettingsSectionProps {
     setAlertText: (_: string) => void;

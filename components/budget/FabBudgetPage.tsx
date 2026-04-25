@@ -1,8 +1,8 @@
 import { FAB } from "react-native-paper";
 import React from "react";
-import { ExpenseCategory } from "../model/expense";
+import { ExpenseCategory } from "@/model/expense";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import EditBudgetSpendDialog from "./budget-spend-dialog";
+import EditBudgetSpendDialog from "./BudgetSpendDialog";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface FabBudgetPageProps {
