@@ -6,6 +6,9 @@ import IncomeSection from "@/components/home/IncomeSection";
 import ExpenseSection from "@/components/home/ExpenseSection";
 import TopAppBar from "@/components/shared/TopAppBar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { useSelector } from "react-redux";
+import { StoreState } from "@/model/store";
 
 const PastBudgetView = () => {
     const { budgetId } = useLocalSearchParams() as { budgetId: string };

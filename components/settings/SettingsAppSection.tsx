@@ -13,6 +13,7 @@ import {
 import SettingMenuLine from "./SettingMenuLine";
 import { ThemeColors } from "@/constants/colors";
 import { useCurrentColor } from "@/hooks/use-settings";
+import { Dropdown } from "react-native-paper-dropdown";
 
 const AppSettingsSection = () => {
     const dispatch = useDispatch();

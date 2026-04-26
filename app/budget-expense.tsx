@@ -2,6 +2,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { SectionList, View } from "react-native";
 import React from "react";
 import { ExpenseCategory } from "@/model/expense";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import FabBudgetPage from "@/components/budget/FabBudgetPage";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";

@@ -5,6 +5,8 @@ import TopAppBar from "@/components/shared/TopAppBar";
 import AppSettingsSection from "@/components/settings/SettingsAppSection";
 import DataSettingsSection from "@/components/settings/SettingsDataSection";
 import HelpSettigsSection from "@/components/settings/SettingsHelpSection";
+import { useRouter } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SettingsScreen = () => {
     const router = useRouter();

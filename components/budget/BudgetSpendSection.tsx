@@ -2,9 +2,12 @@ import { View } from "react-native";
 import React from "react";
 import { Card, useTheme } from "react-native-paper";
 import { ExpenseCategory, Expense } from "@/model/expense";
+import { useDispatch } from "react-redux";
 import { deleteExpense } from "@/storage/slices/budget-slice";
+import BudgetSpendLine from "./BudgetSpendLine";
 import ConfirmationDialog from "@/components/shared/ConfirmationDialog";
 import SwipeQuickActions, { SwipeQuickActionData } from "@/components/home/SwipeQuickActions";
+import SwipeableFlatList from "rn-gesture-swipeable-flatlist";
 
 interface BudgetSpendSectionProps {
     expenseCategory: ExpenseCategory;
