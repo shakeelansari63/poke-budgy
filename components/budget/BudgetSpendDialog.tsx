@@ -11,6 +11,7 @@ import { useState, RefObject } from "react";
 import { DatePickerInput } from "react-native-paper-dates";
 import { useDispatch } from "react-redux";
 import { addExpense, editExpense } from "@/storage/slices/budget-slice";
+import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import Dialog from "@/components/shared/Dialog";
 import { Expense } from "@/model/expense";
 import { useCurrencySymbol } from "@/hooks/use-settings";
